@@ -329,6 +329,50 @@
     gap: .35rem;
 }
 
+/* FAQ accordion ----------------------------------------------------------- */
+
+.ix-faq {
+    margin-top: .9rem;
+    border-top: 1px solid var(--ix-line);
+}
+
+.ix-faq__item {
+    border-bottom: 1px solid var(--ix-line);
+}
+
+.ix-faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 48px;
+    padding: .75rem 0;
+    cursor: pointer;
+    font-size: var(--ix-small);
+    font-weight: 600;
+    color: var(--ix-ink);
+    list-style: none;
+}
+
+.ix-faq__item summary::-webkit-details-marker {
+    display: none;
+}
+
+.ix-faq__item summary::after {
+    content: "+";
+    font-size: 1.1rem;
+    color: var(--ix-ink-3);
+    transition: transform var(--ix-fast) var(--ix-ease);
+}
+
+.ix-faq__item[open] summary::after {
+    content: "–";
+}
+
+.ix-faq__item > div {
+    padding-bottom: .9rem;
+}
+
 @media (max-width: 900px) {
     .ix-detail-hero__grid,
     .ix-detail-body {
