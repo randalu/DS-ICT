@@ -479,14 +479,55 @@
 }
 
 @media (max-width: 640px) {
-    .ix-grid--3,
-    .ix-grid--4,
-    .ix-matcher__grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
     .ix-filterbar__count {
         margin-left: 0;
         width: 100%;
+    }
+}
+
+/* Mobile: tiles slide sideways -------------------------------------------- */
+
+@media (max-width: 768px) {
+    .ix-rail-mobile {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--ix-gutter);
+        gap: clamp(10px, 3vw, 14px);
+        padding-inline: var(--ix-gutter);
+        padding-bottom: .35rem;
+        margin-inline: calc(var(--ix-gutter) * -1);
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .ix-rail-mobile::-webkit-scrollbar {
+        display: none;
+    }
+
+    .ix-rail-mobile > * {
+        flex: 0 0 76%;
+        scroll-snap-align: start;
+    }
+
+    .ix-rail-mobile:focus-visible {
+        outline: 2px solid var(--ix-teal);
+        outline-offset: 2px;
+    }
+
+    /* Single-column collapse must not apply to a rail. */
+    .ix-rail-mobile.ix-grid--3,
+    .ix-rail-mobile.ix-grid--4,
+    .ix-rail-mobile.ix-matcher__grid {
+        grid-template-columns: none;
+    }
+
+    .ix-rail-mobile.ix-strip {
+        grid-template-columns: none;
+    }
+
+    .ix-rail-mobile.ix-strip > .ix-strip__item {
+        flex-basis: 62%;
     }
 }

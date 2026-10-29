@@ -104,7 +104,7 @@ $hasActive = $query !== [];
                 <a class="ix-btn ix-btn--sm" href="<?= e($base) ?>">Show everything</a>
             </div>
         <?php else: ?>
-            <div class="ix-grid ix-grid--3">
+            <div class="ix-grid ix-grid--3 ix-rail-mobile" tabindex="0" role="region" aria-label="<?= e($data['heading']) ?>">
                 <?php foreach ($data['items'] as $index => $item): ?>
                     <article class="ix-card" data-ix-reveal data-delay="<?= min(240, 40 * $index) ?>">
                         <a class="ix-card__link" href="<?= e($item['url']) ?>">

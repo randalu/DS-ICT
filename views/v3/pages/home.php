@@ -54,7 +54,7 @@ $hero = $d['hero'];
             <a class="ix-link" href="<?= e(base_url('itineraries')) ?>">All itineraries <span class="ix-link__arrow" aria-hidden="true">&rarr;</span></a>
         </div>
 
-        <div class="ix-grid ix-grid--3">
+        <div class="ix-grid ix-grid--3 ix-rail-mobile" tabindex="0" role="region" aria-label="Signature journeys">
             <?php foreach ($d['journeys'] as $index => $journey): ?>
                 <article class="ix-card" data-ix-reveal data-delay="<?= 60 * $index ?>">
                     <a class="ix-card__link" href="<?= e($journey['url']) ?>">
@@ -89,7 +89,7 @@ $hero = $d['hero'];
         <div data-island="journey-matcher"
              data-props="<?= e(json_encode(['items' => $d['matcher']], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT)) ?>">
             <div class="ix-matcher">
-                <div class="ix-matcher__grid">
+                <div class="ix-matcher__grid ix-rail-mobile" tabindex="0" role="region" aria-label="Journeys by length">
                     <?php foreach ($d['matcherFallback'] as $item): ?>
                         <article class="ix-card">
                             <a class="ix-card__link" href="<?= e($item['url']) ?>">
@@ -124,7 +124,7 @@ $hero = $d['hero'];
             <a class="ix-link" href="<?= e(base_url('destinations')) ?>">All destinations <span class="ix-link__arrow" aria-hidden="true">&rarr;</span></a>
         </div>
 
-        <div class="ix-strip">
+        <div class="ix-strip ix-rail-mobile" tabindex="0" role="region" aria-label="Destinations">
             <?php foreach ($d['destinations'] as $destination): ?>
                 <a class="ix-strip__item" href="<?= e($destination['url']) ?>">
                     <img src="<?= e($destination['image']) ?>" alt="<?= e($destination['alt']) ?>" loading="lazy" decoding="async">
@@ -191,7 +191,9 @@ $hero = $d['hero'];
         <div class="ix-journal-list">
             <?php foreach ($d['articles'] as $article): ?>
                 <a class="ix-journal-row" href="<?= e($article['url']) ?>">
-                    <time><?= e($article['date']) ?></time>
+                    <span class="ix-journal-row__thumb">
+                        <img src="<?= e($article['image']) ?>" alt="" loading="lazy" decoding="async">
+                    </span>
                     <h3><?= e($article['title']) ?></h3>
                     <span aria-hidden="true">&rarr;</span>
                 </a>

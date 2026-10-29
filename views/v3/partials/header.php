@@ -26,9 +26,11 @@ $isOn = static function (string $prefix) use ($current): bool {
 
 $nav = [
     ['label' => 'Destinations', 'url' => base_url('destinations'), 'on' => $isOn('destinations')],
-    ['label' => 'Experiences', 'url' => base_url('experiences'), 'on' => $isOn('experiences') || $isOn('activities')],
+    ['label' => 'Experiences', 'url' => base_url('experiences'), 'on' => $isOn('experiences')],
+    ['label' => 'Activities', 'url' => base_url('activities'), 'on' => $isOn('activities')],
     ['label' => 'Journeys', 'url' => base_url('itineraries'), 'on' => $isOn('itineraries') || $isOn('tours') || $isOn('day-tours')],
-    ['label' => 'Guide', 'url' => base_url('seasonal'), 'on' => $isOn('seasonal') || $isOn('blog') || $isOn('from')],
+    ['label' => 'Blog', 'url' => base_url('blog'), 'on' => $isOn('blog')],
+    ['label' => 'Guide', 'url' => base_url('seasonal'), 'on' => $isOn('seasonal') || $isOn('from')],
     ['label' => 'About', 'url' => base_url('about-us'), 'on' => $isOn('about-us') || $isOn('why-choose-us') || $isOn('reviews')],
 ];
 

@@ -228,6 +228,29 @@ final class HomeRepository
     }
 
     /**
+     * The most recently published posts, newest first — no featured boost, so
+     * "latest 3" means exactly that.
+     *
+     * @return list<array<string,mixed>>
+     */
+    public function latestArticles(int $limit = 3): array
+    {
+        $limit = max(1, min(12, $limit));
+
+        $rows = $this->rows('latest_articles:' . $limit, sprintf(
+            'SELECT id, title, slug, excerpt, published_at, created_at,
+                    hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
+             FROM blog_posts
+             WHERE is_published = 1
+             ORDER BY COALESCE(published_at, created_at) DESC
+             LIMIT %d',
+            $limit
+        ));
+
+        return array_map(static fn(array $row): array => ContentNormalizer::article($row), $rows);
+    }
+
+    /**
      * Region chips for the destination grid, derived from published rows so the
      * filter can never advertise a region with nothing behind it.
      *

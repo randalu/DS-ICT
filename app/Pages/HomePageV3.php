@@ -47,7 +47,7 @@ final class HomePageV3
         $allJourneys = $repository->journeys(13);
         $destinations = $repository->destinations(4);
         $experiences = $repository->experiences(3);
-        $articles = $repository->articles(3);
+        $articles = $repository->latestArticles(3);
 
         $seoTitle = trim((string) ($settings['homepage_new_seo_title'] ?? ''));
         if ($seoTitle === '') {
@@ -127,7 +127,8 @@ final class HomePageV3
             'articles' => array_map(static fn(array $card): array => [
                 'title' => $card['title'],
                 'url' => $card['url'],
-                'date' => (string) ($card['meta'][0] ?? ''),
+                'image' => $card['image'],
+                'alt' => $card['alt'],
             ], $articles),
             'cta' => [
                 'title' => 'Tell us your dates.',

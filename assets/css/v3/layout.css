@@ -101,11 +101,12 @@
     display: inline-flex;
     align-items: center;
     min-height: 38px;
-    padding: 0 .7rem;
+    padding: 0 .55rem;
     border-radius: var(--ix-radius-control);
-    font-size: var(--ix-small);
+    font-size: .8125rem;
     font-weight: 500;
     color: var(--ix-ink-2);
+    white-space: nowrap;
 }
 
 .ix-nav a:hover {
@@ -124,7 +125,7 @@
 .ix-search {
     position: relative;
     margin-left: auto;
-    width: clamp(160px, 18vw, 250px);
+    width: clamp(150px, 14vw, 210px);
 }
 
 .ix-search__input {
@@ -427,7 +428,7 @@ body.ix-drawer-open {
     max-width: 32ch;
     margin: 1rem 0;
     font-size: var(--ix-small);
-    color: var(--ix-on-night-dim);
+    color: rgba(242, 239, 233, .82);
 }
 
 .ix-footer__contact {
@@ -435,7 +436,7 @@ body.ix-drawer-open {
     flex-direction: column;
     gap: .3rem;
     font-size: var(--ix-small);
-    color: var(--ix-on-night-dim);
+    color: rgba(242, 239, 233, .82);
 }
 
 .ix-footer__contact a:hover {
@@ -443,21 +444,29 @@ body.ix-drawer-open {
 }
 
 .ix-footer__title {
-    margin-bottom: .8rem;
+    margin-bottom: .9rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--ix-coral);
     font-family: var(--ix-ui);
     font-size: var(--ix-micro);
     font-weight: 600;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: rgba(242, 239, 233, .5);
+    color: rgba(242, 239, 233, .78);
 }
 
 .ix-footer__list {
     display: flex;
     flex-direction: column;
-    gap: .45rem;
+    gap: .2rem;
     font-size: var(--ix-small);
-    color: var(--ix-on-night-dim);
+    color: rgba(242, 239, 233, .84);
+}
+
+.ix-footer__list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
 }
 
 .ix-footer__list a:hover {
@@ -473,8 +482,8 @@ body.ix-drawer-open {
     margin-top: 2.5rem;
     padding-block: 1.1rem;
     border-top: 1px solid var(--ix-line-night);
-    font-size: var(--ix-micro);
-    color: rgba(242, 239, 233, .5);
+    font-size: .75rem;
+    color: rgba(242, 239, 233, .72);
 }
 
 .ix-footer__legal {
@@ -489,7 +498,7 @@ body.ix-drawer-open {
 
 /* Responsive -------------------------------------------------------------- */
 
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
     .ix-nav,
     .ix-search {
         display: none;
