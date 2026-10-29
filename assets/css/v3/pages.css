@@ -329,6 +329,54 @@
     gap: .35rem;
 }
 
+/* Article ---------------------------------------------------------------- */
+
+.ix-article-head {
+    padding-block: clamp(20px, 3vw, 36px) 1rem;
+}
+
+.ix-article-meta {
+    margin-top: .9rem;
+    font-size: var(--ix-micro);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ix-ink-3);
+}
+
+.ix-article-hero {
+    margin-block: 1.5rem 2rem;
+}
+
+.ix-article-hero img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--ix-radius-card);
+}
+
+.ix-prose--article {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+}
+
+.ix-prose--article h2 {
+    margin-top: 2rem;
+}
+
+.ix-article-body {
+    padding-bottom: var(--ix-section);
+}
+
+.ix-article-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--ix-line);
+}
+
 /* Tips list --------------------------------------------------------------- */
 
 .ix-tips {
