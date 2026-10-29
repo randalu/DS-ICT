@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Destination image placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#133c55"/>
+      <stop offset="0.55" stop-color="#1f7a6b"/>
+      <stop offset="1" stop-color="#d8a94b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M0 640 C210 570 360 720 560 642 C760 565 870 500 1080 592 C1260 672 1410 605 1600 535 L1600 900 L0 900 Z" fill="#0b2537" opacity="0.52"/>
+  <circle cx="1260" cy="190" r="92" fill="#ffd88a" opacity="0.9"/>
+  <text x="120" y="680" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Destination image</text>
+  <text x="124" y="748" font-family="Arial, sans-serif" font-size="34" fill="#f3f7f5">Placeholder - replace in admin media fields</text>
+</svg>

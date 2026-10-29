@@ -1,0 +1,27 @@
+{
+  "name": "island",
+  "version": "1.0.0",
+  "description": "Custom PHP 8.3 site for Island Culture Travels, a Sri Lanka private travel and tour business covering destinations, experiences, itineraries, reviews, contact inquiries, customer accounts, business partners, and admin-managed content.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randalu/IslandCulture.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/randalu/IslandCulture/issues"
+  },
+  "homepage": "https://github.com/randalu/IslandCulture#readme",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

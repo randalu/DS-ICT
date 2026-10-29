@@ -1,0 +1,15 @@
+{
+  "source": "GeoNames, WGS84. CC BY 4.0. Suggested city centres, not hotel or attraction entrances. Verify before saving.",
+  "source_url": "https://www.geonames.org/about.html",
+  "places": [
+    {"name":"Colombo","latitude":6.93548,"longitude":79.84868,"source":"GeoNames Colombo city centre: https://www.geonames.org/advanced-search.html?q=sri+lanka"},
+    {"name":"Negombo","latitude":7.2083,"longitude":79.8358,"source":"GeoNames Negombo city centre: https://www.geonames.org/advanced-search.html?q=Negombo"},
+    {"name":"Sigiriya","latitude":7.94946,"longitude":80.75037,"source":"GeoNames Sigiriya populated place: https://www.geonames.org/advanced-search.html?q=Sigiriya"},
+    {"name":"Dambulla","latitude":7.86,"longitude":80.651667,"source":"GeoNames Dambulla town: https://www.geonames.org/advanced-search.html?q=Dambulla"},
+    {"name":"Kandy","latitude":7.2906,"longitude":80.6336,"source":"GeoNames Kandy city centre: https://www.geonames.org/advanced-search.html?q=Kandy"},
+    {"name":"Nuwara Eliya","latitude":6.970779,"longitude":80.782857,"source":"GeoNames Nuwara Eliya town: https://www.geonames.org/advanced-search.html?q=Nuwara+Eliya"},
+    {"name":"Ella","latitude":6.8756,"longitude":81.0463,"source":"GeoNames Ella Town: https://www.geonames.org/advanced-search.html?q=Ella+Town"},
+    {"name":"Galle","latitude":6.0461,"longitude":80.2103,"source":"GeoNames Galle city centre: https://www.geonames.org/advanced-search.html?q=sri+lanka"},
+    {"name":"Bandaranaike International Airport","latitude":7.180756,"longitude":79.884117,"source":"GeoNames airport reference point: https://www.geonames.org/advanced-search.html?q=Bandaranaike+International+Airport"}
+  ]
+}

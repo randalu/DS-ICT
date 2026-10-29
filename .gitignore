@@ -1,0 +1,54 @@
+# PHPUnit
+.phpunit.cache/
+
+# Composer
+/vendor/
+node_modules/
+
+# Environment secrets
+.env
+.env.local
+.env.production
+.env.*
+!.env.example
+
+# Data written at runtime (logs, uploads, etc.)
+/data/
+/storage/
+/output/
+/uploads/
+/assets/uploads/
+**/output/
+.playwright-cli/
+*.log
+
+# Editor/IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+Thumbs.db
+desktop.ini
+
+# Local build/test artifacts
+.phpunit.result.cache
+/coverage/
+/build/
+
+# Database snapshots and archives
+# Full dumps contain real customer records, password hashes and setting values.
+# They stay local/off-repo; use database/schema.sql + database/migrations for the
+# reproducible shape of the schema.
+/database/database_full.sql
+/database/*.sql.gz
+/sql-import.sql
+*.zip
+/IslandCulture-main/
+
+# Local AI/agent tooling state (chat exports, spreadsheets, machine-local plans)
+/.hermes/
+/.Jules/
+/.opencode/

@@ -1,0 +1,84 @@
+{
+  "milestone": "approved-homepage-and-page-family-preview",
+  "coverage": "Concrete source-route families with labelled design records; NOT a full published-record inventory or real-data parity claim",
+  "defaultConcreteRouteCount": 96,
+  "optInPartnerConcreteRouteCount": 100,
+  "registry": "app/routes.php::route_manifest",
+  "databaseConnectedDuringValidation": false,
+  "publishedRecordCounts": null,
+  "readOnlyAdapter": "Optional app/repository.php::read_only_catalog(environment); source integration requires separately provisioned verified SELECT-only credentials and is not live-tested",
+  "originalSiteImportsAllowed": false,
+  "previewWritesAllowed": false,
+  "nextGate": "Approved SELECT-only source connection, actual published-record/media/relationship parity and isolated backend workflow verification; no deployment",
+  "validation": {
+    "defaultRouteBrowserCoverage": 96,
+    "optionalPartnerRoutesVerifiedSeparately": 4,
+    "browserAssertions": 1149,
+    "automatedAccessibilityScans": 28,
+    "screenshots": 37,
+    "originalSourceFilesUnchanged": 409,
+    "report": "output/milestone-report.json",
+    "note": "Preview validation only; automated scans are not WCAG certification and no real database or production parity is claimed"
+  },
+  "sourceStates": {
+    "fixture": "No database variables supplied: labelled synthetic records and approved photography",
+    "unavailable": "Any partial/invalid/unverified supplied source: sanitized known-route screen with no fallback records",
+    "database": "Optional adapter returns verified read-only public records; only exact allowlisted family/slug/url pairs extend the route registry"
+  },
+  "queryRules": {
+    "scalarOnly": true,
+    "arrays": "Ignored, never string-cast or used as selectors",
+    "textLimits": "Search 120 bytes, selectors 64 bytes, comparison IDs 500 bytes; invalid UTF-8/control characters ignored",
+    "invalidSelectors": "Normalize to unfiltered state",
+    "pagination": "Blog nine per page; invalid/oversized page normalizes to 1; valid out-of-range page clamps to last page; filters preserved in links",
+    "comparison": "Comma-separated actual itinerary ID allowlist, deduplicated, maximum four",
+    "transitions": "GET filters/search only; no saves, customer sessions, messages, consent changes or external processing"
+  },
+  "fixtures": {
+    "destinations": ["galle", "ella", "kandy", "mirissa", "yala"],
+    "itineraries": ["demo-hills-coast", "demo-southern-perspectives", "demo-island-contrasts"],
+    "illustrativeDurationsOnly": [7, 10, 14],
+    "tours": ["demo-cultural", "demo-hills-coast"],
+    "tourCategoryFallback": "cultural",
+    "dayTours": ["demo-galle", "demo-kandy", "demo-ella"],
+    "experiences": ["demo-coastal-streets", "demo-hill-country", "demo-wildlife-landscapes"],
+    "articles": ["demo-coastal-chapter", "demo-change-of-scenery", "demo-planning-space"],
+    "guideCounts": {"departureCountries": 3, "months": 12, "themes": 6},
+    "legalPolicyText": "None; approved publication status unavailable",
+    "reviews": "Empty; no invented ratings or testimonials",
+    "partnerFlag": "NEW_SITE_DEMO_PARTNERS=1 only; default disabled; fictional directory/category/detail/application, no real settings"
+  },
+  "contracts": {
+    "homepage": "Existing approved hero/destinations/journeys/experiences/articles/reviews/active_journey keys retained; card targets now real demo details",
+    "page": "family,page_kind,record,items,filters,filter_options,pagination,breadcrumbs,related,support_type",
+    "record": "id,slug,title,summary,image,image_alt,url,label,demo plus sourced or explicitly illustrative optional sections",
+    "duration": "Detail record.days is timeline array, duration_days integer; collection card.days integer; approved homepage fixture cards retain original no-days shape",
+    "article": "Plain text sections with stable id/heading/text; sample educational label; no invented authors or dates"
+  },
+  "families": [
+    {"paths": ["/"], "sources": ["index.php"], "status": "approved-homepage-contract-preserved"},
+    {"paths": ["/destinations", "/destinations/{known-slug}"], "sources": ["destinations.php", "destination.php"], "filters": ["region", "q"], "status": "five-concrete-design-records"},
+    {"paths": ["/itineraries", "/itineraries/{known-slug}"], "sources": ["itineraries.php", "itinerary.php"], "filters": ["days", "theme", "traveller", "start"], "status": "three-labelled-illustrative-records"},
+    {"paths": ["/tours", "/tours/{known-slug}"], "sources": ["tours.php", "tour.php"], "resolution": "Concrete tour first, explicit category fallback second", "status": "two-tours-and-one-distinct-category-record"},
+    {"paths": ["/day-tours", "/day-tours/{known-slug}"], "sources": ["day-tours.php", "day-tour.php"], "filters": ["region", "difficulty", "price", "q"], "status": "three-design-records-no-real-prices"},
+    {"paths": ["/experiences", "/experiences/{known-slug}"], "sources": ["experiences.php", "experience.php"], "filters": ["mood"], "status": "three-design-records"},
+    {"paths": ["/blog", "/blog/{known-slug}"], "sources": ["blog.php", "blog_post.php"], "filters": ["q", "category", "page"], "constraints": ["nine-per-page", "sample-educational-body-only", "no-invented-author-date"], "status": "three-design-articles"},
+    {"paths": ["/from", "/from/{known-country}"], "sources": ["from.php", "country.php"], "status": "three-labelled-country-guide-layouts"},
+    {"paths": ["/seasonal", "/sri-lanka-in-{known-month}"], "sources": ["seasonal.php", "sri_lanka_in_month.php"], "status": "twelve-labelled-month-guide-layouts-not-weather-advice"},
+    {"paths": ["/{N}-day-itinerary"], "sources": ["n_day_itinerary.php"], "constraints": ["1-60 bounds", "actual matching record required", "fixture mode only 7,10,14 return200", "all other fixture durations404"], "status": "record-backed-not-generic-generated-routes"},
+    {"paths": ["/honeymoon-tours", "/family-tours", "/adventure-tours", "/wellness-tours", "/luxury-tours", "/wildlife-tours"], "sources": ["theme.php"], "status": "six-labelled-theme-guide-layouts"},
+    {"paths": ["/about-us", "/why-choose-us", "/reviews", "/faq", "/contact", "/plan", "/compare", "/ai-search", "/privacy_choices.php"], "sources": ["about-us.php", "why-choose-us.php", "reviews.php", "faq.php", "contact.php", "plan.php", "compare.php", "ai_search.php", "privacy_choices.php"], "status": "explicit-support-contracts-real-review-empty-state"},
+    {"paths": ["/private-driver-sri-lanka", "/private-driver-sri-lanka/cost", "/sri-lanka-private-tours", "/sri-lanka-tour-cost", "/sri-lanka-airport-transfers", "/colombo-airport-to-sigiriya", "/sigiriya-to-kandy-private-transfer", "/kandy-to-ella-private-transfer", "/ella-to-yala-private-transfer", "/ella-to-udawalawe-private-transfer", "/yala-to-mirissa-private-transfer", "/galle-to-colombo-airport-private-transfer"], "sources": ["static_page.php"], "previewAlias": "/airport-transfers retained from approved homepage registry", "constraints": ["special private-driver cost slug mapping", "synthetic service information, no actual rates or terms"], "status": "explicit-service-layouts"},
+    {"paths": ["/privacy-policy", "/cookie-policy", "/travel-insurance", "/accessibility", "/complaints", "/responsible-travel", "/company-credentials", "/traveller-support", "/booking-terms-and-conditions", "/cancellation-refund-policy", "/payment-deposit-policy", "/book-with-confidence", "/trust-safety", "/drivers-vehicles", "/how-booking-works", "/tour-inclusions-exclusions"], "sources": ["static_page.php"], "constraints": ["approved published status unavailable in this source", "no fabricated policy or trust claims"], "status": "honest-unavailable-support-layouts"},
+    {"paths": ["/account", "/account/login", "/account/customize-itinerary", "/account/plans/1", "/account/inquiries/1"], "sources": ["account.php", "account_login.php", "account_customize_itinerary.php", "account_plan.php", "account_inquiry.php"], "constraints": ["synthetic only", "all other record IDs404", "stateful endpoints404"], "status": "five-explicit-synthetic-screens"},
+    {"paths": ["/business-partners", "/business-partners/stays", "/business-partners/partner/demo-coastal-stay", "/business-partners/apply"], "sources": ["business_partners.php", "business_partner.php", "business_partner_apply.php"], "constraints": ["default404", "explicit demo flag only", "fictional identity", "no writes or uploads"], "status": "four-opt-in-synthetic-routes"},
+    {"paths": ["unknown routes", "stateful endpoints", "unregistered account IDs"], "sources": ["404.php"], "status": "real404-no-generic-slug-catchall"}
+  ],
+  "limitations": [
+    "No real database connection or published-record enumeration was performed.",
+    "Source adapter currently maps six catalogue families and itinerary day rows only; original relationships, settings, reviews, guides, static policies and private account records are not claimed as covered.",
+    "Sample guides demonstrate educational page layouts, not verified CMS advice, visa guidance, weather, availability, travel times or prices.",
+    "Policy/trust publication is not inferred from unrelated project memory or original data; approved text is not copied or fabricated.",
+    "Standalone tests validate model and routing contracts; browser, security and preservation validation is coordinated separately."
+  ]
+}

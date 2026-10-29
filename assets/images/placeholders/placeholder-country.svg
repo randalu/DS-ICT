@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Country page image placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f3a5f"/>
+      <stop offset="0.55" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="790" cy="410" r="210" fill="none" stroke="#ffffff" stroke-width="20" opacity="0.28"/>
+  <path d="M580 410 H1000 M790 200 C710 300 710 520 790 620 M790 200 C870 300 870 520 790 620" fill="none" stroke="#ffffff" stroke-width="16" opacity="0.35"/>
+  <text x="120" y="700" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Country page image</text>
+  <text x="124" y="768" font-family="Arial, sans-serif" font-size="34" fill="#f3f7f5">Placeholder - replace in admin media fields</text>
+</svg>

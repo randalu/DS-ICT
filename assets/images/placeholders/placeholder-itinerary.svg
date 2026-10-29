@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Itinerary image placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#172554"/>
+      <stop offset="0.55" stop-color="#047857"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M230 560 C390 390 560 690 740 500 C910 322 1080 590 1370 360" fill="none" stroke="#ffffff" stroke-width="22" stroke-linecap="round" stroke-dasharray="2 54" opacity="0.56"/>
+  <circle cx="230" cy="560" r="42" fill="#ffffff" opacity="0.8"/>
+  <circle cx="740" cy="500" r="42" fill="#ffffff" opacity="0.8"/>
+  <circle cx="1370" cy="360" r="42" fill="#ffffff" opacity="0.8"/>
+  <text x="120" y="700" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#ffffff">Itinerary image</text>
+  <text x="124" y="768" font-family="Arial, sans-serif" font-size="34" fill="#f3f7f5">Placeholder - replace in admin media fields</text>
+</svg>

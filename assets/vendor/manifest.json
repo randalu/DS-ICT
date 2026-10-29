@@ -1,0 +1,313 @@
+{
+  "date": "2026-10-13",
+  "purpose": "Pinned copies of existing shared library versions and font families; no runtime CDN fallback",
+  "assets": [
+    {
+      "path": "assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css",
+      "source": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz#package/dist/css/bootstrap.min.css",
+      "sha256": "3c8f27e6009ccfd710a905e6dcf12d0ee3c6f2ac7da05b0572d3e0d12e736fc8",
+      "bytes": 232803,
+      "package": "bootstrap",
+      "version": "5.3.3",
+      "package_integrity": "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
+    },
+    {
+      "path": "assets/vendor/bootstrap-5.3.3/dist/css/bootstrap.min.css.map",
+      "source": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz#package/dist/css/bootstrap.min.css.map",
+      "sha256": "f12338536350a422c64d02d6e43ff1dea493c3156ad823fe19761cdd5d56c05b",
+      "bytes": 589892,
+      "package": "bootstrap",
+      "version": "5.3.3",
+      "package_integrity": "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
+    },
+    {
+      "path": "assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js",
+      "source": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz#package/dist/js/bootstrap.bundle.min.js",
+      "sha256": "0833b2e9c3a26c258476c46266e6877fc75218625162e0460be9a3a098a61c6c",
+      "bytes": 80721,
+      "package": "bootstrap",
+      "version": "5.3.3",
+      "package_integrity": "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
+    },
+    {
+      "path": "assets/vendor/bootstrap-5.3.3/dist/js/bootstrap.bundle.min.js.map",
+      "source": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz#package/dist/js/bootstrap.bundle.min.js.map",
+      "sha256": "5e3e0763164143baaa1ca0706b6100ba0452f911d6ce9713b48e3dbe07b35125",
+      "bytes": 332090,
+      "package": "bootstrap",
+      "version": "5.3.3",
+      "package_integrity": "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
+    },
+    {
+      "path": "assets/vendor/bootstrap-5.3.3/LICENSE",
+      "source": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz#package/LICENSE",
+      "sha256": "8c14611ae41ac6fd543c13349f22188eb12c69b3e59105c5eca3925a8e4eca3e",
+      "bytes": 1093,
+      "package": "bootstrap",
+      "version": "5.3.3",
+      "package_integrity": "sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg=="
+    },
+    {
+      "path": "assets/vendor/alpinejs-3.14.8/LICENSE.md",
+      "source": "https://raw.githubusercontent.com/alpinejs/alpine/v3.14.8/LICENSE.md",
+      "sha256": "5f05c4925dd3edf049a70b4b403ac0dd43b20f72501d9359911ddd25d5ac657d",
+      "bytes": 1092,
+      "package": "alpinejs",
+      "version": "3.14.8"
+    },
+    {
+      "path": "assets/vendor/alpinejs-3.14.8/dist/cdn.min.js",
+      "source": "https://registry.npmjs.org/alpinejs/-/alpinejs-3.14.8.tgz#package/dist/cdn.min.js",
+      "sha256": "b600e363d99d95444db54acbfb2deffec9ae792aa99a09229bcda078e5b55643",
+      "bytes": 44758,
+      "package": "alpinejs",
+      "version": "3.14.8",
+      "package_integrity": "sha512-wT2fuP2DXpGk/jKaglwy7S/IJpm1FD+b7U6zUrhwErjoq5h27S4dxkJEXVvhbdwyPv9U+3OkUuNLkZT4h2Kfrg=="
+    },
+    {
+      "path": "assets/vendor/quill-2.0.2/dist/quill.js",
+      "source": "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz#package/dist/quill.js",
+      "sha256": "e6aeee50e3a5afcf08a39621424de581872807f3f7fb9030ab595fd2b45aefe6",
+      "bytes": 209340,
+      "package": "quill",
+      "version": "2.0.2",
+      "package_integrity": "sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw=="
+    },
+    {
+      "path": "assets/vendor/quill-2.0.2/dist/quill.snow.css",
+      "source": "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz#package/dist/quill.snow.css",
+      "sha256": "6005ac521f488a6adec4f1ac36e8ee8bd4985aa9ebd14ad7084270f1b64282d7",
+      "bytes": 24606,
+      "package": "quill",
+      "version": "2.0.2",
+      "package_integrity": "sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw=="
+    },
+    {
+      "path": "assets/vendor/quill-2.0.2/LICENSE",
+      "source": "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz#package/LICENSE",
+      "sha256": "395c12b616d6f58238b4be39284d4d9221b58dd6e1f1e34d9ab537e34abbb022",
+      "bytes": 1561,
+      "package": "quill",
+      "version": "2.0.2",
+      "package_integrity": "sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/css/materialdesignicons.min.css",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/css/materialdesignicons.min.css",
+      "sha256": "03fe3caba05e65b14e4035139eee89b12be87cd0bcf342ac3886770eec3a9962",
+      "bytes": 346626,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/fonts/materialdesignicons-webfont.eot",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/fonts/materialdesignicons-webfont.eot",
+      "sha256": "0b183104d2fc5f26196e773c77bdaf2e05509fd4259d2d15ecedca79b87e84f9",
+      "bytes": 1307880,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/fonts/materialdesignicons-webfont.ttf",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/fonts/materialdesignicons-webfont.ttf",
+      "sha256": "61e8aba5a4e981fe22cf7c8e8bcdbea00476e75c62c37f01bf7ee33361d68428",
+      "bytes": 1307660,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/fonts/materialdesignicons-webfont.woff",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/fonts/materialdesignicons-webfont.woff",
+      "sha256": "a5928a0d5c2f624e46f98d9b15c2f60045377f7c594dd78a1759132ea3b463eb",
+      "bytes": 587984,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/fonts/materialdesignicons-webfont.woff2",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/fonts/materialdesignicons-webfont.woff2",
+      "sha256": "662fefa8f2f8a95c18588d21774789c107c64e771cbe65a69af46291c4311afc",
+      "bytes": 403216,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/LICENSE",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/LICENSE",
+      "sha256": "f3bc8715bad84b26396bb42d2abd11f919cf58163be158eab79ecbaabf84cdf2",
+      "bytes": 1012,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/679f24989484dd75b414.woff2",
+      "source": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_hAgWDto.woff2",
+      "sha256": "679f24989484dd75b414df194454962106965d91af8fe88e48b463352c4b4518",
+      "bytes": 6828,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/5094d993e86782ac2584.woff2",
+      "source": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_hQgWDto.woff2",
+      "sha256": "5094d993e86782ac258413fa155652988924bb25ed83d26f61bf6d7f10fdb403",
+      "bytes": 21472,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/203583457d9c8cc90309.woff2",
+      "source": "https://fonts.gstatic.com/s/allura/v23/9oRPNYsQpS4zjuA_iwgW.woff2",
+      "sha256": "203583457d9c8cc90309f580dbf27a5fa9ed2893f06b8404ebb4c05e909c18e5",
+      "bytes": 26488,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/a4d7cf345b8091e1d2c8.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpHtKgS4.woff2",
+      "sha256": "a4d7cf345b8091e1d2c8c5c8fa3bd0f9bb9d00bc8988185471db398ddb5ae4c4",
+      "bytes": 23416,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/017fab69b4be8ffc08ca.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKgS4.woff2",
+      "sha256": "017fab69b4be8ffc08ca312823327989ade6dc3d948f0afa125e12ec2e5e7ca1",
+      "bytes": 21168,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/6252e819a7665ae512c2.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYpntKgS4.woff2",
+      "sha256": "6252e819a7665ae512c2d046308a9016ada63c06d0d8f96984c4b29f6c9e1bd2",
+      "bytes": 11220,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/cfa9a397d86f66c5c517.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYp3tKgS4.woff2",
+      "sha256": "cfa9a397d86f66c5c51775a2500a712d5f632a04f0c5eca6930dfaf612d4566d",
+      "bytes": 33736,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/d80df8ff5aecd299a615.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtK.woff2",
+      "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235",
+      "bytes": 37640,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/0f7f5f2fbb4eae126790.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2",
+      "sha256": "0f7f5f2fbb4eae126790fe6f01659ab3ee0806e8038a941908e893020569f51a",
+      "bytes": 26368,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/a187b077090fe8ae3fd2.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2",
+      "sha256": "a187b077090fe8ae3fd2d7496aabbeae604819c718a282e0afc92df72b450766",
+      "bytes": 23828,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/26b2403f995ed65fb490.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2",
+      "sha256": "26b2403f995ed65fb49037a6498c074d3ec3c36031a69fc368c4c2180e2c01fa",
+      "bytes": 12928,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/54d9a78b7ff60b689ad9.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2",
+      "sha256": "54d9a78b7ff60b689ad9f3017ffac8547b5d871afec733f6c1c3ae36577ee504",
+      "bytes": 70688,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/06b16db7a969135d48d3.woff2",
+      "source": "https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2",
+      "sha256": "06b16db7a969135d48d38c49183be7fb88d4452e2a3011957c7851941f4e4879",
+      "bytes": 37956,
+      "font_snapshot": "Google Fonts CSS request 2026-10-13"
+    },
+    {
+      "path": "assets/fonts/brand.css",
+      "source": "https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800;900&display=swap",
+      "sha256": "d092023b201ef38daa0178cc4660f628af398ad0edf1e08f43ce405bed224d5a",
+      "bytes": 16740,
+      "transform": "URLs rewritten to local pinned WOFF2 files; family/weight/unicode-range/display preserved"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/allura-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/allura/OFL.txt",
+      "sha256": "c8cb4c94a558b6cb82ac5dc981a73a0b8aee35a5c52c8a7832fc0280c289ad49",
+      "bytes": 4478,
+      "source_revision": "66928797f271fed5ee428544e7229685e2d90127"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/cormorantgaramond-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/cormorantgaramond/OFL.txt",
+      "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956",
+      "bytes": 4387,
+      "source_revision": "66928797f271fed5ee428544e7229685e2d90127"
+    },
+    {
+      "path": "assets/fonts/brand-2026-10-13/montserrat-OFL.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/montserrat/OFL.txt",
+      "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "bytes": 4400,
+      "source_revision": "66928797f271fed5ee428544e7229685e2d90127"
+    },
+    {
+      "path": "assets/vendor/quill-2.0.2/dist/quill.js.map",
+      "source": "https://registry.npmjs.org/quill/-/quill-2.0.2.tgz#package/dist/quill.js.map",
+      "sha256": "cdf628219497e844dde724b26f08e4917ac0fbae8fb89efda6006c9b8460e8d9",
+      "bytes": 879212,
+      "package": "quill",
+      "version": "2.0.2",
+      "package_integrity": "sha512-QfazNrhMakEdRG57IoYFwffUIr04LWJxbS/ZkidRFXYCQt63c1gK6Z7IHUXMx/Vh25WgPBU42oBaNzQ0K1R/xw=="
+    },
+    {
+      "path": "assets/vendor/mdi-font-7.4.47/css/materialdesignicons.css.map",
+      "source": "https://registry.npmjs.org/@mdi/font/-/font-7.4.47.tgz#package/css/materialdesignicons.css.map",
+      "sha256": "31e82967a046e409b814d55983eacdeb1d1d82c174b522d8261c210afbecd565",
+      "bytes": 454622,
+      "package": "@mdi/font",
+      "version": "7.4.47",
+      "package_integrity": "sha512-43MtGpd585SNzHZPcYowu/84Vz2a2g31TvPMTm9uTiCSWzaheQySUcSyUH/46fPnuPQWof2yd0pGBtzee/IQWw=="
+    },
+    {
+      "path": "assets/vendor/chart.js-4.4.4/dist/chart.umd.js",
+      "source": "https://registry.npmjs.org/chart.js/-/chart.js-4.4.4.tgz#package/dist/chart.umd.js",
+      "sha256": "fed6a739f8d0f0687174de6cd14745fc0fc7809144ab113d22908a26bf0d7fea",
+      "bytes": 205475,
+      "package": "chart.js",
+      "version": "4.4.4",
+      "package_integrity": "sha512-emICKGBABnxhMjUjlYRR12PmOXhJ2eJjEHL2/dZlWjxRAZT1D8xplLFq5M0tMQK8ja+wBS/tuVEJB5C6r7VxJA=="
+    },
+    {
+      "path": "assets/vendor/chart.js-4.4.4/dist/chart.umd.js.map",
+      "source": "https://registry.npmjs.org/chart.js/-/chart.js-4.4.4.tgz#package/dist/chart.umd.js.map",
+      "sha256": "e5849a182620bef84bb6cb8cf274e4766a5b1d6b31cc4538cf179397f14bb2c5",
+      "bytes": 955163,
+      "package": "chart.js",
+      "version": "4.4.4",
+      "package_integrity": "sha512-emICKGBABnxhMjUjlYRR12PmOXhJ2eJjEHL2/dZlWjxRAZT1D8xplLFq5M0tMQK8ja+wBS/tuVEJB5C6r7VxJA=="
+    },
+    {
+      "path": "assets/vendor/chart.js-4.4.4/LICENSE.md",
+      "source": "https://registry.npmjs.org/chart.js/-/chart.js-4.4.4.tgz#package/LICENSE.md",
+      "sha256": "41a84aa2caba645f966a18d9c2056b73e6d3a81d80bc0046bc0011a2634d4cce",
+      "bytes": 1093,
+      "package": "chart.js",
+      "version": "4.4.4",
+      "package_integrity": "sha512-emICKGBABnxhMjUjlYRR12PmOXhJ2eJjEHL2/dZlWjxRAZT1D8xplLFq5M0tMQK8ja+wBS/tuVEJB5C6r7VxJA=="
+    }
+  ]
+}

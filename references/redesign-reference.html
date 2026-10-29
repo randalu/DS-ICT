@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Sri Lanka Private Tours & Chauffeur-Guided Travel | Island Culture Travels</title>
+    <meta name="description" content="Explore Sri Lanka with your own private driver, flexible itineraries, and unforgettable local moments. Book bespoke private tours and signature experiences with Island Culture Travels.">
+    <meta name="keywords" content="Sri Lanka private tours, chauffeur-guided travel Sri Lanka, custom itineraries Sri Lanka, Island Culture Travels, Sri Lanka holidays, private driver Sri Lanka">
+    <meta name="author" content="Island Culture Travels">
+    
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="Sri Lanka Private Tours & Chauffeur-Guided Travel">
+    <meta property="og:description" content="Authentic experiences, flexible itineraries, and private journeys across Sri Lanka.">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter for body text, Playfair Display for elegant headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- Icons (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f2f9f4',
+                            100: '#e1f3e6',
+                            200: '#c3e6ce',
+                            300: '#94d3a9',
+                            400: '#5fb87d',
+                            500: '#3a9b5c',
+                            600: '#287c46',
+                            700: '#22633a',
+                            800: '#1e4e30', // Primary Green
+                            900: '#194029',
+                        },
+                        accent: {
+                            500: '#d97706', // Warm Amber/Gold
+                            600: '#b45309',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for nuances Tailwind doesn't cover natively out-of-the-box perfectly */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+        }
+        /* Hide scrollbar for horizontal scrolling containers but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .text-shadow-sm {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50 selection:bg-brand-500 selection:text-white">
+
+<header class="fixed w-full top-0 z-50 transition-all duration-300" id="main-header">
+    <!-- Top Bar (Contact & Language) -->
+    <div class="hidden md:flex justify-between items-center px-8 py-2 bg-brand-900 text-white text-xs font-medium">
+        <div class="flex items-center gap-6">
+            <a href="mailto:hello@islandculturetravels.com" class="hover:text-brand-200 transition"><i class="fa-regular fa-envelope mr-2"></i>hello@islandculturetravels.com</a>
+            <a href="tel:+94769192427" class="hover:text-brand-200 transition"><i class="fa-solid fa-phone mr-2"></i>+94 76 919 2427</a>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="group relative cursor-pointer">
+                <span><i class="fa-solid fa-globe mr-1"></i> en English <i class="fa-solid fa-chevron-down ml-1 text-[10px]"></i></span>
+                <div class="absolute right-0 top-full mt-2 w-32 bg-white text-gray-800 shadow-lg rounded-lg overflow-hidden hidden group-hover:block transition-all">
+                    <a href="#" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-700">fr French</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-700">de German</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-brand-50 hover:text-brand-700">es Spanish</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="glass-nav border-b border-gray-100 shadow-sm" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2">
+                        <!-- Placeholder for Logo Icon -->
+                        <div class="w-10 h-10 bg-brand-800 rounded-full flex items-center justify-center text-white">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-serif font-bold text-xl leading-tight text-brand-900 tracking-wide">Island Culture</span>
+                            <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold">Travels</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#destinations" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Destinations</a>
+                    <a href="#experiences" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Experiences</a>
+                    <a href="#itineraries" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Tour Itineraries</a>
+                    <a href="#about" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">About Us</a>
+                    <a href="#reviews" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Reviews</a>
+                    <a href="#contact" class="text-sm font-medium text-gray-700 hover:text-brand-600 transition">Contact</a>
+                    
+                    <a href="#plan" class="bg-brand-800 hover:bg-brand-700 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                        Plan My Trip
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center lg:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 h-screen overflow-y-auto">
+                <a href="#destinations" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">Destinations</a>
+                <a href="#experiences" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">Experiences</a>
+                <a href="#itineraries" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">Tour Itineraries</a>
+                <a href="#about" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">About Us</a>
+                <a href="#reviews" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">Reviews</a>
+                <a href="#contact" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-brand-50 hover:text-brand-700 rounded-md">Contact</a>
+                <div class="pt-4 mt-2 border-t border-gray-100">
+                    <a href="#plan" class="block w-full text-center bg-brand-800 text-white px-6 py-3 rounded-full text-base font-semibold">Plan My Trip</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="pt-20 md:pt-28">
+    <!-- Hero Section -->
+    <section class="relative w-full h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <!-- Background Image (Nine Arch Bridge / Tea Country vibe) -->
+        <div class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Sri Lanka scenic train ride in Ella" 
+                 class="object-cover w-full h-full scale-105 transform origin-center animate-[pulse_20s_ease-in-out_infinite_alternate]" />
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-16 md:mt-0">
+            <span class="block text-brand-300 font-semibold tracking-wider uppercase text-sm md:text-base mb-4 animate-fade-in-up">The Beauty of Sri Lanka</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 text-shadow-sm leading-tight">
+                Private Journeys, <br/><span class="text-brand-200 italic">Authentic Experiences</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+                Explore Sri Lanka with your own private driver, flexible itineraries, and unforgettable local moments curated just for you.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#itineraries" class="w-full sm:w-auto bg-brand-500 hover:bg-brand-400 text-white px-8 py-4 rounded-full text-lg font-medium transition-all shadow-lg hover:shadow-brand-500/30">
+                    Explore Itineraries
+                </a>
+                <a href="#plan" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full text-lg font-medium transition-all">
+                    Plan Your Trip
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <a href="#why-us" class="text-white/70 hover:text-white transition">
+                <i class="fa-solid fa-arrow-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-16 md:py-24 bg-white relative -mt-10 mx-4 md:mx-auto max-w-7xl rounded-2xl shadow-soft z-20 px-6 sm:px-10 lg:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Feature 1 -->
+            <div class="text-center group">
+                <div class="w-16 h-16 mx-auto bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:-translate-y-2 transition-transform duration-300">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-gray-900 mb-2">Private Driver & Vehicle</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Your comfort, your pace. Travel safely in air-conditioned luxury.</p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="text-center group">
+                <div class="w-16 h-16 mx-auto bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:-translate-y-2 transition-transform duration-300">
+                    <i class="fa-solid fa-route"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-gray-900 mb-2">Flexible & Customizable</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Tailor-made for you. Adjust the route as you go based on your interests.</p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="text-center group">
+                <div class="w-16 h-16 mx-auto bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:-translate-y-2 transition-transform duration-300">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-gray-900 mb-2">Local Experts</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">Deep local knowledge to show you hidden gems away from the crowds.</p>
+            </div>
+            <!-- Feature 4 -->
+            <div class="text-center group">
+                <div class="w-16 h-16 mx-auto bg-brand-50 text-brand-600 rounded-2xl flex items-center justify-center text-2xl mb-5 group-hover:-translate-y-2 transition-transform duration-300">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-gray-900 mb-2">24/7 Support</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">We are with you always, from arrival to departure, ensuring peace of mind.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="itineraries" class="py-20 md:py-28 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="max-w-2xl">
+                    <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Tours</span>
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2 mb-4">Featured Tour Itineraries</h2>
+                    <p class="text-gray-600 text-lg">Handpicked private tours across Sri Lanka, designed to show you the very best of our island - at your pace.</p>
+                </div>
+                <a href="#" class="inline-flex items-center text-brand-600 font-semibold hover:text-brand-800 transition mt-4 md:mt-0 group">
+                    View all itineraries <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <!-- Itinerary Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft group hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586220742548-6a3f01b312db?q=80&w=800&auto=format&fit=crop" alt="Sigiriya Rock" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-brand-600"></i> 5 Days
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-600 transition-colors">Sri Lanka Short Escape</h3>
+                        <p class="text-gray-500 text-sm mb-4 flex-grow">A short private route for travelers who want a focused mix of culture, Sigiriya, Kandy...</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Starting from</p>
+                            <p class="text-brand-700 font-bold">USD 580 <span class="text-gray-500 text-sm font-normal">per person</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft group hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583398939794-68bb1d8b9d36?q=80&w=800&auto=format&fit=crop" alt="Temple of the Tooth, Kandy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-brand-600"></i> 9 Days
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-600 transition-colors">Classic Itinerary</h3>
+                        <p class="text-gray-500 text-sm mb-4 flex-grow">A balanced classic route with culture, hill country, and flexible beach or Colombo finish...</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Starting from</p>
+                            <p class="text-brand-700 font-bold">USD 780 <span class="text-gray-500 text-sm font-normal">per person</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft group hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542640244-7e672d6cb466?q=80&w=800&auto=format&fit=crop" alt="Elephant Safari" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-brand-600"></i> 12 Days
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-600 transition-colors">Culture, Hills & Safari</h3>
+                        <p class="text-gray-500 text-sm mb-4 flex-grow">A fuller route combining the Cultural Triangle, tea country, safari, and coastal highlights...</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Starting from</p>
+                            <p class="text-brand-700 font-bold">USD 1,500 <span class="text-gray-500 text-sm font-normal">per person</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-soft group hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574676114407-28509c10f84a?q=80&w=800&auto=format&fit=crop" alt="Sri Lanka Beaches" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1">
+                            <i class="fa-regular fa-clock text-brand-600"></i> 14 Days
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-serif text-xl font-bold text-gray-900 mb-2 group-hover:text-brand-600 transition-colors">Complete Island Journey</h3>
+                        <p class="text-gray-500 text-sm mb-4 flex-grow">A complete private island experience with more flexibility for beaches, wildlife, culture...</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide mb-1">Starting from</p>
+                            <p class="text-brand-700 font-bold">USD 1,600 <span class="text-gray-500 text-sm font-normal">per couple</span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="py-20 bg-brand-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+            <span class="text-brand-300 font-semibold tracking-wider uppercase text-sm">Experiences</span>
+            <div class="flex flex-col md:flex-row md:items-end justify-between mt-2">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4 md:mb-0">Signature Experiences</h2>
+                <a href="#" class="inline-flex items-center text-brand-200 hover:text-white transition group">
+                    View all experiences <i class="fa-solid fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+            <p class="text-gray-300 mt-4 max-w-2xl">Wildlife, trains, hidden gems, food, culture, and the kind of moments that make a route feel personal.</p>
+        </div>
+
+        <!-- Horizontal Scroll Container for Mobile / Grid for Desktop -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex overflow-x-auto hide-scrollbar gap-6 snap-x snap-mandatory pb-8 md:grid md:grid-cols-3 md:overflow-visible">
+                
+                <!-- Experience 1 -->
+                <div class="snap-start flex-none w-[85vw] md:w-auto relative rounded-2xl overflow-hidden group h-[300px] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1533227931327-02421f5eb9f3?q=80&w=800&auto=format&fit=crop" alt="Surfing" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-brand-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-3 inline-block">Active</span>
+                        <h3 class="text-xl font-serif font-bold mb-2">Surf Tour: Beginner to Pro</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2">Ride the world-class waves of the Indian Ocean. Whether you're catching your first wave or are a seasoned pro.</p>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="snap-start flex-none w-[85vw] md:w-auto relative rounded-2xl overflow-hidden group h-[300px] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1620023605809-5374495e8bc8?q=80&w=800&auto=format&fit=crop" alt="Sigiriya Sunrise" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-accent-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-3 inline-block">Must Do</span>
+                        <h3 class="text-xl font-serif font-bold mb-2">Sigiriya & Pidurangala Sunrise</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2">A high-intent Sri Lanka experience combining the archaeological Sigiriya climb with panoramic views.</p>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="snap-start flex-none w-[85vw] md:w-auto relative rounded-2xl overflow-hidden group h-[300px] cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?q=80&w=800&auto=format&fit=crop" alt="Ella Train" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-blue-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-3 inline-block">Scenic</span>
+                        <h3 class="text-xl font-serif font-bold mb-2">Kandy to Ella Train</h3>
+                        <p class="text-gray-300 text-sm line-clamp-2">The famous hill-country train segment with private road support for luggage and convenience.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations" class="py-20 md:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+            <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">Explore</span>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2 mb-4">Popular Destinations</h2>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">From golden beaches to misty mountains, explore the most loved places in Sri Lanka.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                <!-- Dest 1 -->
+                <a href="#" class="group relative rounded-xl overflow-hidden aspect-square flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Yala">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <h3 class="relative z-10 text-white font-serif font-bold text-xl md:text-2xl tracking-wide">Yala</h3>
+                </a>
+                <!-- Dest 2 -->
+                <a href="#" class="group relative rounded-xl overflow-hidden aspect-square flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1544473244-f6895e69afd8?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Ella">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <h3 class="relative z-10 text-white font-serif font-bold text-xl md:text-2xl tracking-wide">Ella</h3>
+                </a>
+                <!-- Dest 3 -->
+                <a href="#" class="group relative rounded-xl overflow-hidden aspect-square flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1579899211059-8ff7a1885f80?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Kandy">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <h3 class="relative z-10 text-white font-serif font-bold text-xl md:text-2xl tracking-wide">Kandy</h3>
+                </a>
+                <!-- Dest 4 -->
+                <a href="#" class="group relative rounded-xl overflow-hidden aspect-square flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1586220742548-6a3f01b312db?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Sigiriya">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <h3 class="relative z-10 text-white font-serif font-bold text-xl md:text-2xl tracking-wide">Sigiriya</h3>
+                </a>
+                <!-- Dest 5 -->
+                <a href="#" class="group relative rounded-xl overflow-hidden aspect-square flex items-center justify-center hidden md:flex lg:flex">
+                    <img src="https://images.unsplash.com/photo-1574676114407-28509c10f84a?q=80&w=600&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Hiriketiya">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors"></div>
+                    <h3 class="relative z-10 text-white font-serif font-bold text-xl md:text-2xl tracking-wide">Hiriketiya</h3>
+                </a>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block border-2 border-brand-800 text-brand-800 hover:bg-brand-800 hover:text-white px-8 py-3 rounded-full font-semibold transition-colors">
+                    See All Destinations
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="py-20 md:py-28 bg-brand-50 relative overflow-hidden">
+        <!-- Decorative SVG blob -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-brand-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-accent-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-accent-600 font-semibold tracking-wider uppercase text-sm">What Guests Say</span>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mt-2">Traveler Reviews</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft border border-gray-100 flex flex-col">
+                    <div class="text-accent-500 mb-4 text-sm flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-grow">"We planned to hire a driver for the first day of our tour only as we had a tight schedule... we decided to stay with Mihiran for the next two days as well..."</p>
+                    <div class="flex items-center gap-4 border-t border-gray-100 pt-4">
+                        <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold">T</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Tobia T</h4>
+                            <p class="text-xs text-gray-500">Couple Tour</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft border border-gray-100 flex flex-col">
+                    <div class="text-accent-500 mb-4 text-sm flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-grow">"We had the opportunity to travel around Sri Lanka with Imran, and it was an absolutely fantastic experience. From the very beginning, he proved to be kind..."</p>
+                    <div class="flex items-center gap-4 border-t border-gray-100 pt-4">
+                        <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold">I</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Isabel P</h4>
+                            <p class="text-xs text-gray-500">Solo Traveller</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-soft border border-gray-100 flex flex-col">
+                    <div class="text-accent-500 mb-4 text-sm flex gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-6 flex-grow">"We used the services of a licensed guide, Imran, who took us every day to very interesting places. He also invited us to his family home..."</p>
+                    <div class="flex items-center gap-4 border-t border-gray-100 pt-4">
+                        <div class="w-10 h-10 bg-brand-100 text-brand-700 rounded-full flex items-center justify-center font-bold">A</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Anna Maria</h4>
+                            <p class="text-xs text-gray-500">Warsaw, Poland</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#" class="text-brand-600 font-semibold hover:text-brand-800 transition">View all reviews on Tripadvisor &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="plan" class="relative py-24 bg-brand-800 overflow-hidden">
+        <!-- Abstract wave shape -->
+        <div class="absolute inset-0 opacity-10">
+            <svg viewBox="0 0 1440 320" class="absolute bottom-0 w-full h-auto" preserveAspectRatio="none">
+                <path fill="#ffffff" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,192C960,203,1056,181,1152,149.3C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+        <div class="relative max-w-4xl mx-auto px-4 text-center z-10">
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Ready to Plan Your Sri Lanka Journey?</h2>
+            <p class="text-brand-100 text-lg mb-10 max-w-2xl mx-auto">Let our travel experts create the perfect, tailor-made itinerary for your unforgettable trip.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-accent-500 hover:bg-accent-600 text-white px-8 py-4 rounded-full text-lg font-bold transition-colors shadow-lg">
+                    Plan My Trip <i class="fa-solid fa-paper-plane ml-2"></i>
+                </a>
+                <a href="https://wa.me/94769192427" target="_blank" class="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full text-lg font-bold transition-colors shadow-lg flex items-center justify-center">
+                    <i class="fa-brands fa-whatsapp text-2xl mr-2"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-gray-900 text-gray-300 pt-20 pb-10 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+            
+            <!-- Brand & Contact -->
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-10 h-10 bg-brand-600 rounded-full flex items-center justify-center text-white">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif font-bold text-xl leading-tight text-white tracking-wide">Island Culture</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-semibold">Travels</span>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-400 mb-6 max-w-sm">Your trusted Sri Lanka private travel partner. We build custom routes with professional drivers, curated hotels, and local support from arrival to departure.</p>
+                
+                <ul class="space-y-3 text-sm">
+                    <li><i class="fa-solid fa-phone text-brand-500 w-5"></i> +94 76 919 2427</li>
+                    <li><i class="fa-brands fa-whatsapp text-green-500 w-5"></i> +94 77 949 2427</li>
+                    <li><i class="fa-solid fa-envelope text-brand-500 w-5"></i> hello@islandculturetravels.com</li>
+                </ul>
+
+                <div class="flex space-x-4 mt-8">
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-500 hover:text-white transition"><i class="fa-brands fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <!-- Links Column 1 -->
+            <div>
+                <h4 class="text-white font-bold mb-6 font-serif">Destinations</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-brand-400 transition">Hiriketiya</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Ella</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Kandy</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Sigiriya</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Yala</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Galle</a></li>
+                    <li><a href="#" class="text-brand-500 text-xs uppercase mt-2 inline-block font-semibold">All Destinations &rarr;</a></li>
+                </ul>
+            </div>
+
+            <!-- Links Column 2 -->
+            <div>
+                <h4 class="text-white font-bold mb-6 font-serif">Experiences</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-brand-400 transition">Surf Tours</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Scenic Trains</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Leopard Safari</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Whale Watching</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Tea Country</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Ayurveda Retreats</a></li>
+                    <li><a href="#" class="text-brand-500 text-xs uppercase mt-2 inline-block font-semibold">All Experiences &rarr;</a></li>
+                </ul>
+            </div>
+
+            <!-- Links Column 3 -->
+            <div>
+                <h4 class="text-white font-bold mb-6 font-serif">Travel Guide</h4>
+                <ul class="space-y-3 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-brand-400 transition">When to Visit</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Trip Planner</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Why Choose Us</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">FAQ</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Reviews</a></li>
+                    <li><a href="#" class="hover:text-brand-400 transition">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+            <p>&copy; 2026 Island Culture Travels. All rights reserved. | srilankaprivatetravels.com</p>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white transition">Terms & Conditions</a>
+                <span>|</span>
+                <span>Website by: <span class="text-gray-400">Randalu Web Solutions</span></span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Floating WhatsApp Button -->
+<a href="https://wa.me/94769192427" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 hover:scale-110 transition-all z-50 animate-bounce" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp text-3xl"></i>
+</a>
+
+<!-- JavaScript for Interactivity -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // 1. Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        // 2. Sticky Navbar Styling Logic
+        const header = document.getElementById('main-header');
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('border-gray-100');
+                navbar.classList.add('border-transparent');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('border-gray-100');
+                navbar.classList.remove('border-transparent');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "fraunces-latin.woff2": {
+        "source": "https://fonts.gstatic.com/s/fraunces/v38/6NUu8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib14c7qv8.woff2",
+        "bytes": 36620,
+        "sha256": "7f9d191d999336d3b9790afa72e1358e50a13b06d4f289341e92a311967a80f9"
+    },
+    "manrope-latin.woff2": {
+        "source": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2",
+        "bytes": 24836,
+        "sha256": "a30ddcd349703aff7464c34bef3fffdff405ee50c113440d7c8693c02d210972"
+    },
+    "Fraunces-OFL.txt": {
+        "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/OFL.txt",
+        "bytes": 4391,
+        "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b"
+    },
+    "Manrope-OFL.txt": {
+        "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+        "bytes": 4387,
+        "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    }
+}

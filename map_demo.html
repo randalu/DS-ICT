@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ICT — Interactive Sri Lanka Map Demo</title>
+<style>
+/* ── Tokens ───────────────────────────────────────────────── */
+:root {
+  --bg:           #ffffff;
+  --surface:      #ffffff;
+  --surface-alt:  #f7f3ea;
+  --surface-dark: #0d1f14;
+  --text:         #0c2316;
+  --text-body:    #2c3a2e;
+  --muted:        #5a6b5e;
+  --brand:        #2d6a41;
+  --brand-dark:   #1a4f2e;
+  --brand-soft:   rgba(45,106,65,0.10);
+  --accent:       #8f7a28;
+  --accent-light: #c5a84a;
+  --line:         rgba(12,35,22,0.10);
+  --line-strong:  rgba(12,35,22,0.18);
+  --shadow-sm:    0 4px 20px rgba(12,35,22,0.06);
+  --shadow-md:    0 12px 36px rgba(12,35,22,0.10);
+  --shadow-lg:    0 24px 56px rgba(12,35,22,0.16);
+  --radius-sm:    0.75rem;
+  --radius-md:    1rem;
+  --radius-lg:    1.25rem;
+  --font-sans:    'Montserrat', system-ui, sans-serif;
+  --font-serif:   Georgia, 'Times New Roman', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: #e8e4db;
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Page shell ───────────────────────────────────────────── */
+.page-wrapper {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: var(--bg);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.dest-hero {
+  background: linear-gradient(160deg,#0d2e1a 0%,#1a4a2a 60%,#2d6a41 100%);
+  padding: 2.75rem 1.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.dest-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.dest-hero-inner { position: relative; }
+.kicker {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 0.4rem;
+}
+.dest-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem,5vw,3rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.65rem;
+}
+.dest-hero h1 em { font-style: italic; color: var(--accent-light); }
+.dest-hero p { color: rgba(255,255,255,0.68); font-size: 0.88rem; line-height: 1.7; max-width: 500px; }
+
+/* Region filter pills */
+.region-pills {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: 1.35rem;
+}
+.region-pill {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.78);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 180ms, border-color 180ms, color 180ms;
+  user-select: none;
+}
+.region-pill:hover { background: rgba(255,255,255,0.18); color: #fff; }
+.region-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* ── Map + List layout ────────────────────────────────────── */
+.map-section {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 680px) {
+  .map-section { grid-template-columns: 1fr 340px; min-height: 520px; }
+}
+
+/* ── Map panel ────────────────────────────────────────────── */
+.map-panel {
+  background: var(--surface-alt);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 1rem;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+/* SVG itself */
+#sri-lanka-map {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+}
+
+/* Pin groups */
+.pin-group {
+  cursor: pointer;
+}
+.pin-group .pin-circle {
+  transition: r 200ms, fill 200ms;
+}
+.pin-group:hover .pin-circle,
+.pin-group.active .pin-circle {
+  fill: var(--accent);
+}
+.pin-group.active .pin-circle {
+  filter: drop-shadow(0 0 6px rgba(197,168,74,0.6));
+}
+
+/* ── Floating info card ───────────────────────────────────── */
+.map-info-card {
+  position: absolute;
+  z-index: 20;
+  width: 210px;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.92) translateY(6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+}
+.map-info-card.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+/* Smart positioning — class toggled by JS */
+.map-info-card.pos-right { left: 12px; top: 50%; transform: translateY(-50%); }
+.map-info-card.pos-right.visible { transform: translateY(-50%) scale(1); opacity: 1; }
+.map-info-card.pos-left  { right: 12px; top: 50%; transform: translateY(-50%); }
+.map-info-card.pos-left.visible  { transform: translateY(-50%) scale(1); opacity: 1; }
+.map-info-card.pos-top   { bottom: 12px; left: 50%; transform: translateX(-50%); }
+.map-info-card.pos-top.visible   { transform: translateX(-50%) scale(1); opacity: 1; }
+
+.card-img {
+  height: 110px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.6rem;
+  background: linear-gradient(135deg,#1a4a2a,#2d6a41);
+  transition: background 300ms;
+}
+.card-region-badge {
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+.card-close {
+  position: absolute;
+  top: 0.5rem; right: 0.5rem;
+  width: 24px; height: 24px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+.card-body { padding: 0.85rem; }
+.card-body h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.card-body p  { font-size: 0.72rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.6rem; }
+.card-meta { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.65rem; }
+.card-meta-item {
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+.card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--line);
+}
+.card-cta a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+}
+.card-cta a:hover { color: var(--brand-dark); }
+.card-add-btn {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand);
+  color: var(--brand);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 150ms, color 150ms;
+  flex-shrink: 0;
+}
+.card-add-btn.added { background: var(--brand); color: #fff; }
+
+/* Region zone pulse on filter */
+.region-zone {
+  transition: opacity 300ms, fill-opacity 300ms;
+}
+.region-zone.dimmed {
+  opacity: 0.2;
+}
+
+/* ── List panel ───────────────────────────────────────────── */
+.list-panel {
+  border-top: 1px solid var(--line);
+  overflow-y: auto;
+  max-height: 400px;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 680px) {
+  .list-panel {
+    border-top: none;
+    border-left: 1px solid var(--line);
+    max-height: 520px;
+  }
+}
+.list-search-wrap {
+  padding: 0.85rem 1.1rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.list-search {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.42rem 0.9rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+  background: var(--surface-alt);
+  outline: none;
+  transition: border-color 150ms;
+}
+.list-search:focus { border-color: var(--brand); }
+
+.list-count {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 1.1rem 0;
+  display: block;
+}
+
+.dest-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.75rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 150ms;
+  border-left: 3px solid transparent;
+}
+.dest-list-item:hover { background: var(--surface-alt); }
+.dest-list-item.active {
+  background: var(--surface-alt);
+  border-left-color: var(--brand);
+}
+.dest-list-item.hidden { display: none; }
+
+.dest-thumb {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  background: linear-gradient(135deg,#2d6a41,#8f7a28);
+  transition: transform 200ms;
+}
+.dest-list-item:hover .dest-thumb,
+.dest-list-item.active .dest-thumb { transform: scale(1.06); }
+
+.dest-info { flex: 1; min-width: 0; }
+.dest-info h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.08rem; }
+.dest-info p  { font-size: 0.68rem; color: var(--muted); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.dest-tag {
+  flex-shrink: 0;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+}
+.tag-cultural { color: #5a3a00; background: rgba(143,122,40,0.12); }
+.tag-wildlife  { color: #1a4a1a; background: rgba(45,106,65,0.12); }
+.tag-scenic    { color: #1a3a5a; background: rgba(26,74,138,0.10); }
+.tag-coast     { color: #1a3a5a; background: rgba(26,100,160,0.10); }
+.tag-beach     { color: #004a5a; background: rgba(0,100,130,0.10); }
+.tag-heritage  { color: #5a1a1a; background: rgba(130,40,40,0.10); }
+
+/* No results message */
+.no-results {
+  padding: 1.5rem 1.1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  display: none;
+}
+.no-results.visible { display: block; }
+
+/* ── Cards below map ──────────────────────────────────────── */
+.cards-section { padding: 1.75rem 1.5rem; }
+.cards-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cards-header h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--text);
+}
+.cards-header h2 em { font-style: italic; }
+.cards-header-count { font-size: 0.7rem; color: var(--muted); }
+
+.dest-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .dest-cards { grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 760px) { .dest-cards { grid-template-columns: repeat(3,1fr); } }
+
+.dest-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: transform 200ms, box-shadow 200ms, opacity 300ms;
+  cursor: pointer;
+}
+.dest-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.dest-card.hidden { display: none; }
+.dest-card.highlighted { box-shadow: 0 0 0 2px var(--brand), var(--shadow-md); }
+
+.card-img-wrap {
+  height: 148px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+}
+.c1 { background: linear-gradient(160deg,#1a5c38,#3a8a5c); }
+.c2 { background: linear-gradient(160deg,#2a4a8a,#4a7aaa); }
+.c3 { background: linear-gradient(160deg,#7a3a1a,#aa6a3a); }
+.c4 { background: linear-gradient(160deg,#0a3a20,#1a6a40); }
+.c5 { background: linear-gradient(160deg,#1a1a5a,#3a3a9a); }
+.c6 { background: linear-gradient(160deg,#5a1a1a,#9a3a3a); }
+.c7 { background: linear-gradient(160deg,#1a3a5a,#2a6a9a); }
+.c8 { background: linear-gradient(160deg,#3a2a1a,#7a5a2a); }
+
+.card-region-pill {
+  background: rgba(0,0,0,0.42);
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+}
+.card-add {
+  position: absolute;
+  top: 0.65rem; right: 0.65rem;
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  transition: background 150ms, color 150ms;
+  border: none;
+  font-family: var(--font-sans);
+}
+.card-add.added { background: var(--brand); color: #fff; }
+
+.card-body-wrap { padding: 0.9rem; }
+.card-body-wrap h3 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.22rem; }
+.card-body-wrap p  { font-size: 0.71rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.55rem; }
+.card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.card-tag-item {
+  font-size: 0.58rem;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+
+/* ── Wishlist / Route bar ─────────────────────────────────── */
+.route-bar {
+  background: var(--surface-dark);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all 300ms;
+}
+@media (min-width: 600px) {
+  .route-bar { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.route-bar-text p { color: rgba(255,255,255,0.65); font-size: 0.78rem; }
+.route-bar-text strong { color: #fff; }
+.route-spots { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
+.route-spot {
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 0.26rem 0.65rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  animation: spotIn 200ms ease;
+}
+@keyframes spotIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.route-spot-remove {
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  font-size: 0.7rem;
+  border: none;
+  background: none;
+  line-height: 1;
+  padding: 0;
+}
+.route-spot-remove:hover { color: rgba(255,255,255,0.8); }
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.58rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 150ms;
+}
+.btn-gold:hover { background: #7a6920; }
+.btn-gold:disabled { background: #bbb; cursor: default; }
+
+/* Empty route bar state */
+.route-bar.empty .route-spots::after {
+  content: 'Tap + on any destination to start building your route';
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+}
+
+/* ── Toast notification ───────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--surface-dark);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
+  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 280ms;
+  opacity: 0;
+  white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ── Mobile tap hint ──────────────────────────────────────── */
+.map-hint {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(12,35,22,0.6);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 500ms;
+}
+.map-hint.hidden { opacity: 0; }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Hero -->
+  <div class="dest-hero">
+    <div class="dest-hero-inner">
+      <span class="kicker">Explore the Island</span>
+      <h1>Sri Lanka's <em>Destinations</em></h1>
+      <p>Cultural landmarks, hill country, wildlife parks, and coastal beaches — all reachable with a private driver. Tap a pin to explore, or filter by region.</p>
+      <div class="region-pills">
+        <div class="region-pill active" data-region="all">🗺 All Regions</div>
+        <div class="region-pill" data-region="cultural">🏛 Cultural Triangle</div>
+        <div class="region-pill" data-region="hill">⛰ Hill Country</div>
+        <div class="region-pill" data-region="wildlife">🐘 Wildlife</div>
+        <div class="region-pill" data-region="south">🏖 South Coast</div>
+        <div class="region-pill" data-region="east">🌊 East Coast</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map + List -->
+  <div class="map-section">
+
+    <!-- SVG Map panel -->
+    <div class="map-panel" id="mapPanel">
+
+      <!-- Floating info card -->
+      <div class="map-info-card" id="infoCard">
+        <div class="card-img" id="cardImg">
+          <span class="card-region-badge" id="cardRegion">Region</span>
+          <button class="card-close" id="cardClose" aria-label="Close">✕</button>
+        </div>
+        <div class="card-body">
+          <h3 id="cardName">Destination</h3>
+          <p id="cardDesc">Description goes here.</p>
+          <div class="card-meta" id="cardMeta"></div>
+          <div class="card-cta">
+            <a href="#" id="cardLink">Explore →</a>
+            <button class="card-add-btn" id="cardAddBtn" aria-label="Add to route">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tap hint (mobile) -->
+      <div class="map-hint" id="mapHint">Tap a pin to explore</div>
+
+      <!-- Sri Lanka SVG Map -->
+      <svg id="sri-lanka-map" viewBox="0 0 220 345" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive map of Sri Lanka">
+        <title>Sri Lanka Destinations Map</title>
+
+        <!-- Island silhouette -->
+        <path d="M95,10 C120,8 145,18 158,35 C172,52 175,72 170,95 C165,118 158,138 155,158 C152,175 158,188 160,205 C162,222 156,242 148,258 C140,274 128,288 115,298 C102,308 88,312 75,308 C62,304 52,292 45,278 C38,264 35,248 38,232 C41,216 52,202 55,186 C58,170 52,155 48,140 C44,125 42,108 45,92 C48,76 56,58 68,44 C78,32 88,12 95,10 Z"
+          fill="#dceee0" stroke="#a8ccb0" stroke-width="1.5"/>
+
+        <!-- Region zones -->
+        <ellipse id="zone-cultural" class="region-zone" cx="110" cy="108" rx="32" ry="26" fill="rgba(45,106,65,0.12)" stroke="rgba(45,106,65,0.25)" stroke-width="1" stroke-dasharray="4,3" data-region="cultural"/>
+        <ellipse id="zone-hill"     class="region-zone" cx="100" cy="185" rx="30" ry="23" fill="rgba(143,122,40,0.10)" stroke="rgba(143,122,40,0.22)" stroke-width="1" stroke-dasharray="4,3" data-region="hill"/>
+        <ellipse id="zone-south"    class="region-zone" cx="88"  cy="270" rx="36" ry="15" fill="rgba(26,74,138,0.08)"  stroke="rgba(26,74,138,0.18)"  stroke-width="1" stroke-dasharray="4,3" data-region="south"/>
+        <ellipse id="zone-east"     class="region-zone" cx="150" cy="160" rx="16" ry="35" fill="rgba(0,100,130,0.07)"  stroke="rgba(0,100,130,0.16)"  stroke-width="1" stroke-dasharray="4,3" data-region="east"/>
+        <ellipse id="zone-wildlife" class="region-zone" cx="122" cy="240" rx="20" ry="18" fill="rgba(80,40,10,0.07)"   stroke="rgba(80,40,10,0.15)"   stroke-width="1" stroke-dasharray="4,3" data-region="wildlife"/>
+
+        <!-- Zone labels -->
+        <text x="110" y="93"  font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5" pointer-events="none">CULTURAL TRIANGLE</text>
+        <text x="100" y="172" font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5" pointer-events="none">HILL COUNTRY</text>
+        <text x="87"  y="258" font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5" pointer-events="none">SOUTH COAST</text>
+
+        <!-- ── Destination pins ──────────────────────────────────── -->
+        <!-- Each pin: data-id matches destinations JS array key -->
+
+        <!-- Sigiriya -->
+        <g class="pin-group" data-id="sigiriya" tabindex="0" role="button" aria-label="Sigiriya">
+          <circle class="pin-circle" cx="118" cy="108" r="8" fill="#2d6a41" stroke="#fff" stroke-width="2"/>
+          <text x="118" y="112" font-family="system-ui" font-size="6.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">S</text>
+          <text x="118" y="124" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Sigiriya</text>
+        </g>
+
+        <!-- Dambulla -->
+        <g class="pin-group" data-id="dambulla" tabindex="0" role="button" aria-label="Dambulla">
+          <circle class="pin-circle" cx="104" cy="122" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="104" y="126" font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">D</text>
+          <text x="87"  y="130" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Dambulla</text>
+        </g>
+
+        <!-- Anuradhapura -->
+        <g class="pin-group" data-id="anuradhapura" tabindex="0" role="button" aria-label="Anuradhapura">
+          <circle class="pin-circle" cx="94" cy="76" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="94"  y="80"  font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">A</text>
+          <text x="94"  y="91"  font-family="system-ui" font-size="5.5" font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Anuradhapura</text>
+        </g>
+
+        <!-- Kandy -->
+        <g class="pin-group" data-id="kandy" tabindex="0" role="button" aria-label="Kandy">
+          <circle class="pin-circle" cx="100" cy="160" r="7" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="100" y="164" font-family="system-ui" font-size="6"   font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">K</text>
+          <text x="100" y="175" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Kandy</text>
+        </g>
+
+        <!-- Ella -->
+        <g class="pin-group" data-id="ella" tabindex="0" role="button" aria-label="Ella">
+          <circle class="pin-circle" cx="116" cy="202" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="116" y="206" font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">E</text>
+          <text x="116" y="217" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Ella</text>
+        </g>
+
+        <!-- Nuwara Eliya -->
+        <g class="pin-group" data-id="nuwara" tabindex="0" role="button" aria-label="Nuwara Eliya">
+          <circle class="pin-circle" cx="100" cy="190" r="6" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="100" y="194" font-family="system-ui" font-size="5"   font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">N</text>
+          <text x="79"  y="198" font-family="system-ui" font-size="5.5" font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Nuwara Eliya</text>
+        </g>
+
+        <!-- Yala -->
+        <g class="pin-group" data-id="yala" tabindex="0" role="button" aria-label="Yala">
+          <circle class="pin-circle" cx="130" cy="248" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="130" y="252" font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">Y</text>
+          <text x="130" y="263" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Yala</text>
+        </g>
+
+        <!-- Minneriya -->
+        <g class="pin-group" data-id="minneriya" tabindex="0" role="button" aria-label="Minneriya">
+          <circle class="pin-circle" cx="118" cy="134" r="6" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="118" y="138" font-family="system-ui" font-size="5"   font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">M</text>
+          <text x="135" y="140" font-family="system-ui" font-size="5.5" font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Minneriya</text>
+        </g>
+
+        <!-- Galle -->
+        <g class="pin-group" data-id="galle" tabindex="0" role="button" aria-label="Galle">
+          <circle class="pin-circle" cx="70" cy="272" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="70"  y="276" font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">G</text>
+          <text x="70"  y="287" font-family="system-ui" font-size="6"   font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Galle</text>
+        </g>
+
+        <!-- Mirissa -->
+        <g class="pin-group" data-id="mirissa" tabindex="0" role="button" aria-label="Mirissa">
+          <circle class="pin-circle" cx="90" cy="285" r="5.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="90"  y="289" font-family="system-ui" font-size="5"   font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">Mi</text>
+          <text x="105" y="292" font-family="system-ui" font-size="5.5" font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Mirissa</text>
+        </g>
+
+        <!-- Trincomalee -->
+        <g class="pin-group" data-id="trinco" tabindex="0" role="button" aria-label="Trincomalee">
+          <circle class="pin-circle" cx="150" cy="128" r="6.5" fill="#2d6a41" stroke="#fff" stroke-width="1.8"/>
+          <text x="150" y="132" font-family="system-ui" font-size="5.5" font-weight="800" fill="#fff" text-anchor="middle" pointer-events="none">T</text>
+          <text x="162" y="124" font-family="system-ui" font-size="5.5" font-weight="700" fill="#0c2316" text-anchor="middle" pointer-events="none">Trinco</text>
+        </g>
+
+        <!-- Compass rose -->
+        <g transform="translate(192,24)">
+          <circle cx="0" cy="0" r="12" fill="rgba(255,255,255,0.85)" stroke="#c0b8a8" stroke-width="1"/>
+          <text x="0" y="-4" font-family="system-ui" font-size="7" font-weight="700" fill="#5a6b5e" text-anchor="middle">N</text>
+          <line x1="0" y1="-1" x2="0" y2="3" stroke="#2d6a41" stroke-width="1.5"/>
+        </g>
+      </svg>
+
+    </div><!-- /map-panel -->
+
+    <!-- Destination list panel -->
+    <div class="list-panel" id="listPanel">
+      <div class="list-search-wrap">
+        <input class="list-search" type="search" id="listSearch" placeholder="🔍  Search destinations…" autocomplete="off"/>
+      </div>
+      <span class="list-count" id="listCount">11 destinations</span>
+
+      <!-- Each item: data-id matches pins + JS array, data-region for filtering -->
+      <div class="dest-list-item" data-id="sigiriya" data-region="cultural">
+        <div class="dest-thumb">🏔</div>
+        <div class="dest-info"><h4>Sigiriya</h4><p>Rock fortress &amp; ancient water gardens</p></div>
+        <span class="dest-tag tag-cultural">Cultural</span>
+      </div>
+      <div class="dest-list-item" data-id="dambulla" data-region="cultural">
+        <div class="dest-thumb">🪨</div>
+        <div class="dest-info"><h4>Dambulla</h4><p>Cave temples with 150 Buddha statues</p></div>
+        <span class="dest-tag tag-cultural">Cultural</span>
+      </div>
+      <div class="dest-list-item" data-id="anuradhapura" data-region="cultural">
+        <div class="dest-thumb">🏯</div>
+        <div class="dest-info"><h4>Anuradhapura</h4><p>Ancient sacred city with great stupas</p></div>
+        <span class="dest-tag tag-heritage">Heritage</span>
+      </div>
+      <div class="dest-list-item" data-id="kandy" data-region="hill">
+        <div class="dest-thumb">🌿</div>
+        <div class="dest-info"><h4>Kandy</h4><p>Temple of the Tooth, Hill Capital</p></div>
+        <span class="dest-tag tag-cultural">Cultural</span>
+      </div>
+      <div class="dest-list-item" data-id="ella" data-region="hill">
+        <div class="dest-thumb">⛰</div>
+        <div class="dest-info"><h4>Ella</h4><p>Tea country &amp; Nine Arches Bridge</p></div>
+        <span class="dest-tag tag-scenic">Scenic</span>
+      </div>
+      <div class="dest-list-item" data-id="nuwara" data-region="hill">
+        <div class="dest-thumb">🍃</div>
+        <div class="dest-info"><h4>Nuwara Eliya</h4><p>Tea estates, colonial charm, cool climate</p></div>
+        <span class="dest-tag tag-scenic">Scenic</span>
+      </div>
+      <div class="dest-list-item" data-id="yala" data-region="wildlife">
+        <div class="dest-thumb">🐆</div>
+        <div class="dest-info"><h4>Yala National Park</h4><p>Leopards, elephants, jeep safari</p></div>
+        <span class="dest-tag tag-wildlife">Wildlife</span>
+      </div>
+      <div class="dest-list-item" data-id="minneriya" data-region="wildlife">
+        <div class="dest-thumb">🐘</div>
+        <div class="dest-info"><h4>Minneriya</h4><p>Elephant gathering (Jun–Oct)</p></div>
+        <span class="dest-tag tag-wildlife">Wildlife</span>
+      </div>
+      <div class="dest-list-item" data-id="galle" data-region="south">
+        <div class="dest-thumb">🏛</div>
+        <div class="dest-info"><h4>Galle Fort</h4><p>UNESCO Dutch colonial fort &amp; boutiques</p></div>
+        <span class="dest-tag tag-coast">Coast</span>
+      </div>
+      <div class="dest-list-item" data-id="mirissa" data-region="south">
+        <div class="dest-thumb">🐋</div>
+        <div class="dest-info"><h4>Mirissa</h4><p>Whale watching &amp; beach sunsets</p></div>
+        <span class="dest-tag tag-beach">Beach</span>
+      </div>
+      <div class="dest-list-item" data-id="trinco" data-region="east">
+        <div class="dest-thumb">🌊</div>
+        <div class="dest-info"><h4>Trincomalee</h4><p>East coast beaches &amp; whale watching</p></div>
+        <span class="dest-tag tag-beach">Beach</span>
+      </div>
+
+      <div class="no-results" id="noResults">No destinations match your search.</div>
+    </div>
+
+  </div><!-- /map-section -->
+
+  <!-- Destination cards -->
+  <div class="cards-section">
+    <div class="cards-header">
+      <h2>Featured <em>Destinations</em></h2>
+      <span class="cards-header-count" id="cardsCount">Showing all 8 destinations</span>
+    </div>
+    <div class="dest-cards" id="destCards">
+
+      <div class="dest-card" data-id="sigiriya" data-region="cultural">
+        <div class="card-img-wrap c1">
+          <span class="card-region-pill">Cultural Triangle</span>
+          <button class="card-add" data-id="sigiriya" aria-label="Add Sigiriya to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Sigiriya</h3>
+          <p>Ancient rock fortress rising from the jungle. One of Asia's most dramatic heritage sites — climb for sweeping views across the plains.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 Half day</span>
+            <span class="card-tag-item">📅 Year-round</span>
+            <span class="card-tag-item">4 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="ella" data-region="hill">
+        <div class="card-img-wrap c2">
+          <span class="card-region-pill">Hill Country</span>
+          <button class="card-add" data-id="ella" aria-label="Add Ella to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Ella</h3>
+          <p>Tea-covered mountains, the iconic Nine Arches Bridge, and sunrise hikes to Little Adam's Peak. One of Sri Lanka's most photogenic stops.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 1–2 nights</span>
+            <span class="card-tag-item">📅 Apr–Sep</span>
+            <span class="card-tag-item">6 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="galle" data-region="south">
+        <div class="card-img-wrap c3">
+          <span class="card-region-pill">South Coast</span>
+          <button class="card-add" data-id="galle" aria-label="Add Galle to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Galle Fort</h3>
+          <p>A UNESCO-listed Dutch colonial fort with boutique hotels, galleries, and sunset ocean views from the old ramparts.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 Half–1 day</span>
+            <span class="card-tag-item">📅 Nov–Apr</span>
+            <span class="card-tag-item">5 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="yala" data-region="wildlife">
+        <div class="card-img-wrap c4">
+          <span class="card-region-pill">Wildlife</span>
+          <button class="card-add" data-id="yala" aria-label="Add Yala to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Yala National Park</h3>
+          <p>Sri Lanka's premier wildlife park — one of the highest leopard densities in the world. Also home to elephants, sloth bears, and crocodiles.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 Full day safari</span>
+            <span class="card-tag-item">📅 Feb–Jul</span>
+            <span class="card-tag-item">4 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="kandy" data-region="hill">
+        <div class="card-img-wrap c5">
+          <span class="card-region-pill">Hill Country</span>
+          <button class="card-add" data-id="kandy" aria-label="Add Kandy to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Kandy</h3>
+          <p>Sri Lanka's cultural capital. The Temple of the Tooth Relic, the Royal Botanical Gardens, and evening puja ceremonies.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 1 night</span>
+            <span class="card-tag-item">📅 Year-round</span>
+            <span class="card-tag-item">7 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="trinco" data-region="east">
+        <div class="card-img-wrap c6">
+          <span class="card-region-pill">East Coast</span>
+          <button class="card-add" data-id="trinco" aria-label="Add Trincomalee to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Trincomalee</h3>
+          <p>East coast beaches, a natural harbour, and some of the best whale watching in Asia — best from March to August.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 1–2 nights</span>
+            <span class="card-tag-item">📅 Mar–Aug</span>
+            <span class="card-tag-item">3 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="minneriya" data-region="wildlife">
+        <div class="card-img-wrap c7">
+          <span class="card-region-pill">Wildlife</span>
+          <button class="card-add" data-id="minneriya" aria-label="Add Minneriya to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Minneriya</h3>
+          <p>Home to The Gathering — hundreds of wild Asian elephants converging around the reservoir from June to October. One of Asia's great wildlife events.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 Half day</span>
+            <span class="card-tag-item">📅 Jun–Oct</span>
+            <span class="card-tag-item">3 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dest-card" data-id="mirissa" data-region="south">
+        <div class="card-img-wrap c8">
+          <span class="card-region-pill">South Coast</span>
+          <button class="card-add" data-id="mirissa" aria-label="Add Mirissa to route">+</button>
+        </div>
+        <div class="card-body-wrap">
+          <h3>Mirissa</h3>
+          <p>A crescent bay with calm waters, good snorkelling, and the best whale-watching departure point on the south coast.</p>
+          <div class="card-tags">
+            <span class="card-tag-item">🕐 1–2 nights</span>
+            <span class="card-tag-item">📅 Nov–Apr</span>
+            <span class="card-tag-item">4 itineraries</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Route bar -->
+  <div class="route-bar empty" id="routeBar">
+    <div class="route-bar-text">
+      <p><strong id="routeBarLabel">Your route</strong></p>
+      <p style="font-size:0.68rem;color:rgba(255,255,255,0.45);margin-top:0.1rem;" id="routeBarSub">Tap + on any destination to start building your route.</p>
+    </div>
+    <div class="route-spots" id="routeSpots"></div>
+    <a href="#" class="btn-gold" id="routeBtn" style="opacity:0.4;pointer-events:none;">→ Build My Route</a>
+  </div>
+
+</div><!-- /page-wrapper -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DESTINATION DATA
+═══════════════════════════════════════════════════════════ */
+const destinations = {
+  sigiriya:    { name:'Sigiriya',         region:'cultural', regionLabel:'Cultural Triangle', desc:'Ancient rock fortress rising 200m above the jungle — a UNESCO World Heritage Site with frescoes and symmetrical water gardens.', meta:['🕐 Half day','📅 Year-round','4 itineraries'], emoji:'🏔', cardGrad:'linear-gradient(135deg,#1a5c38,#3a8a5c)' },
+  dambulla:    { name:'Dambulla',          region:'cultural', regionLabel:'Cultural Triangle', desc:'Five cave temples packed with 150 Buddha statues and 2,100 sq m of murals. One of the best-preserved sites in Asia.', meta:['🕐 2–3 hrs','📅 Year-round','3 itineraries'], emoji:'🪨', cardGrad:'linear-gradient(135deg,#2a4a2a,#4a8a4a)' },
+  anuradhapura:{ name:'Anuradhapura',      region:'cultural', regionLabel:'Cultural Triangle', desc:'An ancient sacred city with massive dagobas, the oldest documented tree in the world, and vast royal palace ruins.', meta:['🕐 Full day','📅 Year-round','2 itineraries'], emoji:'🏯', cardGrad:'linear-gradient(135deg,#5a2a1a,#9a5a2a)' },
+  kandy:       { name:'Kandy',             region:'hill',     regionLabel:'Hill Country',      desc:'Sri Lanka\'s cultural capital: the Temple of the Tooth Relic, colonial ambience, the Royal Botanical Gardens, and evening puja ceremonies.', meta:['🕐 1 night','📅 Year-round','7 itineraries'], emoji:'🌿', cardGrad:'linear-gradient(135deg,#2a1a5a,#4a3a9a)' },
+  ella:        { name:'Ella',              region:'hill',     regionLabel:'Hill Country',      desc:'Tea-covered mountains, the Nine Arches Bridge, Little Adam\'s Peak, and one of the most scenic train journeys in the world.', meta:['🕐 1–2 nights','📅 Apr–Sep','6 itineraries'], emoji:'⛰', cardGrad:'linear-gradient(135deg,#1a4a7a,#3a7aaa)' },
+  nuwara:      { name:'Nuwara Eliya',      region:'hill',     regionLabel:'Hill Country',      desc:'Called "Little England" for its cool climate and colonial bungalows. Walk through tea estates, visit a working factory, and watch the mist roll in.', meta:['🕐 1 night','📅 Apr–Sep','5 itineraries'], emoji:'🍃', cardGrad:'linear-gradient(135deg,#1a5a2a,#3a8a4a)' },
+  yala:        { name:'Yala National Park',region:'wildlife', regionLabel:'Wildlife',          desc:'One of the highest leopard densities anywhere. Also elephants, sloth bears, and crocodiles. Safari in a private jeep with a naturalist guide.', meta:['🕐 Full day','📅 Feb–Jul','4 itineraries'], emoji:'🐆', cardGrad:'linear-gradient(135deg,#3a2a0a,#7a5a1a)' },
+  minneriya:   { name:'Minneriya',         region:'wildlife', regionLabel:'Wildlife',          desc:'The Gathering: hundreds of wild elephants converge around the ancient reservoir from June to October — one of Asia\'s greatest wildlife spectacles.', meta:['🕐 Half day','📅 Jun–Oct','3 itineraries'], emoji:'🐘', cardGrad:'linear-gradient(135deg,#0a3a1a,#1a6a3a)' },
+  galle:       { name:'Galle Fort',        region:'south',    regionLabel:'South Coast',       desc:'A UNESCO Dutch colonial fort with boutique hotels, art galleries, jewellery workshops, and views from the old ramparts at sunset.', meta:['🕐 Half–1 day','📅 Nov–Apr','5 itineraries'], emoji:'🏛', cardGrad:'linear-gradient(135deg,#7a2a1a,#aa5a3a)' },
+  mirissa:     { name:'Mirissa',           region:'south',    regionLabel:'South Coast',       desc:'A crescent bay with calm water and good snorkelling. Best whale-watching departure point on the south coast — blue whales and sperm whales.', meta:['🕐 1–2 nights','📅 Nov–Apr','4 itineraries'], emoji:'🐋', cardGrad:'linear-gradient(135deg,#1a3a6a,#2a5a9a)' },
+  trinco:      { name:'Trincomalee',       region:'east',     regionLabel:'East Coast',        desc:'Natural deep-water harbour, east coast beaches with calm turquoise water, and excellent whale-watching from March to August.', meta:['🕐 1–2 nights','📅 Mar–Aug','3 itineraries'], emoji:'🌊', cardGrad:'linear-gradient(135deg,#5a1a1a,#9a3a3a)' },
+};
+
+/* ═══════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════ */
+let activePin      = null;   // currently selected pin id
+let activeRegion   = 'all';  // current region filter
+let searchQuery    = '';     // current search text
+let route          = [];     // selected destination ids
+let hintShown      = false;
+
+/* ═══════════════════════════════════════════════════════════
+   ELEMENT REFERENCES
+═══════════════════════════════════════════════════════════ */
+const infoCard    = document.getElementById('infoCard');
+const cardImg     = document.getElementById('cardImg');
+const cardRegion  = document.getElementById('cardRegion');
+const cardName    = document.getElementById('cardName');
+const cardDesc    = document.getElementById('cardDesc');
+const cardMeta    = document.getElementById('cardMeta');
+const cardLink    = document.getElementById('cardLink');
+const cardAddBtn  = document.getElementById('cardAddBtn');
+const cardClose   = document.getElementById('cardClose');
+const listPanel   = document.getElementById('listPanel');
+const listSearch  = document.getElementById('listSearch');
+const listCount   = document.getElementById('listCount');
+const noResults   = document.getElementById('noResults');
+const routeBar    = document.getElementById('routeBar');
+const routeSpots  = document.getElementById('routeSpots');
+const routeBtn    = document.getElementById('routeBtn');
+const routeBarLabel = document.getElementById('routeBarLabel');
+const routeBarSub   = document.getElementById('routeBarSub');
+const mapHint     = document.getElementById('mapHint');
+const toast       = document.getElementById('toast');
+const cardsCount  = document.getElementById('cardsCount');
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg) {
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INFO CARD
+═══════════════════════════════════════════════════════════ */
+function openCard(id) {
+  const d = destinations[id];
+  if (!d) return;
+
+  // Populate
+  cardImg.style.background   = d.cardGrad;
+  cardRegion.textContent     = d.regionLabel;
+  cardName.textContent       = d.name;
+  cardDesc.textContent       = d.desc;
+  cardMeta.innerHTML         = d.meta.map(m => `<span class="card-meta-item">${m}</span>`).join('');
+  cardLink.textContent       = `Explore ${d.name} →`;
+  cardLink.href              = `destination.php?slug=${id}`;
+  cardAddBtn.className       = 'card-add-btn' + (route.includes(id) ? ' added' : '');
+  cardAddBtn.textContent     = route.includes(id) ? '✓' : '+';
+  cardAddBtn.dataset.id      = id;
+
+  // Position: try right side first, fall back to left on narrow map
+  const panel  = document.getElementById('mapPanel');
+  const panelW = panel.offsetWidth;
+  infoCard.classList.remove('pos-right','pos-left','pos-top');
+  if (panelW >= 400) {
+    infoCard.classList.add('pos-right');
+  } else if (panelW >= 260) {
+    infoCard.classList.add('pos-left');
+  } else {
+    infoCard.classList.add('pos-top');
+  }
+
+  infoCard.classList.add('visible');
+  activePin = id;
+
+  // Highlight pin
+  document.querySelectorAll('.pin-group').forEach(p => p.classList.remove('active'));
+  const pin = document.querySelector(`.pin-group[data-id="${id}"]`);
+  if (pin) pin.classList.add('active');
+
+  // Highlight list item + scroll to it
+  highlightListItem(id);
+}
+
+function closeCard() {
+  infoCard.classList.remove('visible');
+  document.querySelectorAll('.pin-group').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.dest-list-item').forEach(el => el.classList.remove('active'));
+  activePin = null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LIST HIGHLIGHTING
+═══════════════════════════════════════════════════════════ */
+function highlightListItem(id) {
+  document.querySelectorAll('.dest-list-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.id === id);
+  });
+  const activeEl = listPanel.querySelector(`.dest-list-item[data-id="${id}"]`);
+  if (activeEl) {
+    activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   REGION FILTER
+═══════════════════════════════════════════════════════════ */
+function applyRegionFilter(region) {
+  activeRegion = region;
+
+  // Pills
+  document.querySelectorAll('.region-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.region === region);
+  });
+
+  // List items
+  const listItems = document.querySelectorAll('.dest-list-item');
+  let listVisible = 0;
+  listItems.forEach(el => {
+    const show = region === 'all' || el.dataset.region === region;
+    el.classList.toggle('hidden', !show);
+    if (show) listVisible++;
+  });
+  listCount.textContent = `${listVisible} destination${listVisible !== 1 ? 's' : ''}`;
+  noResults.classList.toggle('visible', listVisible === 0 && searchQuery === '');
+
+  // Cards
+  const cards = document.querySelectorAll('.dest-card');
+  let cardVisible = 0;
+  cards.forEach(el => {
+    const show = region === 'all' || el.dataset.region === region;
+    el.classList.toggle('hidden', !show);
+    if (show) cardVisible++;
+  });
+  cardsCount.textContent = region === 'all'
+    ? `Showing all ${cardVisible} destinations`
+    : `Showing ${cardVisible} destination${cardVisible !== 1 ? 's' : ''} in this region`;
+
+  // Dim SVG zones
+  document.querySelectorAll('.region-zone').forEach(z => {
+    z.classList.toggle('dimmed', region !== 'all' && z.dataset.region !== region);
+  });
+
+  // Close card if active dest no longer in region
+  if (activePin && region !== 'all' && destinations[activePin]?.region !== region) {
+    closeCard();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════════════════════════ */
+function applySearch(q) {
+  searchQuery = q.toLowerCase().trim();
+  const listItems = document.querySelectorAll('.dest-list-item');
+  let visible = 0;
+  listItems.forEach(el => {
+    const name = el.querySelector('h4').textContent.toLowerCase();
+    const desc = el.querySelector('p').textContent.toLowerCase();
+    const matchRegion = activeRegion === 'all' || el.dataset.region === activeRegion;
+    const matchSearch = !searchQuery || name.includes(searchQuery) || desc.includes(searchQuery);
+    const show = matchRegion && matchSearch;
+    el.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  listCount.textContent = `${visible} destination${visible !== 1 ? 's' : ''}`;
+  noResults.classList.toggle('visible', visible === 0);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROUTE / WISHLIST
+═══════════════════════════════════════════════════════════ */
+function toggleRoute(id) {
+  const d = destinations[id];
+  if (!d) return;
+  const idx = route.indexOf(id);
+
+  if (idx === -1) {
+    route.push(id);
+    showToast(`✓ ${d.name} added to your route`);
+  } else {
+    route.splice(idx, 1);
+    showToast(`Removed ${d.name} from your route`);
+  }
+  renderRouteBar();
+  updateAddButtons(id);
+}
+
+function updateAddButtons(id) {
+  const added = route.includes(id);
+  // Card add buttons
+  document.querySelectorAll(`.card-add[data-id="${id}"]`).forEach(btn => {
+    btn.textContent  = added ? '✓' : '+';
+    btn.classList.toggle('added', added);
+  });
+  // Info card add button
+  if (activePin === id) {
+    cardAddBtn.textContent  = added ? '✓' : '+';
+    cardAddBtn.classList.toggle('added', added);
+  }
+}
+
+function renderRouteBar() {
+  routeSpots.innerHTML = '';
+  route.forEach(id => {
+    const d = destinations[id];
+    if (!d) return;
+    const spot = document.createElement('div');
+    spot.className = 'route-spot';
+    spot.innerHTML = `${d.emoji} ${d.name} <button class="route-spot-remove" data-id="${id}" aria-label="Remove ${d.name}">✕</button>`;
+    routeSpots.appendChild(spot);
+  });
+
+  const hasRoute = route.length > 0;
+  routeBar.classList.toggle('empty', !hasRoute);
+  routeBtn.style.opacity        = hasRoute ? '1'    : '0.4';
+  routeBtn.style.pointerEvents  = hasRoute ? 'auto' : 'none';
+
+  if (hasRoute) {
+    routeBarLabel.textContent = `Your route — ${route.length} stop${route.length > 1 ? 's' : ''}`;
+    routeBarSub.textContent   = 'We\'ll build an itinerary around these. Send us your dates to get started.';
+  } else {
+    routeBarLabel.textContent = 'Your route';
+    routeBarSub.textContent   = 'Tap + on any destination to start building your route.';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   EVENT LISTENERS
+═══════════════════════════════════════════════════════════ */
+
+// Pin clicks (SVG)
+document.querySelectorAll('.pin-group').forEach(pin => {
+  const activate = () => {
+    const id = pin.dataset.id;
+    if (activePin === id) { closeCard(); return; }
+    openCard(id);
+    // Hide hint after first interaction
+    if (!hintShown) { mapHint.classList.add('hidden'); hintShown = true; }
+  };
+  pin.addEventListener('click', activate);
+  pin.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+});
+
+// Close card button
+cardClose.addEventListener('click', closeCard);
+
+// Click outside card to close
+document.getElementById('mapPanel').addEventListener('click', e => {
+  if (!e.target.closest('.pin-group') && !e.target.closest('.map-info-card')) {
+    closeCard();
+  }
+});
+
+// Card add button
+cardAddBtn.addEventListener('click', () => {
+  if (activePin) toggleRoute(activePin);
+});
+
+// Region pills
+document.querySelectorAll('.region-pill').forEach(pill => {
+  pill.addEventListener('click', () => applyRegionFilter(pill.dataset.region));
+});
+
+// List item clicks
+document.querySelectorAll('.dest-list-item').forEach(item => {
+  item.addEventListener('click', () => openCard(item.dataset.id));
+});
+
+// Card add buttons (below map)
+document.querySelectorAll('.card-add').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    toggleRoute(btn.dataset.id);
+  });
+});
+
+// Destination cards (click whole card → open info card for that destination)
+document.querySelectorAll('.dest-card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('.card-add')) return;
+    openCard(card.dataset.id);
+    // Scroll map into view on mobile
+    document.getElementById('mapPanel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+});
+
+// Route spot remove buttons
+routeSpots.addEventListener('click', e => {
+  const btn = e.target.closest('.route-spot-remove');
+  if (btn) toggleRoute(btn.dataset.id);
+});
+
+// Search
+listSearch.addEventListener('input', () => applySearch(listSearch.value));
+
+// Keyboard: Escape closes card
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && activePin) closeCard();
+});
+
+// Route build button
+routeBtn.addEventListener('click', e => {
+  e.preventDefault();
+  const names = route.map(id => destinations[id]?.name).filter(Boolean).join(', ');
+  showToast(`Opening planner for: ${names}`);
+});
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════ */
+renderRouteBar();
+// Auto-hide hint after 4s
+setTimeout(() => { mapHint.classList.add('hidden'); }, 4000);
+</script>
+
+</body>
+</html>

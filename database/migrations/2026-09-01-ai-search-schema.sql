@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS search_index (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    content_type VARCHAR(50) NOT NULL,
+    entity_id INT UNSIGNED NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    excerpt TEXT,
+    embedding_json JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX (content_type, entity_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

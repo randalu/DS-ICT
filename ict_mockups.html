@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ICT — UI Mockups: Destinations · Itineraries · Experiences</title>
+<style>
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --bg:           #ffffff;
+  --surface:      #ffffff;
+  --surface-alt:  #f7f3ea;
+  --surface-dark: #0d1f14;
+  --text:         #0c2316;
+  --text-body:    #2c3a2e;
+  --muted:        #5a6b5e;
+  --brand:        #2d6a41;
+  --brand-dark:   #1a4f2e;
+  --brand-soft:   rgba(45,106,65,0.10);
+  --accent:       #8f7a28;
+  --accent-light: #c5a84a;
+  --line:         rgba(12,35,22,0.10);
+  --line-strong:  rgba(12,35,22,0.18);
+  --shadow-sm:    0 4px 20px rgba(12,35,22,0.06);
+  --shadow-md:    0 12px 36px rgba(12,35,22,0.10);
+  --radius-sm:    0.75rem;
+  --radius-md:    1rem;
+  --radius-lg:    1.25rem;
+  --font-sans:    'Montserrat', system-ui, sans-serif;
+  --font-serif:   Georgia, 'Times New Roman', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: #e8e4db;
+  color: var(--text-body);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── Jump nav ──────────────────────────────────────────────── */
+.page-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--surface-dark);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  padding: 0 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.page-nav a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 200ms;
+}
+.page-nav a:hover { color:#fff; border-bottom-color: var(--accent-light); }
+
+/* ── Mockup wrapper ────────────────────────────────────────── */
+.mockup-page {
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: var(--bg);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.16);
+}
+.mockup-label {
+  background: var(--surface-dark);
+  color: rgba(255,255,255,0.5);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.mockup-label span { color: var(--accent-light); }
+
+/* ── Section dividers (between pages) ─────────────────────── */
+.section-divider {
+  text-align: center;
+  padding: 2.5rem 1rem 1.25rem;
+  background: #e8e4db;
+}
+.section-divider h2 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: #7a7068;
+  font-style: italic;
+}
+.section-divider-line {
+  width: 48px;
+  height: 2px;
+  background: var(--accent);
+  margin: 0.6rem auto 0;
+  border-radius: 1px;
+  opacity: 0.5;
+}
+
+/* ── Shared helper classes ─────────────────────────────────── */
+.kicker {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.45rem;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+}
+.btn-outline-white {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+.btn-gold {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.6rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sidebar-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+/* ════════════════════════════════════════════════════════════
+   SHARED NAVBAR
+════════════════════════════════════════════════════════════ */
+.sim-nav {
+  background: rgba(240,236,227,0.97);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  gap: 1rem;
+}
+.sim-nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--text);
+  font-style: italic;
+  white-space: nowrap;
+}
+/* Desktop nav links — hidden on mobile */
+.sim-nav-links {
+  display: flex;
+  gap: 1.4rem;
+  align-items: center;
+}
+.sim-nav-links a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+}
+.sim-nav-links a.active { color: var(--brand); }
+.sim-nav-btn {
+  background: var(--text);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.42rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* Mobile: collapse nav links to hamburger hint */
+@media (max-width: 640px) {
+  .sim-nav-links { display: none; }
+  .sim-nav-brand { font-size: 1rem; }
+  .sim-nav::after {
+    content: '☰';
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-left: auto;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   PAGE 1 — DESTINATIONS
+════════════════════════════════════════════════════════════ */
+
+/* Hero */
+.dest-hero {
+  background: linear-gradient(160deg, #0d2e1a 0%, #1a4a2a 60%, #2d6a41 100%);
+  padding: 3rem 1.25rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.dest-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.dest-hero-inner { position: relative; }
+.dest-hero .kicker { color: var(--accent-light); }
+.dest-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 6vw, 3.2rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+.dest-hero h1 em { font-style: italic; color: var(--accent-light); }
+.dest-hero p { color: rgba(255,255,255,0.72); font-size: 0.9rem; line-height: 1.7; }
+.dest-hero-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1.4rem;
+}
+.dest-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.dest-pill.active { background: var(--accent); border-color: var(--accent); }
+
+/* Map + List — stacked on mobile, side-by-side on desktop */
+.dest-body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) {
+  .dest-body { grid-template-columns: 1fr 360px; min-height: 520px; }
+}
+
+/* Map panel */
+.dest-map-panel {
+  background: var(--surface-alt);
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  min-height: 300px;
+}
+.dest-map-panel svg { width: 100%; max-width: 280px; height: auto; }
+
+/* Hover card — hide on small screens, visible on md+ */
+.map-hover-card {
+  display: none;
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  background: #fff;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  width: 185px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+@media (min-width: 700px) { .map-hover-card { display: block; } }
+.map-hover-card-img {
+  height: 90px;
+  background: linear-gradient(135deg, #2d6a41, #8f7a28);
+  display: flex;
+  align-items: flex-end;
+  padding: 0.5rem;
+}
+.map-hover-card-img-label {
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+}
+.map-hover-card-body { padding: 0.65rem 0.75rem; }
+.map-hover-card-body h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.map-hover-card-body p { font-size: 0.7rem; color: var(--muted); line-height: 1.45; }
+.map-hover-card-body a {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Destination list panel */
+.dest-list-panel {
+  border-top: 1px solid var(--line);
+  overflow-y: auto;
+  max-height: 400px;
+}
+@media (min-width: 700px) {
+  .dest-list-panel {
+    border-top: none;
+    border-left: 1px solid var(--line);
+    max-height: 520px;
+  }
+}
+.dest-list-header {
+  padding: 0.9rem 1.25rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.dest-list-search {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+  background: var(--surface-alt);
+  outline: none;
+}
+.dest-list-item {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 150ms;
+}
+.dest-list-item:hover, .dest-list-item.active { background: var(--surface-alt); }
+.dest-list-item.active { border-left: 3px solid var(--brand); }
+.dest-list-thumb {
+  width: 46px; height: 46px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #2d6a41, #8f7a28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.dest-list-info { flex: 1; min-width: 0; }
+.dest-list-info h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; }
+.dest-list-info p { font-size: 0.7rem; color: var(--muted); line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dest-list-tag {
+  flex-shrink: 0;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(143,122,40,0.1);
+  padding: 0.18rem 0.45rem;
+  border-radius: 3px;
+}
+
+/* Cards section */
+.dest-cards-section { padding: 1.75rem 1.25rem; }
+.dest-cards-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+.dest-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .dest-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 780px) { .dest-cards { grid-template-columns: repeat(3, 1fr); } }
+
+.dest-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.dest-card-img {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.8rem;
+}
+.dest-card-img-1 { background: linear-gradient(160deg,#1a5c38,#3a8a5c); }
+.dest-card-img-2 { background: linear-gradient(160deg,#2a4a8a,#4a7aaa); }
+.dest-card-img-3 { background: linear-gradient(160deg,#7a3a1a,#aa6a3a); }
+.dest-card-badge {
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 4px;
+}
+.dest-card-add {
+  position: absolute;
+  top: 0.7rem; right: 0.7rem;
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--brand);
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+.dest-card-add.added { background: var(--brand); color: #fff; }
+.dest-card-body { padding: 0.9rem; }
+.dest-card-body h3 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+.dest-card-body p { font-size: 0.73rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.55rem; }
+.dest-card-meta { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.dest-card-meta-item {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* Route bar */
+.dest-route-bar {
+  background: var(--surface-dark);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+@media (min-width: 600px) {
+  .dest-route-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.dest-route-bar p { color: rgba(255,255,255,0.7); font-size: 0.8rem; }
+.dest-route-bar strong { color: #fff; }
+.dest-route-bar-spots { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.dest-route-spot {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.dest-route-spot .rm { color: rgba(255,255,255,0.5); }
+
+/* ════════════════════════════════════════════════════════════
+   PAGE 2A — ITINERARIES LISTING
+════════════════════════════════════════════════════════════ */
+
+.itin-hero {
+  background: linear-gradient(170deg,#0a1f10 0%,#132b1c 55%,#1e3d28 100%);
+  padding: 3rem 1.25rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.itin-hero::before {
+  content: '';
+  position: absolute;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.04);
+  top: -150px; right: -100px;
+}
+.itin-hero-content { position: relative; z-index: 1; }
+.itin-hero .kicker { color: var(--accent-light); }
+.itin-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.7rem;
+}
+.itin-hero h1 em { font-style: italic; color: var(--accent-light); }
+.itin-hero p { color: rgba(255,255,255,0.65); font-size: 0.88rem; line-height: 1.7; }
+
+.duration-pick {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.duration-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.dur-btn {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.dur-btn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.dur-btn strong { font-size: 0.95rem; }
+
+/* Filter bar — horizontal scroll on mobile */
+.itin-filter-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  padding: 0.7rem 1.25rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: var(--shadow-sm);
+  /* Hide scrollbar visually */
+  scrollbar-width: none;
+}
+.itin-filter-bar::-webkit-scrollbar { display: none; }
+
+.filter-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.filter-chip {
+  border: 1px solid var(--line-strong);
+  background: var(--surface-alt);
+  color: var(--text-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 150ms;
+}
+.filter-chip.active { background: var(--brand); border-color: var(--brand); color: #fff; }
+.filter-sep { width: 1px; height: 20px; background: var(--line-strong); flex-shrink: 0; }
+
+/* Itinerary grid */
+.itin-grid-section { padding: 1.75rem 1.25rem; }
+.itin-grid-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 1rem;
+  margin-top: 0.35rem;
+}
+.itin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .itin-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 780px) { .itin-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.itin-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.itin-card-img {
+  height: 170px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.75rem;
+}
+.itin-card-img-1 { background: linear-gradient(160deg,#0a2a18,#2d6a41); }
+.itin-card-img-2 { background: linear-gradient(160deg,#1a2a4a,#2d4a8a); }
+.itin-card-img-3 { background: linear-gradient(160deg,#3a1a0a,#8a4a1a); }
+.itin-days-badge {
+  background: #fff;
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.itin-days-badge strong { font-size: 0.95rem; color: var(--brand); }
+.itin-card-img-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.55));
+  padding: 2rem 0.75rem 0.75rem;
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.itin-tag {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.22);
+  padding: 0.18rem 0.45rem;
+  border-radius: 3px;
+}
+.itin-card-body { padding: 1rem; }
+.itin-card-body h3 { font-size: 0.92rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; line-height: 1.3; }
+.itin-card-body p { font-size: 0.73rem; color: var(--muted); line-height: 1.55; margin-bottom: 0.7rem; }
+.itin-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--line);
+}
+.itin-card-stops { font-size: 0.68rem; color: var(--muted); }
+.itin-card-stops strong { color: var(--text); }
+.itin-card-compare { font-size: 0.66rem; font-weight: 600; color: var(--brand); }
+
+/* ════════════════════════════════════════════════════════════
+   PAGE 2B — ITINERARY DETAIL
+════════════════════════════════════════════════════════════ */
+
+.itin-detail-hero {
+  background: linear-gradient(160deg,#0d1f14 0%,#1a4a2a 100%);
+  padding: 3rem 1.25rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.itin-detail-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 40px,
+    rgba(255,255,255,0.012) 40px, rgba(255,255,255,0.012) 41px
+  );
+  pointer-events: none;
+}
+.itin-detail-hero-inner { position: relative; z-index: 1; }
+.itin-detail-hero .kicker { color: var(--accent-light); }
+.itin-detail-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.7rem, 5.5vw, 2.8rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.65rem;
+}
+.itin-detail-hero h1 em { font-style: italic; color: var(--accent-light); }
+.itin-detail-hero p { color: rgba(255,255,255,0.65); font-size: 0.87rem; line-height: 1.7; }
+
+.itin-meta-pills {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+.itin-meta-pill {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+}
+.itin-detail-cta-strip {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Detail body — single column on mobile, 2-col on desktop */
+.itin-detail-body {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .itin-detail-body { grid-template-columns: 1fr 260px; align-items: start; }
+}
+
+/* Sidebar moves to top on mobile */
+.itin-sidebar {
+  order: -1; /* above timeline on mobile */
+  border-bottom: 1px solid var(--line);
+  padding: 1.25rem;
+  background: var(--surface-alt);
+}
+@media (min-width: 720px) {
+  .itin-sidebar {
+    order: 0;
+    border-bottom: none;
+    border-left: 1px solid var(--line);
+    padding: 1.75rem 1.25rem;
+    position: sticky;
+    top: 44px;
+  }
+}
+
+/* Sidebar facts in a 2-col grid on mobile */
+.itin-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+@media (min-width: 720px) { .itin-facts-grid { grid-template-columns: 1fr; } }
+.itin-fact {
+  padding: 0.55rem 0.35rem;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 720px) {
+  .itin-fact { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0; }
+}
+.itin-fact-label { font-size: 0.65rem; color: var(--muted); display: block; }
+.itin-fact-value { font-size: 0.78rem; font-weight: 700; color: var(--text); display: block; margin-top: 0.1rem; }
+@media (min-width: 720px) { .itin-fact-value { margin-top: 0; } }
+
+.itin-sidebar h3 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.sidebar-cta {
+  display: block;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.8rem 1rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+.scroll-prompt {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 0.9rem;
+  margin-top: 1rem;
+}
+.scroll-prompt p { font-size: 0.7rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.5rem; }
+.scroll-prompt strong { color: var(--text); }
+.scroll-prompt input {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.42rem 0.7rem;
+  font-size: 0.73rem;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: var(--surface-alt);
+  margin-bottom: 0.35rem;
+  outline: none;
+}
+
+/* Timeline */
+.itin-timeline-col { padding: 1.75rem 1.25rem; }
+.itin-timeline-col h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 1.75rem;
+}
+.itin-timeline-col h2 em { font-style: italic; }
+
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 19px;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--brand), var(--accent), var(--brand));
+  opacity: 0.25;
+}
+.tl-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+  position: relative;
+}
+.tl-drive {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.35rem 0;
+}
+.tl-drive-dot { display: flex; justify-content: center; align-items: center; font-size: 0.6rem; color: var(--muted); }
+.tl-drive-info { font-size: 0.68rem; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 0.35rem; }
+.tl-drive-line { flex: 1; border-top: 1px dashed var(--line-strong); }
+
+.tl-marker { display: flex; justify-content: center; padding-top: 0.2rem; }
+.tl-day-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(45,106,65,0.15);
+  z-index: 1;
+  position: relative;
+}
+.tl-day-num.accent { background: var(--accent); box-shadow: 0 0 0 4px rgba(143,122,40,0.15); }
+
+.tl-content {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 0.1rem;
+}
+.tl-content-header {
+  padding: 0.85rem 1rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.tl-content-header-text { flex: 1; min-width: 0; }
+.day-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.tl-content-header-text h4 { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 0.12rem; }
+.overnight { font-size: 0.7rem; color: var(--muted); }
+.tl-content-img {
+  width: 64px; height: 54px;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  background: linear-gradient(135deg,#2d6a41,#8f7a28);
+}
+/* Hide thumb on very small screens */
+@media (max-width: 380px) { .tl-content-img { display: none; } }
+.tl-content-img-2 { background: linear-gradient(135deg,#1a4a8a,#4a7aaa); }
+.tl-content-img-3 { background: linear-gradient(135deg,#6a2d1a,#aa5a2a); }
+.tl-content-img-4 { background: linear-gradient(135deg,#2d2d6a,#5a5aaa); }
+
+.tl-expanded {
+  padding: 0 1rem 0.85rem;
+  border-top: 1px solid var(--line);
+}
+.tl-expanded-body { font-size: 0.78rem; color: var(--text-body); line-height: 1.7; margin-top: 0.55rem; }
+.tl-expanded-highlights { display: flex; gap: 0.35rem; flex-wrap: wrap; margin-top: 0.55rem; }
+.tl-hl {
+  font-size: 0.62rem;
+  font-weight: 600;
+  background: var(--surface-alt);
+  color: var(--text-body);
+  padding: 0.18rem 0.5rem;
+  border-radius: 3px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   PAGE 3A — EXPERIENCES LISTING
+════════════════════════════════════════════════════════════ */
+
+.exp-hero {
+  background: var(--surface-alt);
+  padding: 2.5rem 1.25rem 0;
+}
+.exp-hero-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+@media (min-width: 600px) {
+  .exp-hero-top { flex-direction: row; align-items: flex-end; }
+}
+.exp-hero .kicker { color: var(--accent); }
+.exp-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5.5vw, 2.8rem);
+  color: var(--text);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.exp-hero h1 em { font-style: italic; }
+.exp-hero p { color: var(--muted); font-size: 0.86rem; line-height: 1.7; margin-top: 0.5rem; }
+.exp-quiz-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.7rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+@media (min-width: 600px) { .exp-quiz-btn { align-self: flex-end; flex-shrink: 0; } }
+
+/* Mood tiles — scrollable row on mobile, 7-col grid on desktop */
+.mood-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  border-top: 1px solid var(--line);
+}
+.mood-scroll-wrapper::-webkit-scrollbar { display: none; }
+.mood-grid {
+  display: flex;
+  min-width: max-content;
+}
+@media (min-width: 700px) {
+  .mood-grid { min-width: 0; display: grid; grid-template-columns: repeat(7, 1fr); }
+}
+.mood-tile {
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  border-top: 3px solid transparent;
+  border-right: 1px solid var(--line);
+  transition: all 180ms;
+  text-align: center;
+  min-width: 90px;
+}
+.mood-tile:last-child { border-right: none; }
+.mood-tile:hover, .mood-tile.active { background: var(--surface); border-top-color: var(--brand); }
+.mood-emoji { font-size: 1.6rem; display: block; }
+.mood-name { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text); }
+.mood-count { font-size: 0.56rem; color: var(--muted); }
+
+/* Experience grid */
+.exp-grid-section { padding: 1.75rem 1.25rem; }
+.exp-grid-section h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.exp-grid-section h2 em { font-style: italic; }
+.exp-grid-sub { font-size: 0.76rem; color: var(--muted); margin-bottom: 1.25rem; }
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 480px) { .exp-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 860px) { .exp-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.exp-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.exp-card-img {
+  height: 130px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.7rem;
+}
+.exp-card-img-1 { background: linear-gradient(135deg,#1a4a2a,#4a8a5a); }
+.exp-card-img-2 { background: linear-gradient(135deg,#2a3a1a,#5a8a2a); }
+.exp-card-img-3 { background: linear-gradient(135deg,#1a2a4a,#2a5a8a); }
+.exp-card-img-4 { background: linear-gradient(135deg,#4a1a1a,#8a3a2a); }
+.exp-mood-tag {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(0,0,0,0.35);
+  padding: 0.18rem 0.45rem;
+  border-radius: 3px;
+  align-self: flex-start;
+}
+.exp-wishlist {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  cursor: pointer;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+.exp-wishlist.added { background: #e8334a; color: #fff; }
+.exp-card-body { padding: 0.85rem; }
+.exp-card-body h3 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; line-height: 1.3; }
+.exp-card-body p { font-size: 0.7rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.55rem; }
+.exp-card-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--line);
+}
+.exp-itinerary-count { font-size: 0.62rem; color: var(--brand); font-weight: 600; }
+.exp-arrow { font-size: 0.72rem; color: var(--muted); }
+
+/* Wishlist bar */
+.wishlist-bar {
+  background: var(--surface-dark);
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+@media (min-width: 600px) {
+  .wishlist-bar { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.wishlist-bar p { color: rgba(255,255,255,0.7); font-size: 0.78rem; }
+.wishlist-bar strong { color: var(--accent-light); }
+.wishlist-items { display: flex; gap: 0.45rem; flex-wrap: wrap; }
+.wishlist-chip {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.wishlist-chip .rm { color: rgba(255,255,255,0.45); }
+
+/* ════════════════════════════════════════════════════════════
+   PAGE 3B — EXPERIENCE DETAIL
+════════════════════════════════════════════════════════════ */
+
+.exp-detail-hero {
+  background: linear-gradient(160deg,#0d2e1a 0%,#1a5a30 100%);
+  padding: 3rem 1.25rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.exp-detail-hero::before {
+  content: '';
+  position: absolute;
+  width: 350px; height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(197,168,74,0.1), transparent 70%);
+  top: -100px; right: -50px;
+  pointer-events: none;
+}
+.exp-detail-hero-inner { position: relative; z-index: 1; }
+.exp-detail-hero .kicker { color: var(--accent-light); }
+.exp-detail-hero h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5.5vw, 2.8rem);
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 0.55rem;
+}
+.exp-detail-hero h1 em { font-style: italic; color: var(--accent-light); }
+.exp-detail-hero p { color: rgba(255,255,255,0.65); font-size: 0.86rem; line-height: 1.7; }
+.exp-detail-mood-chips { display: flex; gap: 0.45rem; margin-top: 1.1rem; flex-wrap: wrap; }
+.exp-mood-chip {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.66rem;
+  font-weight: 600;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* Inquiry slide */
+.inquiry-slide {
+  background: var(--surface);
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  margin: 1.25rem 1.25rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+}
+.inquiry-slide-text strong { display: block; font-size: 0.88rem; color: var(--text); margin-bottom: 0.2rem; }
+.inquiry-slide-text p { font-size: 0.76rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.85rem; }
+.inquiry-slide-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+
+/* Day arc */
+.exp-day-arc {
+  background: var(--surface-alt);
+  padding: 1.75rem 1.25rem;
+}
+.exp-day-arc h2 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+.exp-day-arc h2 em { font-style: italic; }
+.exp-day-arc-sub { font-size: 0.76rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+/* Arc grid — 2-col on mobile, 4-col on desktop */
+.day-arc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  position: relative;
+}
+@media (min-width: 700px) {
+  .day-arc-grid { grid-template-columns: repeat(4, 1fr); }
+  /* horizontal connector line — only visible when 4 cols */
+  .day-arc-grid::before {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: 12%;
+    right: 12%;
+    height: 2px;
+    background: linear-gradient(to right, var(--brand), var(--accent), var(--brand));
+    opacity: 0.2;
+    z-index: 0;
+  }
+}
+.arc-segment {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 1;
+}
+.arc-time {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.arc-time-icon {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+.arc-time-icon.gold  { background: var(--accent); }
+.arc-time-icon.teal  { background: #1a6a5a; }
+.arc-time-icon.night { background: #1a1a3a; }
+.arc-segment-img {
+  height: 70px;
+  border-radius: 0.5rem;
+  margin-bottom: 0.65rem;
+  background: linear-gradient(135deg,#2d6a41,#8f7a28);
+}
+.arc-segment-img.blue   { background: linear-gradient(135deg,#1a3a6a,#2a6aaa); }
+.arc-segment-img.orange { background: linear-gradient(135deg,#6a3a1a,#aa7a2a); }
+.arc-segment-img.night-bg { background: linear-gradient(135deg,#1a1a3a,#2a2a5a); }
+.arc-segment h4 { font-size: 0.86rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+.arc-segment p  { font-size: 0.72rem; color: var(--muted); line-height: 1.6; }
+
+/* Destination chips — horizontal scroll */
+.exp-destinations-strip { padding: 1.5rem 1.25rem; }
+.exp-destinations-strip h3 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.85rem;
+}
+.exp-dest-scroll {
+  display: flex;
+  gap: 0.85rem;
+  overflow-x: auto;
+  padding-bottom: 0.4rem;
+  scrollbar-width: none;
+}
+.exp-dest-scroll::-webkit-scrollbar { display: none; }
+.exp-dest-chip {
+  flex-shrink: 0;
+  width: 120px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+.exp-dest-chip-img { height: 72px; background: linear-gradient(135deg,#1a4a2a,#3a8a5a); }
+.exp-dest-chip-img-2 { background: linear-gradient(135deg,#2a4a1a,#5a8a2a); }
+.exp-dest-chip-img-3 { background: linear-gradient(135deg,#1a2a5a,#3a5aaa); }
+.exp-dest-chip-label { padding: 0.5rem 0.65rem; font-size: 0.7rem; font-weight: 700; color: var(--text); background: var(--surface); }
+
+/* Related itineraries */
+.exp-related-itins { padding: 1.5rem 1.25rem; background: var(--surface-alt); }
+.exp-related-itins h3 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.85rem;
+}
+.exp-related-itin-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+@media (min-width: 480px) { .exp-related-itin-row { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 700px) { .exp-related-itin-row { grid-template-columns: repeat(3, 1fr); } }
+.exp-related-itin-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  gap: 0.7rem;
+  cursor: pointer;
+}
+.exp-related-itin-thumb {
+  width: 44px; height: 44px;
+  border-radius: 0.45rem;
+  background: linear-gradient(135deg,#0d2e1a,#2d6a41);
+  flex-shrink: 0;
+}
+.exp-related-itin-thumb-2 { background: linear-gradient(135deg,#1a2a5a,#2d5aaa); }
+.exp-related-itin-thumb-3 { background: linear-gradient(135deg,#3a1a0a,#8a4a1a); }
+.exp-related-itin-info h4 { font-size: 0.78rem; font-weight: 700; color: var(--text); margin-bottom: 0.18rem; line-height: 1.3; }
+.exp-related-itin-info span { font-size: 0.65rem; color: var(--brand); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- Jump nav -->
+<nav class="page-nav">
+  <a href="#destinations">📍 Destinations</a>
+  <a href="#itineraries">🗺 Itineraries</a>
+  <a href="#itin-detail">🗓 Itin. Detail</a>
+  <a href="#experiences">🌿 Experiences</a>
+  <a href="#exp-detail">✨ Exp. Detail</a>
+</nav>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 1 — DESTINATIONS LISTING
+════════════════════════════════════════════════════════════ -->
+<div class="section-divider" id="destinations" style="padding-top:2rem;">
+  <h2>Page 1 — Destinations Listing</h2>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="mockup-page">
+  <div class="mockup-label">destinations.php — Map-first · region pills · "Add to Route" wishlist <span>MOBILE-FIRST</span></div>
+
+  <nav class="sim-nav">
+    <span class="sim-nav-brand">Island Culture Travels</span>
+    <div class="sim-nav-links">
+      <a href="#">Home</a>
+      <a href="#" class="active">Destinations</a>
+      <a href="#">Itineraries</a>
+      <a href="#">Experiences</a>
+      <a href="#">Blog</a>
+      <a href="#" class="sim-nav-btn">Plan My Trip</a>
+    </div>
+  </nav>
+
+  <div class="dest-hero">
+    <div class="dest-hero-inner">
+      <span class="kicker">Explore the Island</span>
+      <h1>Sri Lanka's <em>Destinations</em></h1>
+      <p>Cultural landmarks, hill country, wildlife parks, and coastal beaches — all reachable with a private driver. Tap any region or pin to explore.</p>
+      <div class="dest-hero-pills">
+        <div class="dest-pill active">🗺 All</div>
+        <div class="dest-pill">🏛 Cultural Triangle</div>
+        <div class="dest-pill">⛰ Hill Country</div>
+        <div class="dest-pill">🐘 Wildlife</div>
+        <div class="dest-pill">🏖 South Coast</div>
+        <div class="dest-pill">🌊 East Coast</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map + list panel -->
+  <div class="dest-body">
+    <div class="dest-map-panel">
+      <!-- Hover card: desktop only -->
+      <div class="map-hover-card">
+        <div class="map-hover-card-img">
+          <span class="map-hover-card-img-label">Cultural Triangle</span>
+        </div>
+        <div class="map-hover-card-body">
+          <h4>Sigiriya</h4>
+          <p>Ancient rock fortress rising 200m above the jungle. UNESCO World Heritage Site.</p>
+          <a href="#">Explore Sigiriya →</a>
+        </div>
+      </div>
+
+      <svg viewBox="0 0 220 340" xmlns="http://www.w3.org/2000/svg">
+        <path d="M95,10 C120,8 145,18 158,35 C172,52 175,72 170,95 C165,118 158,138 155,158 C152,175 158,188 160,205 C162,222 156,242 148,258 C140,274 128,288 115,298 C102,308 88,312 75,308 C62,304 52,292 45,278 C38,264 35,248 38,232 C41,216 52,202 55,186 C58,170 52,155 48,140 C44,125 42,108 45,92 C48,76 56,58 68,44 C78,32 88,12 95,10 Z"
+          fill="#e8f0e9" stroke="#b8d0bc" stroke-width="1.5"/>
+        <ellipse cx="110" cy="110" rx="30" ry="25" fill="rgba(45,106,65,0.13)" stroke="rgba(45,106,65,0.28)" stroke-width="1" stroke-dasharray="4,3"/>
+        <ellipse cx="100" cy="185" rx="28" ry="22" fill="rgba(143,122,40,0.10)" stroke="rgba(143,122,40,0.22)" stroke-width="1" stroke-dasharray="4,3"/>
+        <ellipse cx="90"  cy="270" rx="34" ry="14" fill="rgba(26,74,138,0.08)"  stroke="rgba(26,74,138,0.18)"  stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="108" y="96"  font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5">CULTURAL TRIANGLE</text>
+        <text x="99"  y="174" font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5">HILL COUNTRY</text>
+        <text x="88"  y="262" font-family="system-ui" font-size="5"   font-weight="700" fill="#5a6b5e" text-anchor="middle" letter-spacing="0.5">SOUTH COAST</text>
+        <!-- Sigiriya (active) -->
+        <g><circle cx="118" cy="108" r="9" fill="#c5a84a" stroke="#fff" stroke-width="2"/><text x="118" y="111" font-family="system-ui" font-size="7" font-weight="800" fill="#fff" text-anchor="middle">S</text><text x="118" y="124" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Sigiriya</text></g>
+        <!-- Kandy -->
+        <g><circle cx="100" cy="160" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="100" y="163" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">K</text><text x="100" y="175" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Kandy</text></g>
+        <!-- Ella -->
+        <g><circle cx="115" cy="200" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="115" y="203" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">E</text><text x="115" y="215" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Ella</text></g>
+        <!-- Yala -->
+        <g><circle cx="130" cy="248" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="130" y="251" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">Y</text><text x="130" y="263" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Yala</text></g>
+        <!-- Galle -->
+        <g><circle cx="72" cy="270" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="72" y="273" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">G</text><text x="72" y="285" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Galle</text></g>
+        <!-- Trinco -->
+        <g><circle cx="148" cy="132" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="148" y="135" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">T</text><text x="148" y="147" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Trinco</text></g>
+        <!-- Anuradhapura -->
+        <g><circle cx="95" cy="78" r="7" fill="#2d6a41" stroke="#fff" stroke-width="2"/><text x="95" y="81" font-family="system-ui" font-size="6" font-weight="800" fill="#fff" text-anchor="middle">A</text><text x="95" y="93" font-family="system-ui" font-size="6" font-weight="700" fill="#0c2316" text-anchor="middle">Anuradhapura</text></g>
+        <!-- Compass -->
+        <g transform="translate(190,22)"><circle cx="0" cy="0" r="11" fill="rgba(255,255,255,0.8)" stroke="#c8c0b0" stroke-width="1"/><text x="0" y="-4" font-family="system-ui" font-size="7" font-weight="700" fill="#5a6b5e" text-anchor="middle">N</text><line x1="0" y1="-1" x2="0" y2="2" stroke="#2d6a41" stroke-width="1.5"/></g>
+      </svg>
+    </div>
+
+    <div class="dest-list-panel">
+      <div class="dest-list-header">
+        <input class="dest-list-search" type="text" placeholder="🔍  Search destinations…" />
+      </div>
+      <div class="dest-list-item active">
+        <div class="dest-list-thumb">🏔</div>
+        <div class="dest-list-info"><h4>Sigiriya</h4><p>Rock fortress &amp; ancient gardens</p></div>
+        <span class="dest-list-tag">Cultural</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">🌿</div>
+        <div class="dest-list-info"><h4>Kandy</h4><p>Temple of the Tooth, Hill Capital</p></div>
+        <span class="dest-list-tag">Culture</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">⛰</div>
+        <div class="dest-list-info"><h4>Ella</h4><p>Tea country, Nine Arches Bridge</p></div>
+        <span class="dest-list-tag">Scenic</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">🐆</div>
+        <div class="dest-list-info"><h4>Yala National Park</h4><p>Leopards, elephants, safari</p></div>
+        <span class="dest-list-tag">Wildlife</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">🏛</div>
+        <div class="dest-list-info"><h4>Galle Fort</h4><p>Dutch colonial port, boutiques</p></div>
+        <span class="dest-list-tag">Coast</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">🌊</div>
+        <div class="dest-list-info"><h4>Trincomalee</h4><p>East coast beaches, whale watching</p></div>
+        <span class="dest-list-tag">Beach</span>
+      </div>
+      <div class="dest-list-item">
+        <div class="dest-list-thumb">🏯</div>
+        <div class="dest-list-info"><h4>Anuradhapura</h4><p>Ancient sacred city, stupas</p></div>
+        <span class="dest-list-tag">Heritage</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="dest-cards-section">
+    <span class="kicker">Top Picks</span>
+    <h2>Featured <em style="font-style:italic;">Destinations</em></h2>
+    <div class="dest-cards">
+      <div class="dest-card">
+        <div class="dest-card-img dest-card-img-1">
+          <span class="dest-card-badge">Cultural Triangle</span>
+          <div class="dest-card-add">+</div>
+        </div>
+        <div class="dest-card-body">
+          <h3>Sigiriya</h3>
+          <p>Ancient rock fortress rising from the jungle. One of Asia's most dramatic heritage sites.</p>
+          <div class="dest-card-meta">
+            <span class="dest-card-meta-item">🕐 Half day</span>
+            <span class="dest-card-meta-item">📅 Year-round</span>
+            <span class="dest-card-meta-item">4 itineraries</span>
+          </div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-card-img-2">
+          <span class="dest-card-badge">Hill Country</span>
+          <div class="dest-card-add added">✓</div>
+        </div>
+        <div class="dest-card-body">
+          <h3>Ella</h3>
+          <p>Tea-covered mountains, the iconic Nine Arches Bridge, and sunrise hikes to Little Adam's Peak.</p>
+          <div class="dest-card-meta">
+            <span class="dest-card-meta-item">🕐 1–2 nights</span>
+            <span class="dest-card-meta-item">📅 Apr–Sep</span>
+            <span class="dest-card-meta-item">6 itineraries</span>
+          </div>
+        </div>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-card-img-3">
+          <span class="dest-card-badge">South Coast</span>
+          <div class="dest-card-add">+</div>
+        </div>
+        <div class="dest-card-body">
+          <h3>Galle Fort</h3>
+          <p>A UNESCO-listed Dutch colonial fort with boutique hotels, galleries, and sunset ocean views.</p>
+          <div class="dest-card-meta">
+            <span class="dest-card-meta-item">🕐 Half–1 day</span>
+            <span class="dest-card-meta-item">📅 Nov–Apr</span>
+            <span class="dest-card-meta-item">5 itineraries</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Route wishlist bar -->
+  <div class="dest-route-bar">
+    <div>
+      <p><strong>Your route so far:</strong> 1 destination added</p>
+      <p style="font-size:0.7rem;margin-top:0.15rem;color:rgba(255,255,255,0.5);">Keep exploring, then send us your list and we'll build a route.</p>
+    </div>
+    <div class="dest-route-bar-spots">
+      <div class="dest-route-spot">⛰ Ella <span class="rm">✕</span></div>
+    </div>
+    <a href="#" class="btn-gold">→ Build My Route</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 2A — ITINERARIES LISTING
+════════════════════════════════════════════════════════════ -->
+<div class="section-divider" id="itineraries">
+  <h2>Page 2a — Itineraries Listing</h2>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="mockup-page">
+  <div class="mockup-label">itineraries.php — Duration quick-pick + scrollable filter bar + card grid <span>MOBILE-FIRST</span></div>
+
+  <nav class="sim-nav">
+    <span class="sim-nav-brand">Island Culture Travels</span>
+    <div class="sim-nav-links">
+      <a href="#">Home</a><a href="#">Destinations</a>
+      <a href="#" class="active">Itineraries</a>
+      <a href="#">Experiences</a><a href="#">Blog</a>
+      <a href="#" class="sim-nav-btn">Plan My Trip</a>
+    </div>
+  </nav>
+
+  <div class="itin-hero">
+    <div class="itin-hero-content">
+      <span class="kicker">Travel Plans</span>
+      <h1>Sri Lanka <em>Itineraries</em></h1>
+      <p>Start with a proven route, then customise the pace, stops, and vehicle to match your travel style. Fully private — no shared buses, no group compromises.</p>
+      <div class="duration-pick">
+        <span class="duration-label">How long?</span>
+        <div class="dur-btn"><strong>3</strong>–5 days</div>
+        <div class="dur-btn active"><strong>7</strong>–8 days</div>
+        <div class="dur-btn"><strong>10</strong> days</div>
+        <div class="dur-btn"><strong>14</strong> days</div>
+        <div class="dur-btn">All</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter bar: scrollable -->
+  <div class="itin-filter-bar">
+    <span class="filter-label">Filter</span>
+    <div class="filter-chip active">🌍 All</div>
+    <div class="filter-chip">🏛 Culture</div>
+    <div class="filter-chip">🐘 Wildlife</div>
+    <div class="filter-chip">🏖 Beaches</div>
+    <div class="filter-chip">💑 Honeymoon</div>
+    <div class="filter-chip">👨‍👩‍👧 Family</div>
+    <div class="filter-sep"></div>
+    <div class="filter-chip">📍 Start: Colombo ▾</div>
+    <div class="filter-chip">📍 End: Airport ▾</div>
+  </div>
+
+  <div class="itin-grid-section">
+    <span class="kicker">7–8 Day Routes</span>
+    <h2>8 itineraries — <em style="font-style:italic;">private, chauffeur-guided</em></h2>
+    <div class="itin-grid">
+      <div class="itin-card">
+        <div class="itin-card-img itin-card-img-1">
+          <div class="itin-days-badge"><strong>7</strong> days</div>
+          <div class="itin-card-img-overlay">
+            <span class="itin-tag">🏛 Culture</span>
+            <span class="itin-tag">⛰ Hill Country</span>
+          </div>
+        </div>
+        <div class="itin-card-body">
+          <h3>Cultural Highlights &amp; Hill Country</h3>
+          <p>Sigiriya, Kandy, Nuwara Eliya, and Ella — the classic first-visit route.</p>
+          <div class="itin-card-footer">
+            <span class="itin-card-stops"><strong>6</strong> stops · <strong>4</strong> regions</span>
+            <span class="itin-card-compare">⊞ Compare</span>
+          </div>
+        </div>
+      </div>
+      <div class="itin-card">
+        <div class="itin-card-img itin-card-img-2">
+          <div class="itin-days-badge"><strong>8</strong> days</div>
+          <div class="itin-card-img-overlay">
+            <span class="itin-tag">🐘 Wildlife</span>
+            <span class="itin-tag">🏖 Coast</span>
+          </div>
+        </div>
+        <div class="itin-card-body">
+          <h3>Wildlife Safari &amp; Southern Coast</h3>
+          <p>Yala leopard safaris, Mirissa whale watching, and Galle Fort.</p>
+          <div class="itin-card-footer">
+            <span class="itin-card-stops"><strong>5</strong> stops · <strong>3</strong> regions</span>
+            <span class="itin-card-compare">⊞ Compare</span>
+          </div>
+        </div>
+      </div>
+      <div class="itin-card">
+        <div class="itin-card-img itin-card-img-3">
+          <div class="itin-days-badge"><strong>7</strong> days</div>
+          <div class="itin-card-img-overlay">
+            <span class="itin-tag">💑 Honeymoon</span>
+            <span class="itin-tag">🌊 Beaches</span>
+          </div>
+        </div>
+        <div class="itin-card-body">
+          <h3>Romantic Sri Lanka — South &amp; Hill</h3>
+          <p>Boutique stays, tea estate sunsets, Unawatuna, and a private whale-watching charter.</p>
+          <div class="itin-card-footer">
+            <span class="itin-card-stops"><strong>4</strong> stops · <strong>2</strong> regions</span>
+            <span class="itin-card-compare">⊞ Compare</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 2B — ITINERARY DETAIL + TIMELINE
+════════════════════════════════════════════════════════════ -->
+<div class="section-divider" id="itin-detail">
+  <h2>Page 2b — Itinerary Detail (Timeline)</h2>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="mockup-page">
+  <div class="mockup-label">itinerary.php — Facts card on top (mobile) · visual day-by-day timeline · sticky sidebar (desktop) <span>MOBILE-FIRST</span></div>
+
+  <nav class="sim-nav">
+    <span class="sim-nav-brand">Island Culture Travels</span>
+    <div class="sim-nav-links">
+      <a href="#">Home</a><a href="#">Destinations</a>
+      <a href="#" class="active">Itineraries</a>
+      <a href="#">Experiences</a><a href="#">Blog</a>
+      <a href="#" class="sim-nav-btn">Plan My Trip</a>
+    </div>
+  </nav>
+
+  <div class="itin-detail-hero">
+    <div class="itin-detail-hero-inner">
+      <span class="kicker">7 Day Private Route</span>
+      <h1>Cultural Highlights &amp;<br><em>Hill Country</em></h1>
+      <p>Sigiriya, Kandy, Nuwara Eliya, and Ella — the essential first-visit route, paced for comfort with a private driver and flexible schedule.</p>
+      <div class="itin-meta-pills">
+        <span class="itin-meta-pill">📅 7 days</span>
+        <span class="itin-meta-pill">📍 6 stops</span>
+        <span class="itin-meta-pill">🚗 Private A/C vehicle</span>
+        <span class="itin-meta-pill">📅 Best: Nov–Apr</span>
+        <span class="itin-meta-pill">💑 Couples &amp; Families</span>
+      </div>
+      <div class="itin-detail-cta-strip">
+        <a href="#" class="btn-primary">Enquire About This Route</a>
+        <a href="#" class="btn-outline-white">⊞ Compare</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="itin-detail-body">
+
+    <!-- Sidebar: on mobile shows ABOVE timeline as a compact fact grid -->
+    <div class="itin-sidebar">
+      <h3>Trip Facts</h3>
+      <div class="itin-facts-grid">
+        <div class="itin-fact"><span class="itin-fact-label">Duration</span><span class="itin-fact-value">7 Days / 6 Nights</span></div>
+        <div class="itin-fact"><span class="itin-fact-label">Stops</span><span class="itin-fact-value">Sigiriya · Kandy · Ella</span></div>
+        <div class="itin-fact"><span class="itin-fact-label">Best for</span><span class="itin-fact-value">First visit, Couples</span></div>
+        <div class="itin-fact"><span class="itin-fact-label">Best months</span><span class="itin-fact-value">Nov–Apr</span></div>
+        <div class="itin-fact"><span class="itin-fact-label">Vehicle</span><span class="itin-fact-value">Private, A/C</span></div>
+        <div class="itin-fact"><span class="itin-fact-label">From</span><span class="itin-fact-value">~$1,200</span></div>
+      </div>
+      <a href="#" class="sidebar-cta">Enquire About This Route</a>
+      <a href="#" class="sidebar-wa">🟢 WhatsApp Us</a>
+      <div class="scroll-prompt">
+        <p><strong>Like this route?</strong><br>Tell us your dates and we'll tailor it.</p>
+        <input type="text" placeholder="Your name" />
+        <input type="text" placeholder="Travel dates (e.g. Dec 10–18)" />
+        <a href="#" class="sidebar-cta" style="font-size:0.75rem;padding:0.55rem;margin-top:0;">Send →</a>
+      </div>
+    </div>
+
+    <!-- Timeline -->
+    <div class="itin-timeline-col">
+      <h2>Day-by-Day <em>Plan</em></h2>
+
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-day-num">D1</div></div>
+          <div class="tl-content">
+            <div class="tl-content-header">
+              <div class="tl-content-header-text">
+                <span class="day-label">Day 1 · Arrival</span>
+                <h4>Colombo → Negombo → Sigiriya</h4>
+                <div class="overnight">🌙 Overnight: Sigiriya</div>
+              </div>
+              <div class="tl-content-img"></div>
+            </div>
+            <div class="tl-expanded">
+              <div class="tl-expanded-body">Meet your private driver at the airport and head north toward the Cultural Triangle. En route, visit a spice garden and the Dambulla Cave Temple before arriving at your Sigiriya lodge in the early evening.</div>
+              <div class="tl-expanded-highlights">
+                <span class="tl-hl">🏛 Dambulla Caves</span>
+                <span class="tl-hl">🌿 Spice Garden</span>
+                <span class="tl-hl">🚗 ~4 hrs drive</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-drive">
+          <div class="tl-drive-dot">↕</div>
+          <div class="tl-drive-info"><span>→ 2 hrs north</span><div class="tl-drive-line"></div><span>Morning drive</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-day-num accent">D2</div></div>
+          <div class="tl-content">
+            <div class="tl-content-header">
+              <div class="tl-content-header-text">
+                <span class="day-label">Day 2 · Highlight</span>
+                <h4>Sigiriya Rock &amp; Polonnaruwa</h4>
+                <div class="overnight">🌙 Overnight: Habarana</div>
+              </div>
+              <div class="tl-content-img tl-content-img-2"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-drive">
+          <div class="tl-drive-dot">↕</div>
+          <div class="tl-drive-info"><span>→ 3 hrs southwest</span><div class="tl-drive-line"></div><span>Through Matale</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-day-num">D3</div></div>
+          <div class="tl-content">
+            <div class="tl-content-header">
+              <div class="tl-content-header-text">
+                <span class="day-label">Day 3 · Culture</span>
+                <h4>Kandy — Temple of the Tooth</h4>
+                <div class="overnight">🌙 Overnight: Kandy</div>
+              </div>
+              <div class="tl-content-img tl-content-img-3"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-drive">
+          <div class="tl-drive-dot">↕</div>
+          <div class="tl-drive-info"><span>→ 1.5 hrs up</span><div class="tl-drive-line"></div><span>Winding hill road</span></div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-marker"><div class="tl-day-num accent">D4</div></div>
+          <div class="tl-content">
+            <div class="tl-content-header">
+              <div class="tl-content-header-text">
+                <span class="day-label">Day 4 · Scenic</span>
+                <h4>Nuwara Eliya — Tea Country</h4>
+                <div class="overnight">🌙 Overnight: Nuwara Eliya</div>
+              </div>
+              <div class="tl-content-img tl-content-img-4"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:1rem 0;color:var(--muted);font-size:0.72rem;font-style:italic;">
+          · · · Day 5 (Ella) · Day 6 (free / Yala) · Day 7 (Airport) · · ·
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 3A — EXPERIENCES LISTING
+════════════════════════════════════════════════════════════ -->
+<div class="section-divider" id="experiences">
+  <h2>Page 3a — Experiences Listing (Mood Board)</h2>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="mockup-page">
+  <div class="mockup-label">experiences.php — Scrollable mood tiles · card grid · wishlist bar <span>MOBILE-FIRST</span></div>
+
+  <nav class="sim-nav">
+    <span class="sim-nav-brand">Island Culture Travels</span>
+    <div class="sim-nav-links">
+      <a href="#">Home</a><a href="#">Destinations</a>
+      <a href="#">Itineraries</a>
+      <a href="#" class="active">Experiences</a><a href="#">Blog</a>
+      <a href="#" class="sim-nav-btn">Plan My Trip</a>
+    </div>
+  </nav>
+
+  <div class="exp-hero">
+    <div class="exp-hero-top">
+      <div>
+        <span class="kicker">Hidden Gems &amp; Local Moments</span>
+        <h1>Sri Lanka <em>Experiences</em></h1>
+        <p>Inspiration points for your private trip — cultural moments, wildlife encounters, local food, and off-route details that turn a route into a journey.</p>
+      </div>
+      <a href="#" class="exp-quiz-btn">✨ Find My Experiences</a>
+    </div>
+
+    <!-- Mood tiles: scroll on mobile, grid on desktop -->
+    <div class="mood-scroll-wrapper">
+      <div class="mood-grid">
+        <div class="mood-tile"><span class="mood-emoji">🐘</span><span class="mood-name">Wildlife</span><span class="mood-count">12 exp.</span></div>
+        <div class="mood-tile active"><span class="mood-emoji">🏛</span><span class="mood-name">Culture</span><span class="mood-count">18 exp.</span></div>
+        <div class="mood-tile"><span class="mood-emoji">🏖</span><span class="mood-name">Beach</span><span class="mood-count">9 exp.</span></div>
+        <div class="mood-tile"><span class="mood-emoji">🍛</span><span class="mood-name">Food</span><span class="mood-count">11 exp.</span></div>
+        <div class="mood-tile"><span class="mood-emoji">⛰</span><span class="mood-name">Hill Country</span><span class="mood-count">8 exp.</span></div>
+        <div class="mood-tile"><span class="mood-emoji">🧭</span><span class="mood-name">Off-Route</span><span class="mood-count">14 exp.</span></div>
+        <div class="mood-tile"><span class="mood-emoji">🧘</span><span class="mood-name">Slow Travel</span><span class="mood-count">7 exp.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-grid-section">
+    <h2>Culture &amp; <em>Heritage</em></h2>
+    <p class="exp-grid-sub">18 experiences — moments woven into any private itinerary</p>
+    <div class="exp-grid">
+      <div class="exp-card">
+        <div class="exp-card-img exp-card-img-1"><span class="exp-mood-tag">🏛 Culture</span><div class="exp-wishlist">♡</div></div>
+        <div class="exp-card-body">
+          <h3>Watching the Puja at the Temple of the Tooth</h3>
+          <p>Three daily ceremonies — drums, incense, white-robed devotees. The most atmospheric thing in Kandy.</p>
+          <div class="exp-card-links"><span class="exp-itinerary-count">4 itineraries include this</span><span class="exp-arrow">→</span></div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-img exp-card-img-2"><span class="exp-mood-tag">🧭 Off-Route</span><div class="exp-wishlist added">♥</div></div>
+        <div class="exp-card-body">
+          <h3>Village Walk in the Knuckles Range</h3>
+          <p>A morning walk through a working farming village — paddy fields, buffalo, home-cooked rice and curry.</p>
+          <div class="exp-card-links"><span class="exp-itinerary-count">2 itineraries include this</span><span class="exp-arrow">→</span></div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-img exp-card-img-3"><span class="exp-mood-tag">🍛 Food</span><div class="exp-wishlist">♡</div></div>
+        <div class="exp-card-body">
+          <h3>Roadside Kottu and a Morning Market</h3>
+          <p>Street food stops most tours skip — chopped roti, fresh king coconut, local vendors.</p>
+          <div class="exp-card-links"><span class="exp-itinerary-count">6 itineraries include this</span><span class="exp-arrow">→</span></div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-card-img exp-card-img-4"><span class="exp-mood-tag">🐘 Wildlife</span><div class="exp-wishlist">♡</div></div>
+        <div class="exp-card-body">
+          <h3>The Elephant Gathering at Minneriya</h3>
+          <p>From June to October, hundreds of wild elephants converge around a reservoir.</p>
+          <div class="exp-card-links"><span class="exp-itinerary-count">3 itineraries include this</span><span class="exp-arrow">→</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wishlist-bar">
+    <div>
+      <p><strong>1 experience saved</strong> — your shortlist</p>
+      <p>We'll use this to suggest the best itinerary match.</p>
+    </div>
+    <div class="wishlist-items">
+      <div class="wishlist-chip">🏔 Knuckles Walk <span class="rm">✕</span></div>
+    </div>
+    <a href="#" class="btn-gold">→ Send My Wishlist</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 3B — EXPERIENCE DETAIL
+════════════════════════════════════════════════════════════ -->
+<div class="section-divider" id="exp-detail">
+  <h2>Page 3b — Experience Detail (Day-in-the-Life)</h2>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="mockup-page">
+  <div class="mockup-label">experience.php — Day arc (2×2 on mobile, 4-col on desktop) · linked destinations · related itineraries <span>MOBILE-FIRST</span></div>
+
+  <nav class="sim-nav">
+    <span class="sim-nav-brand">Island Culture Travels</span>
+    <div class="sim-nav-links">
+      <a href="#">Home</a><a href="#">Destinations</a>
+      <a href="#">Itineraries</a>
+      <a href="#" class="active">Experiences</a><a href="#">Blog</a>
+      <a href="#" class="sim-nav-btn">Plan My Trip</a>
+    </div>
+  </nav>
+
+  <div class="exp-detail-hero">
+    <div class="exp-detail-hero-inner">
+      <span class="kicker">Sri Lanka Experience</span>
+      <h1>The Elephant Gathering<br><em>at Minneriya</em></h1>
+      <p>From June to October, hundreds of wild Asian elephants converge around Minneriya reservoir — one of Asia's most dramatic wildlife spectacles, reachable as a half-day from Sigiriya or Habarana.</p>
+      <div class="exp-detail-mood-chips">
+        <span class="exp-mood-chip">🐘 Wildlife</span>
+        <span class="exp-mood-chip">📅 Jun–Oct best</span>
+        <span class="exp-mood-chip">🕐 Half day</span>
+        <span class="exp-mood-chip">🚗 From Sigiriya</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inquiry prompt -->
+  <div class="inquiry-slide">
+    <div class="inquiry-slide-text">
+      <strong>Want to include this on your trip?</strong>
+      <p>Tell us your dates and interests — we'll fit the Minneriya gathering into a private route that makes sense on the road.</p>
+    </div>
+    <div class="inquiry-slide-actions">
+      <a href="#" class="btn-primary">Add to My Trip</a>
+      <a href="#" class="sidebar-wa" style="border-radius:999px;padding:0.6rem 1rem;margin:0;">🟢 WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- Day arc -->
+  <div class="exp-day-arc">
+    <h2>A Day in the <em>Wild</em></h2>
+    <p class="exp-day-arc-sub">How this experience unfolds — so you know exactly what to expect and how to time it.</p>
+
+    <div class="day-arc-grid">
+      <div class="arc-segment">
+        <div class="arc-segment-img"></div>
+        <div class="arc-time"><div class="arc-time-icon">🌅</div>Morning</div>
+        <h4>Early Drive from Sigiriya</h4>
+        <p>Leave by 6am to beat the heat. Your driver takes the quiet tank road through scrub jungle — watch for peacocks and water buffalo on the way in.</p>
+      </div>
+      <div class="arc-segment">
+        <div class="arc-segment-img blue"></div>
+        <div class="arc-time"><div class="arc-time-icon gold">☀️</div>Midday</div>
+        <h4>Jeep Safari in the Park</h4>
+        <p>Enter with your private jeep and naturalist guide. The gathering peaks around the reservoir — hundreds of elephants, family groups drinking and bathing.</p>
+      </div>
+      <div class="arc-segment">
+        <div class="arc-segment-img orange"></div>
+        <div class="arc-time"><div class="arc-time-icon teal">🌿</div>Afternoon</div>
+        <h4>Lunch &amp; a Village Stop</h4>
+        <p>Return via a roadside rice and curry lunch. Optional village walk to see how life moves around the tank system.</p>
+      </div>
+      <div class="arc-segment">
+        <div class="arc-segment-img night-bg"></div>
+        <div class="arc-time"><div class="arc-time-icon night">🌙</div>Evening</div>
+        <h4>Back at the Lodge</h4>
+        <p>Return by 3–4pm, leaving the afternoon free. Time for a slow walk around the Sigiriya water gardens before sunset.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Linked destinations -->
+  <div class="exp-destinations-strip">
+    <h3>Places where you can have this experience</h3>
+    <div class="exp-dest-scroll">
+      <div class="exp-dest-chip"><div class="exp-dest-chip-img"></div><div class="exp-dest-chip-label">Minneriya</div></div>
+      <div class="exp-dest-chip"><div class="exp-dest-chip-img exp-dest-chip-img-2"></div><div class="exp-dest-chip-label">Habarana</div></div>
+      <div class="exp-dest-chip"><div class="exp-dest-chip-img exp-dest-chip-img-3"></div><div class="exp-dest-chip-label">Sigiriya</div></div>
+      <div class="exp-dest-chip" style="display:flex;align-items:center;justify-content:center;background:var(--surface-alt);border:1px dashed var(--line);height:108px;">
+        <span style="font-size:0.7rem;color:var(--muted);padding:0.5rem;text-align:center;">→ All Destinations</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related itineraries -->
+  <div class="exp-related-itins">
+    <h3>Itineraries that include this experience</h3>
+    <div class="exp-related-itin-row">
+      <div class="exp-related-itin-card">
+        <div class="exp-related-itin-thumb"></div>
+        <div class="exp-related-itin-info"><h4>Cultural Highlights &amp; Hill Country</h4><span>7 days · Includes Minneriya</span></div>
+      </div>
+      <div class="exp-related-itin-card">
+        <div class="exp-related-itin-thumb exp-related-itin-thumb-2"></div>
+        <div class="exp-related-itin-info"><h4>The Grand Sri Lanka Tour</h4><span>14 days · Full island loop</span></div>
+      </div>
+      <div class="exp-related-itin-card">
+        <div class="exp-related-itin-thumb exp-related-itin-thumb-3"></div>
+        <div class="exp-related-itin-info"><h4>Wildlife &amp; South Coast</h4><span>8 days · Safari focus</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="text-align:center;padding:2.5rem 1rem;color:#7a7068;font-size:0.72rem;font-style:italic;">
+  ICT UI Mockups — Island Culture Travels · Destinations · Itineraries · Experiences · Mobile-first
+</div>
+
+</body>
+</html>

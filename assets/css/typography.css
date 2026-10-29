@@ -1,0 +1,49 @@
+/* Shared local typography for public, customer and administration pages. */
+@font-face {
+  font-family: 'Destination Fraunces';
+  src: url('../fonts/destination-widget/fraunces-latin.woff2') format('woff2');
+  font-weight: 500 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Destination Manrope';
+  src: url('../fonts/destination-widget/manrope-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-sans: 'Destination Manrope', Arial, sans-serif;
+  --font-display: 'Destination Fraunces', Georgia, serif;
+  --font-serif: var(--font-display);
+  --font-script: var(--font-display);
+  --bs-font-sans-serif: var(--font-sans);
+  --bs-body-font-family: var(--font-sans);
+}
+
+body,
+.seo-page,
+.seo-dialog,
+.ql-container,
+.ql-toolbar,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
+.display-1, .display-2, .display-3,
+.display-4, .display-5, .display-6 {
+  font-family: var(--font-display);
+}
+
+/* SVG map labels inherit the site's body face instead of system-ui attributes. */
+svg text {
+  font-family: var(--font-sans);
+}

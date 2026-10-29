@@ -1,0 +1,32 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/site_audit_portal.php';
+require_once __DIR__ . '/../includes/admin_openai.php';
+unset($_SESSION['_ict_seo_connection']);
+admin_require_auth();
+header('Cache-Control: no-store'); header('X-Robots-Tag: noindex, nofollow');
+$ready = audit_portal_ready();
+$openaiConfigured=admin_openai_key()!=='';
+?>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Site Audit | <?= e(APP_NAME) ?></title>
+<link rel="stylesheet" href="<?= e(base_url('assets/css/seo-manager.css')) ?>">
+<link rel="stylesheet" href="<?= e(base_url('assets/css/site-audit.css')) ?>">
+<link rel="stylesheet" href="<?= e(base_url('assets/css/typography.css') . '?v=' . filemtime(__DIR__ . '/../assets/css/typography.css')) ?>"></head>
+<body class="seo-page"><main id="site-audit" data-ready="<?= $ready ? '1' : '0' ?>" data-api="<?= e(base_url('admin/site_audit_api.php')) ?>" data-run-api="<?= e(base_url('admin/site_audit_run.php')) ?>" data-poll-api="<?= e(base_url('admin/site_audit_results.php')) ?>" data-seo-api="<?= e(base_url('admin/seo_manager_api.php')) ?>" data-csrf="<?= e(csrf_token()) ?>">
+<header class="seo-header"><div><a href="<?= e(base_url('admin/dashboard.php')) ?>">← Admin</a><h1>Site Audit</h1><p>Evidence first. Review fixes. Recheck the result.</p></div><a href="<?= e(base_url('admin/seo_manager.php')) ?>">SEO Manager &amp; OpenAI status</a></header>
+<p class="seo-notice">Target: <?= e(site_audit_base_url()) ?>. Public pages and published content only. Audits never submit forms or change page content. AI review is optional and paid.</p>
+<p>OpenAI: <?= $openaiConfigured ? 'Server configured' : 'Server key not configured; technical scans remain available' ?> · AI review model: <?= e(admin_openai_model('audit')) ?></p>
+<?php if (!$ready): ?><p class="seo-notice" role="alert">The audit portal migration or progress schema is missing. Apply the reviewed migrations before starting. Existing audit history is retained; no schema is installed on this page.</p><?php endif; ?>
+<div class="seo-actions"><button id="audit-start" type="button" <?= !$ready ? 'disabled' : '' ?>>Run public site audit</button><button id="audit-preflight" type="button">Check host readiness</button><button id="audit-refresh" type="button">Refresh</button><label>Run<select id="audit-runs" aria-label="Audit run"></select></label></div>
+<p id="audit-message" role="status" aria-live="polite" class="seo-notice" hidden></p>
+<p id="audit-progress" role="status" aria-live="polite"></p>
+<nav class="seo-tabs" aria-label="Audit workspace"><?php foreach (['overview'=>'Overview','issues'=>'Issues','pages'=>'Pages & Media','ai'=>'AI Review','history'=>'History'] as $key=>$label): ?><button type="button" data-audit-tab="<?= e($key) ?>" <?= $key==='overview' ? 'aria-current="page"' : '' ?>><?= e($label) ?></button><?php endforeach; ?></nav>
+<section data-audit-panel="overview" class="seo-card"><h2>Coverage &amp; findings</h2><div id="audit-summary"></div><p>Search-engine indexing, rankings, real-user Core Web Vitals, full accessibility and business/legal accuracy are not verified by this report.</p><div class="seo-actions"><a id="audit-json">Download JSON</a><a id="audit-csv">Download CSV</a></div><h2>Repeated findings</h2><p>Grouped by cause, target and evidence certainty. Counts are occurrences; original findings and review states are retained.</p><div id="audit-groups"></div></section>
+<section data-audit-panel="issues" hidden><form id="audit-filter" class="seo-card audit-filters"><label>Severity<select name="severity"><option value="">All</option><?php foreach (['critical','high','medium','low'] as $value): ?><option><?= e($value) ?></option><?php endforeach; ?></select></label><label>Evidence<select name="certainty"><option value="">All</option><?php foreach (['confirmed','suspected','inconclusive','not_checked'] as $value): ?><option><?= e($value) ?></option><?php endforeach; ?></select></label><label>Review state<select name="state"><option value="">All</option><option>open</option><option>acknowledged</option><option>ignored</option></select></label><label>Page or rule<input name="q" type="search" maxlength="100"></label><button>Filter</button></form>
+<div class="seo-actions"><button id="audit-context" type="button">Preview AI context for selected findings</button><span id="audit-selected">0 selected (maximum 20)</span></div><div id="audit-issues"></div><div class="seo-actions"><button id="audit-prev" type="button">Previous</button><span id="audit-page-label"></span><button id="audit-next" type="button">Next</button></div></section>
+<section data-audit-panel="pages" hidden class="seo-card"><h2>Page &amp; resource observations</h2><p><a href="<?= e(base_url('admin/package_fields.php')) ?>">Review all package fields and editor links</a></p><p>Desktop 1440 × 1000 and mobile 390 × 844. External browser resources are blocked; external link targets are sampled separately.</p><div id="audit-observations"></div><div class="seo-actions"><button id="audit-observation-prev" type="button">Previous observations</button><span id="audit-observation-page"></span><button id="audit-observation-next" type="button">Next observations</button></div></section>
+<section data-audit-panel="ai" hidden class="seo-card"><h2>AI review</h2><p>Select up to 20 findings in Issues and preview the public evidence before sending. The shared server OpenAI key and daily generation quota apply. No automatic paid retries.</p><div id="audit-context-preview"></div><button id="audit-review" type="button" disabled>Send this context for paid AI review</button><p id="audit-usage"></p><div id="audit-reviews"></div></section>
+<section data-audit-panel="history" hidden class="seo-card"><h2>Run history &amp; rechecks</h2><p>Run another audit after saving fixes. An absent issue is resolved only when its rule was successfully checked again; unvisited or failed checks remain unverified.</p><div id="audit-comparison"></div><div id="audit-history"></div></section>
+</main><script src="<?= e(base_url('assets/js/seo-ai.js')) ?>" defer></script><script src="<?= e(base_url('assets/js/site-audit.js?v=' . filemtime(__DIR__ . '/../assets/js/site-audit.js'))) ?>" defer></script></body></html>

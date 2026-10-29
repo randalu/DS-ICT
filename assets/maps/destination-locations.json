@@ -1,0 +1,566 @@
+{
+  "version": 1,
+  "retrieved_utc": "2026-10-25",
+  "license": "CC BY 4.0",
+  "source": "https://download.geonames.org/export/dump/LK.zip",
+  "source_sha256": "8d94a7aa3e97fc520555115d7a628909663bd91f2091fdf87e391ba6d2887a60",
+  "note": "WGS84 illustrative route reference points, not roads, entrances, hotels or driving estimates. Exact approved names/slugs only. Existing linked locations are preserved.",
+  "places": [
+    {
+      "slug": "yala",
+      "names": [
+        "Yala",
+        "Yala National Park",
+        "Ruhuna National Park"
+      ],
+      "latitude": 6.5142,
+      "longitude": 81.5423,
+      "geoname_id": 1222931,
+      "source_name": "Yala National Park",
+      "feature_code": "L.PRK",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1222931/"
+    },
+    {
+      "slug": "udawalawe",
+      "names": [
+        "Udawalawe",
+        "Udawalawe National Park",
+        "Udawalawa"
+      ],
+      "latitude": 6.51591,
+      "longitude": 80.85388,
+      "geoname_id": 7289325,
+      "source_name": "Udawalawe National Park",
+      "feature_code": "L.RESN",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/7289325/"
+    },
+    {
+      "slug": "sigiriya",
+      "names": [
+        "Sigiriya"
+      ],
+      "latitude": 7.94946,
+      "longitude": 80.75037,
+      "geoname_id": 1228051,
+      "source_name": "Sigiriya",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1228051/"
+    },
+    {
+      "slug": "colombo",
+      "names": [
+        "Colombo"
+      ],
+      "latitude": 6.93548,
+      "longitude": 79.84868,
+      "geoname_id": 1248991,
+      "source_name": "Colombo",
+      "feature_code": "P.PPLC",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1248991/"
+    },
+    {
+      "slug": "kandy",
+      "names": [
+        "Kandy"
+      ],
+      "latitude": 7.2906,
+      "longitude": 80.6336,
+      "geoname_id": 1241622,
+      "source_name": "Kandy",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1241622/"
+    },
+    {
+      "slug": "ella",
+      "names": [
+        "Ella",
+        "Ella Town"
+      ],
+      "latitude": 6.8756,
+      "longitude": 81.0463,
+      "geoname_id": 1247148,
+      "source_name": "Ella Town",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1247148/"
+    },
+    {
+      "slug": "galle",
+      "names": [
+        "Galle"
+      ],
+      "latitude": 6.0461,
+      "longitude": 80.2103,
+      "geoname_id": 1246294,
+      "source_name": "Galle",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1246294/"
+    },
+    {
+      "slug": "nuwara-eliya",
+      "names": [
+        "Nuwara Eliya"
+      ],
+      "latitude": 6.97078,
+      "longitude": 80.78286,
+      "geoname_id": 1232783,
+      "source_name": "Nuwara Eliya",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1232783/"
+    },
+    {
+      "slug": "mirissa",
+      "names": [
+        "Mirissa"
+      ],
+      "latitude": 5.94655,
+      "longitude": 80.45831,
+      "geoname_id": 11979654,
+      "source_name": "Mirissa city",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/11979654/"
+    },
+    {
+      "slug": "trincomalee",
+      "names": [
+        "Trincomalee"
+      ],
+      "latitude": 8.5778,
+      "longitude": 81.2289,
+      "geoname_id": 1226260,
+      "source_name": "Trincomalee",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1226260/"
+    },
+    {
+      "slug": "anuradhapura",
+      "names": [
+        "Anuradhapura"
+      ],
+      "latitude": 8.31223,
+      "longitude": 80.41306,
+      "geoname_id": 1251081,
+      "source_name": "Anuradhapura",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1251081/"
+    },
+    {
+      "slug": "polonnaruwa",
+      "names": [
+        "Polonnaruwa"
+      ],
+      "latitude": 7.93965,
+      "longitude": 81.00274,
+      "geoname_id": 1229901,
+      "source_name": "Polonnaruwa",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1229901/"
+    },
+    {
+      "slug": "arugam-bay",
+      "names": [
+        "Arugam Bay"
+      ],
+      "latitude": 6.8589,
+      "longitude": 81.8304,
+      "geoname_id": 1250935,
+      "source_name": "Arugam Bay",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1250935/"
+    },
+    {
+      "slug": "bentota",
+      "names": [
+        "Bentota"
+      ],
+      "latitude": 6.42598,
+      "longitude": 79.99575,
+      "geoname_id": 1249978,
+      "source_name": "Bentota",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1249978/"
+    },
+    {
+      "slug": "hikkaduwa",
+      "names": [
+        "Hikkaduwa"
+      ],
+      "latitude": 6.1407,
+      "longitude": 80.1012,
+      "geoname_id": 1244178,
+      "source_name": "Hikkaduwa",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1244178/"
+    },
+    {
+      "slug": "jaffna",
+      "names": [
+        "Jaffna"
+      ],
+      "latitude": 9.66845,
+      "longitude": 80.00742,
+      "geoname_id": 1242833,
+      "source_name": "Jaffna",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1242833/"
+    },
+    {
+      "slug": "negombo",
+      "names": [
+        "Negombo"
+      ],
+      "latitude": 7.2083,
+      "longitude": 79.8358,
+      "geoname_id": 1233369,
+      "source_name": "Negombo",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1233369/"
+    },
+    {
+      "slug": "dambulla",
+      "names": [
+        "Dambulla"
+      ],
+      "latitude": 7.86,
+      "longitude": 80.65167,
+      "geoname_id": 1248749,
+      "source_name": "Dambulla",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1248749/"
+    },
+    {
+      "slug": "horton-plains",
+      "names": [
+        "Horton Plains",
+        "Horton Plains National Park"
+      ],
+      "latitude": 6.8186,
+      "longitude": 80.7933,
+      "geoname_id": 7616442,
+      "source_name": "Horton Plains Nature Reserve",
+      "feature_code": "L.RESN",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/7616442/"
+    },
+    {
+      "slug": "knuckles-mountain-range",
+      "names": [
+        "Knuckles Mountain Range",
+        "Knuckles"
+      ],
+      "latitude": 7.4,
+      "longitude": 80.8,
+      "geoname_id": 1239901,
+      "source_name": "Knuckles",
+      "feature_code": "T.MTS",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1239901/"
+    },
+    {
+      "slug": "unawatuna",
+      "names": [
+        "Unawatuna"
+      ],
+      "latitude": 6.0212,
+      "longitude": 80.2503,
+      "geoname_id": 1225514,
+      "source_name": "Unawatuna",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1225514/"
+    },
+    {
+      "slug": "weligama",
+      "names": [
+        "Weligama"
+      ],
+      "latitude": 5.97501,
+      "longitude": 80.42968,
+      "geoname_id": 1223738,
+      "source_name": "Weligama",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1223738/"
+    },
+    {
+      "slug": "tangalle",
+      "names": [
+        "Tangalle"
+      ],
+      "latitude": 6.02338,
+      "longitude": 80.79738,
+      "geoname_id": 1227037,
+      "source_name": "Tangalle",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1227037/"
+    },
+    {
+      "slug": "adams-peak",
+      "names": [
+        "Adams Peak",
+        "Adam’s Peak",
+        "Adam's Peak",
+        "Sri Pada"
+      ],
+      "latitude": 6.8088,
+      "longitude": 80.4972,
+      "geoname_id": 1252292,
+      "source_name": "Adam’s Peak",
+      "feature_code": "T.MT",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1252292/"
+    },
+    {
+      "slug": "kurunegala",
+      "names": [
+        "Kurunegala"
+      ],
+      "latitude": 7.4839,
+      "longitude": 80.3683,
+      "geoname_id": 1237980,
+      "source_name": "Kurunegala",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1237980/"
+    },
+    {
+      "slug": "mannar",
+      "names": [
+        "Mannar"
+      ],
+      "latitude": 8.98945,
+      "longitude": 79.87842,
+      "geoname_id": 1236150,
+      "source_name": "Mannar",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1236150/"
+    },
+    {
+      "slug": "passikudah",
+      "names": [
+        "Passikudah",
+        "Pasikuda",
+        "Pasikudah"
+      ],
+      "latitude": 7.92351,
+      "longitude": 81.56628,
+      "geoname_id": 10227170,
+      "source_name": "Passikudah",
+      "feature_code": "P.PPLX",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/10227170/"
+    },
+    {
+      "slug": "batticaloa",
+      "names": [
+        "Batticaloa"
+      ],
+      "latitude": 7.7102,
+      "longitude": 81.6924,
+      "geoname_id": 1250161,
+      "source_name": "Batticaloa",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1250161/"
+    },
+    {
+      "slug": "matara",
+      "names": [
+        "Matara"
+      ],
+      "latitude": 5.94851,
+      "longitude": 80.53528,
+      "geoname_id": 1235846,
+      "source_name": "Matara",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1235846/"
+    },
+    {
+      "slug": "ratnapura",
+      "names": [
+        "Ratnapura"
+      ],
+      "latitude": 6.6858,
+      "longitude": 80.4036,
+      "geoname_id": 1228730,
+      "source_name": "Ratnapura",
+      "feature_code": "P.PPLA",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1228730/"
+    },
+    {
+      "slug": "ampara",
+      "names": [
+        "Ampara"
+      ],
+      "latitude": 7.29754,
+      "longitude": 81.68202,
+      "geoname_id": 1251459,
+      "source_name": "Ampara",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1251459/"
+    },
+    {
+      "slug": "sinharaja-forest-reserve",
+      "names": [
+        "Sinharaja Forest Reserve"
+      ],
+      "latitude": 6.3897,
+      "longitude": 80.5015,
+      "geoname_id": 1227997,
+      "source_name": "Sinharaja Forest Reserve",
+      "feature_code": "L.RESF",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1227997/"
+    },
+    {
+      "slug": "haputale",
+      "names": [
+        "Haputale"
+      ],
+      "latitude": 6.76566,
+      "longitude": 80.95104,
+      "geoname_id": 1244713,
+      "source_name": "Haputale",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1244713/"
+    },
+    {
+      "slug": "wilpattu-national-park",
+      "names": [
+        "Wilpattu National Park"
+      ],
+      "latitude": 8.4106,
+      "longitude": 80.051,
+      "geoname_id": 1223149,
+      "source_name": "Wilpattu National Park",
+      "feature_code": "L.PRK",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1223149/"
+    },
+    {
+      "slug": "kalpitiya",
+      "names": [
+        "Kalpitiya"
+      ],
+      "latitude": 8.22873,
+      "longitude": 79.75988,
+      "geoname_id": 1242089,
+      "source_name": "Kalpitiya",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1242089/"
+    },
+    {
+      "slug": "gal-oya-national-park",
+      "names": [
+        "Gal Oya National Park"
+      ],
+      "latitude": 7.16667,
+      "longitude": 81.41667,
+      "geoname_id": 1246196,
+      "source_name": "Gal Oya National Park",
+      "feature_code": "L.PRK",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1246196/"
+    },
+    {
+      "slug": "ritigala",
+      "names": [
+        "Ritigala"
+      ],
+      "latitude": 8.1092,
+      "longitude": 80.6546,
+      "geoname_id": 1228569,
+      "source_name": "Ritigala",
+      "feature_code": "T.MT",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1228569/"
+    },
+    {
+      "slug": "yapahuwa",
+      "names": [
+        "Yapahuwa"
+      ],
+      "latitude": 7.81667,
+      "longitude": 80.31667,
+      "geoname_id": 1222888,
+      "source_name": "Yapahuwa",
+      "feature_code": "P.PPL",
+      "point_kind": "town/city reference point",
+      "source": "https://www.geonames.org/1222888/"
+    },
+    {
+      "slug": "delft-island",
+      "names": [
+        "Delft Island"
+      ],
+      "latitude": 9.5,
+      "longitude": 79.7,
+      "geoname_id": 1248393,
+      "source_name": "Delft Island",
+      "feature_code": "T.ISL",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/1248393/"
+    },
+    {
+      "slug": "bundala-national-park",
+      "names": [
+        "Bundala National Park"
+      ],
+      "latitude": 6.1874,
+      "longitude": 81.1974,
+      "geoname_id": 7625643,
+      "source_name": "Bundala National Park",
+      "feature_code": "L.RES",
+      "point_kind": "geographic-area reference point",
+      "source": "https://www.geonames.org/7625643/"
+    },
+    {
+      "slug": "meemure-village",
+      "names": [
+        "Meemure Village",
+        "Meemure"
+      ],
+      "latitude": 7.44798,
+      "longitude": 80.84982,
+      "geoname_id": 11986791,
+      "source_name": "Meemure",
+      "feature_code": "A.ADM4",
+      "point_kind": "administrative-area reference point",
+      "source": "https://www.geonames.org/11986791/"
+    }
+  ],
+  "review_required": [
+    {
+      "slug": "ussangoda",
+      "reason": "No unambiguous national-park point in this source; nearby reservoir/estate records are different features."
+    },
+    {
+      "slug": "minneriya-kaudulla",
+      "reason": "Combined destination represents two parks; choose a specific park/reference point manually."
+    }
+  ]
+}

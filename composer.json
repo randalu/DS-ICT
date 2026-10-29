@@ -1,0 +1,15 @@
+{
+    "name": "randalu/island-culture-travels",
+    "description": "Island Culture Travels custom PHP site.",
+    "type": "project",
+    "license": "proprietary",
+    "scripts": {
+        "test": "phpunit tests"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.5"
+    },
+    "require": {
+        "dompdf/dompdf": "^3.1.6"
+    }
+}

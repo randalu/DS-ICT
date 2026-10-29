@@ -1,0 +1,79 @@
+ISLAND CULTURE TRAVELS: MANUAL VPS LIVE PULL
+
+Run in the VPS Bash terminal as root or serveradmin.
+Paste the complete block below, including both final heredoc markers.
+This script has NOT been run on production by the coding agent.
+
+The release preserves the server's existing OPENAI_ADMIN_API_KEY, uploaded
+images, sessions, publication states and manually selected gallery photos.
+It never prints or copies the OpenAI key. No paid AI requests are made.
+
+Private source/database backups are stored outside public_html. The preflight
+stops for overlapping live edits, an unexpected source baseline, incompatible
+schema or migrations that are outside the reviewed release. Do not bypass a
+failure by resetting Git or changing migration-ledger statuses.
+
+COPY FROM THE NEXT LINE THROUGH THE FINAL RUN_LIVE_PULL LINE:
+
+bash <<'RUN_LIVE_PULL'
+set -Eeuo pipefail
+if [[ "$(id -un)" == root ]]; then
+  run_as=(sudo -iu serveradmin bash)
+elif [[ "$(id -un)" == serveradmin ]]; then
+  run_as=(bash)
+else
+  echo 'Run this block as root or serveradmin.' >&2
+  exit 1
+fi
+
+"${run_as[@]}" <<'SERVERADMIN_RELEASE'
+set -Eeuo pipefail
+umask 077
+cd /home/srilankaprivatetravels.com/public_html
+
+code_target=ced31f148978b22c179ed1e276a6ae12654ca7fe
+base=b0e599be3f44462da0a3afd0404bd633164eb8c4
+[[ "$code_target" =~ ^[0-9a-f]{40}$ ]] || { echo 'Unpinned release instructions; stop.' >&2; exit 1; }
+[[ "$(git remote get-url origin)" == git@github-islandculture:randalu/IslandCulture.git ]]
+
+git fetch origin main
+target=$(git rev-parse FETCH_HEAD)
+git merge-base --is-ancestor "$code_target" "$target"
+# The handoff text is pinned after the application commit. No later code
+# change is silently accepted by these instructions.
+later_paths=$(git diff --name-only "$code_target" "$target")
+[[ -z "$later_paths" || "$later_paths" == VPS-LIVE-PULL.txt ]] || {
+  echo 'GitHub has code newer than this reviewed handoff; stop for updated instructions.' >&2
+  exit 1
+}
+
+helper=$(mktemp "$HOME/island-page-media-pull.XXXXXXXX")
+git show "$target:cli/pull_page_media_release.sh" > "$helper"
+bash -n "$helper"
+bash "$helper" "$target" "$base" --check
+bash "$helper" "$target" "$base" --apply
+
+echo 'Manual release command completed. Verify the result markers above.'
+git log -1 --oneline
+SERVERADMIN_RELEASE
+RUN_LIVE_PULL
+
+EXPECTED RESULT MARKERS
+  RELEASE_PREFLIGHT_OK
+  CODE_PULL_OK
+  SCHEMA_RELEASE_OK
+
+If preflight stops, no code pull or migration should have run. If CODE_PULL_OK
+appears without SCHEMA_RELEASE_OK, code was pulled but schema work did not
+finish. Keep the full output and private backup path; do not run destructive
+rollback commands or mark failed migrations as applied.
+
+AFTER ALL THREE MARKERS
+1. Sign in to Image Manager and verify Generate alt text -> Preview -> Apply
+   -> Save on one image. This explicit click can make a paid OpenAI request.
+2. Check SEO Manager and AI Site Audit retain the configured server key.
+3. Check a Blog, Static Page, Tour and Experience: hero remains above content;
+   the gallery remains below the hero and above the final CTA.
+4. Empty galleries and the existing photo/description lint gaps require manual
+   image selection or editing; this release does not invent descriptions or
+   populate galleries automatically.

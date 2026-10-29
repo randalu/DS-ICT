@@ -1,0 +1,15 @@
+# Sri Lanka and assigned-location references for image alt generation
+
+Follow-up to deployed release `3e928096e083d3808caa0bb95f162bb4a78d477d`. No database migrations, credentials, stored alt descriptions or publication states change.
+
+Generation now includes server-resolved Sri Lanka travel context and the current destination/page/Activity entry. It reads saved destination associations, Activity entry destination names, tour coverage/day/hotel locations, itinerary overnight locations, related itinerary/Tour/Day Tour destinations and the selected Media Library asset's destination where available. Missing optional schema falls back to the available references and Sri Lanka background context. Browser-supplied destination text is not trusted or forwarded.
+
+Image Manager shows the reference next to Generate, including a separately labelled Media Library destination when different from placement references. New uploads, queued uploads, library selections and existing images all send their placement identifiers. Entry/photo ownership is checked; a context revision binds the references before and after the paid request. Changing the image or saved references requires a fresh suggestion.
+
+The photograph remains the primary evidence. Context guides the model; it must not invent a specific landmark, choose arbitrarily from a multi-destination route, treat every hotel/food/craft photo as a tourist attraction, follow instructions in labels, or force Sri Lanka into every description. The existing preview/apply/save workflow, required descriptive text, 255-character limit and explicit reusable-default updates remain unchanged. Previously saved descriptions are not regenerated automatically.
+
+Validation: `composer validate`, PHP syntax, JavaScript syntax and `git diff --check` pass. `composer test`: 346 tests / 2,211 assertions / 54 existing conditional skips, no failures/errors. Nine targeted shared-AI/context tests passed (55 assertions), including source-record resolution, Activity membership, model payload, conflicting asset/page references, changed context revisions, Tour day/hotel/coverage and package destination associations.
+
+Real Chromium: 16 context checks across 320, 390, 768, 1024 and 1440px pass with no captured uncaught errors. The actual GET API and server-resolved references were used; paid POST suggestions were intercepted. Existing-entry images, queued uploads and selected library assets all transmitted the expected page/entry identifiers and context revision. Screenshots and results: `output/image-alt-context-acceptance/` in the primary workspace. Real-provider contextual wording remains an owner-run acceptance check after deployment; no API key was supplied to the local candidate.
+
+Deploy as a source-only fast-forward from the deployed base using the existing `cli/pull_release.sh`. Preserve live content and unrelated `.gitkeep` deletion. No migration, seed, environment/key edit or web-server restart is required for this update. Reload Image Manager after the pull, confirm its displayed reference, generate one relevant image suggestion, and review it before saving.

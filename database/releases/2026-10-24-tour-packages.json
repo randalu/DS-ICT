@@ -1,0 +1,593 @@
+{
+  "release": "tour-packages-20261024",
+  "covers": [
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-itinerary-5-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-5.jpg",
+        "alt": "Sigiriya rock fortress above the surrounding fields and water",
+        "sha256": "ea15ffc98ef42525feae3456364fa2e785b449c913f2e884797deb2885ea585a"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-itinerary-7-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/kandy-temple-lk.jpg",
+        "alt": "Temple buildings beside Kandy Lake",
+        "sha256": "773b29c8cc1d646b50e97d9660251703bf69c4c9eda9600acb756bf8478ace70"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-itinerary-10-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/nine-arch-bridge-lk.jpg",
+        "alt": "A blue train crossing Nine Arch Bridge among forested hills",
+        "sha256": "e21d5068f90a29fded167986e038f8c69efd5209e007c9af3c7373adcd6019bb"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-itinerary-12-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+        "alt": "Green tea fields and trees in the Sri Lankan hill country",
+        "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-itinerary-14-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-2.jpg",
+        "alt": "The summit ruins of Sigiriya surrounded by green countryside",
+        "sha256": "0a95ab01e2416a3d36bcbee64f75aebac0e14cb0d7b3ea47bc51d6d826d81681"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-honeymoon-itinerary-12-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+        "alt": "Green tea fields and trees in the Sri Lankan hill country",
+        "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-family-itinerary-10-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-6.jpg",
+        "alt": "Elephants grazing beside a safari track and jeep in Sri Lanka",
+        "sha256": "8ee63f40560d4f51846c974393b098dceba718521ae048d56ff0fc62f703bdca"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-wildlife-itinerary-9-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/yala-national-park-leopard-safari-large.webp",
+        "alt": "A leopard resting on a rock beside a tree",
+        "sha256": "401e029dada1cc4452d16f55230fd3c206ec9958748181a483712feafe7fcc53"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-south-coast-itinerary-8-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/mirissa-coastline.jpg",
+        "alt": "Palm-lined coastline and surf near Mirissa",
+        "sha256": "90ddb38b2ea1681cb54175e87af996b88ba5b2f8f132689bb5accb6905541f98"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-east-coast-itinerary-10-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-5.jpg",
+        "alt": "Sigiriya rock fortress above the surrounding fields and water",
+        "sha256": "ea15ffc98ef42525feae3456364fa2e785b449c913f2e884797deb2885ea585a"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-luxury-itinerary-11-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+        "alt": "Green tea fields and trees in the Sri Lankan hill country",
+        "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+      }
+    },
+    {
+      "table": "itineraries",
+      "slug": "sri-lanka-birding-nature-itinerary-12-days",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/package-covers/honeymoon-beach-travellers.jpg",
+        "alt": "A colourful junglefowl standing on the forest floor",
+        "sha256": "47f4db3a0d7f1f19a99ddff88d4ac9fb36e981c2ada2ebded55a69b8e518195d"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-wildlife-safari-tour",
+      "before": {
+        "cover_image": "image-manager/e0159f669b6be09231d118fec122a5c8.jpg",
+        "cover_alt": "jungle fowl"
+      },
+      "photo": {
+        "path": "assets/images/country-market/minneriya-elephant.jpg",
+        "alt": "An elephant walking beside tall grass in a Sri Lankan wildlife park",
+        "sha256": "4c95e1edcb48ddfe878c52fb1b6720c3d62ff963984cd956aec53a1255afa8ed"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "classic-sri-lanka-private-tour-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-5.jpg",
+        "alt": "Sigiriya rock fortress above the surrounding fields and water",
+        "sha256": "ea15ffc98ef42525feae3456364fa2e785b449c913f2e884797deb2885ea585a"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-10-day-itinerary-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/nine-arch-bridge-lk.jpg",
+        "alt": "A blue train crossing Nine Arch Bridge among forested hills",
+        "sha256": "e21d5068f90a29fded167986e038f8c69efd5209e007c9af3c7373adcd6019bb"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-14-day-grand-tour-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-2.jpg",
+        "alt": "The summit ruins of Sigiriya surrounded by green countryside",
+        "sha256": "0a95ab01e2416a3d36bcbee64f75aebac0e14cb0d7b3ea47bc51d6d826d81681"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-honeymoon-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/mirissa-beach-lk.jpg",
+        "alt": "Two travellers carrying surfboards along a palm-lined beach",
+        "sha256": "c65e89039d849c63ccbfe1faf9519300d4d8564ae439149f0bddbb461e2642b9"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-family-tour-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-6.jpg",
+        "alt": "Elephants grazing beside a safari track and jeep in Sri Lanka",
+        "sha256": "8ee63f40560d4f51846c974393b098dceba718521ae048d56ff0fc62f703bdca"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "sri-lanka-wildlife-safari-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/yala-national-park-leopard-safari-large.webp",
+        "alt": "A leopard resting on a rock beside a tree",
+        "sha256": "401e029dada1cc4452d16f55230fd3c206ec9958748181a483712feafe7fcc53"
+      }
+    },
+    {
+      "table": "tours",
+      "slug": "luxury-sri-lanka-slow-travel-package",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+        "alt": "Green tea fields and trees in the Sri Lankan hill country",
+        "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "sigiriya-dambulla-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-5.jpg",
+        "alt": "Sigiriya rock fortress above the surrounding fields and water",
+        "sha256": "ea15ffc98ef42525feae3456364fa2e785b449c913f2e884797deb2885ea585a"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "kandy-city-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/kandy-temple-lk.jpg",
+        "alt": "Temple buildings beside Kandy Lake",
+        "sha256": "773b29c8cc1d646b50e97d9660251703bf69c4c9eda9600acb756bf8478ace70"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "yala-safari-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/yala-national-park-leopard-safari-large.webp",
+        "alt": "A leopard resting on a rock beside a tree",
+        "sha256": "401e029dada1cc4452d16f55230fd3c206ec9958748181a483712feafe7fcc53"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "galle-fort-south-coast-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/galle-lighthouse.jpg",
+        "alt": "Galle Lighthouse and palm trees beside the fort walls",
+        "sha256": "381167d03881816d9d9baecf264c5a67100d78a3a5adaae0d7ffa713684666e2"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "nuwara-eliya-tea-country-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+        "alt": "Green tea fields and trees in the Sri Lankan hill country",
+        "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "ella-kandy-adams-peak-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/nine-arch-bridge-lk.jpg",
+        "alt": "A blue train crossing Nine Arch Bridge among forested hills",
+        "sha256": "e21d5068f90a29fded167986e038f8c69efd5209e007c9af3c7373adcd6019bb"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "mirissa-whale-watching-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/country-market/mirissa-coastline.jpg",
+        "alt": "Palm-lined coastline and surf near Mirissa",
+        "sha256": "90ddb38b2ea1681cb54175e87af996b88ba5b2f8f132689bb5accb6905541f98"
+      }
+    },
+    {
+      "table": "day_tours",
+      "slug": "udawalawe-safari-day-tour",
+      "before": {
+        "cover_image": null,
+        "cover_alt": null
+      },
+      "photo": {
+        "path": "assets/images/home-hero/home-6.jpg",
+        "alt": "Elephants grazing beside a safari track and jeep in Sri Lanka",
+        "sha256": "8ee63f40560d4f51846c974393b098dceba718521ae048d56ff0fc62f703bdca"
+      }
+    }
+  ],
+  "tours": [
+    {
+      "slug": "sri-lanka-wildlife-safari-package",
+      "fields": {
+        "excerpt": {
+          "before": "A wildlife-focused private Sri Lanka route comparing Yala, Udawalawe, dry-zone parks, wetlands, ethical safari standards, and realistic expectations.",
+          "after": "Private wildlife travel with Udawalawe and Yala safari bases, optional dry-zone elephants and wetland birding, and a relaxed coastal finish."
+        },
+        "intro": {
+          "before": "<p>This wildlife package is built around habitat and route logic rather than a guaranteed sighting. Compare Yala, Udawalawe, Minneriya, Kaudulla, Wilpattu, and Bundala around the travel month, the species interest, the lodge position, and the time available.</p><p>Safari access, park conditions, animal behaviour, crowding, and weather change. We will confirm the current practical options and keep an alternative route available when conditions move.</p>",
+          "after": "<p>Build a private wildlife journey around the habitats you want to explore and the time you have. The 7-day southern route links Udawalawe, Yala and the south coast; the 9-day guide adds a Habarana or Sigiriya base and a Minneriya or Kaudulla option.</p><p>These are adaptable route ideas. Choose the park visits, jeep arrangements and recovery days before we confirm the quote. Park access, weather and wildlife conditions can change, and no animal sighting is guaranteed.</p>"
+        },
+        "highlights": {
+          "before": "<ul><li>Yala option for varied habitats and leopard interest</li><li>Udawalawe option for an elephant-focused southbound route</li><li>Minneriya or Kaudulla option when current dry-zone conditions support it</li><li>Bundala or other wetland option for birding and habitat variety</li><li>Private road transfers coordinated around safari start times</li><li>Responsible viewing expectations with no guaranteed sightings</li></ul>",
+          "after": "<ul><li>Udawalawe and Yala wildlife bases with time between game drives</li><li>A Minneriya or Kaudulla option on the longer route</li><li>Optional Bundala wetland birding</li><li>A south-coast pause and optional Galle Fort walk</li><li>Private road travel coordinated around the agreed safari plan</li></ul>"
+        },
+        "sample_itinerary": {
+          "before": "<ol><li>Airport to Habarana or Sigiriya</li><li>Dry-zone cultural or wildlife option</li><li>Transfer to Udawalawe</li><li>Udawalawe safari and recovery</li><li>Transfer toward Yala or another wildlife base</li><li>Yala or alternative park plan</li><li>Wetland, coast, or second wildlife option</li><li>South-coast recovery</li><li>Airport transfer or extension</li></ol>",
+          "after": "<p>Start with the 7-day or 9-day planning guide, then adjust the nights, park visits and coast stay around your flights and interests. The shorter plan focuses on the southern parks; the longer plan adds the dry-zone elephant region. Wilpattu is a separate alternative requiring a revised route.</p>"
+        },
+        "cta_title": {
+          "before": "Plan a Responsible Wildlife Route",
+          "after": "Plan Your Private Wildlife Tour"
+        },
+        "cta_text": {
+          "before": "Tell us the species, habitats, travel month, group needs, and preferred pace. We will compare parks without promising a sighting.",
+          "after": "Share your dates, group size and wildlife interests. Tell us whether the 7-day southern route or the longer dry-zone route is your starting point."
+        }
+      },
+      "coverage_before": null,
+      "coverage": [
+        {
+          "title": "Elephant country on the longer route",
+          "location": "Habarana / Sigiriya; Minneriya or Kaudulla National Park",
+          "description": "The 9-day route can begin with a Habarana or Sigiriya base and a safari at Minneriya or Kaudulla. Choose the park around current access and wildlife conditions. The shorter southern route omits this leg.",
+          "status": "optional",
+          "photo": {
+            "path": "assets/images/country-market/minneriya-elephant.jpg",
+            "alt": "An elephant walking beside tall grass in a Sri Lankan wildlife park",
+            "sha256": "4c95e1edcb48ddfe878c52fb1b6720c3d62ff963984cd956aec53a1255afa8ed"
+          },
+          "destination_slug": "minneriya-kaudulla",
+          "experience_slug": "minneriya-elephant-gathering"
+        },
+        {
+          "title": "An elephant-focused safari base",
+          "location": "Udawalawe National Park",
+          "description": "Use Udawalawe as a base for an elephant-focused game drive, with time to rest between transfers and safari outings. Discuss a private or shared jeep in the quote. Wildlife sightings are never guaranteed.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/home-hero/home-6.jpg",
+            "alt": "Elephants grazing beside a safari track and jeep in Sri Lanka",
+            "sha256": "8ee63f40560d4f51846c974393b098dceba718521ae048d56ff0fc62f703bdca"
+          },
+          "destination_slug": "udawalawe",
+          "experience_slug": "udawalawe-elephant-safari"
+        },
+        {
+          "title": "Dry-zone wildlife and a Yala base",
+          "location": "Yala National Park / Tissamaharama",
+          "description": "Continue to Tissamaharama or Yala for a game drive focused on the park habitats and wildlife. Confirm the available park block and safari arrangements for your dates. Leopard interest can shape the visit, but sightings cannot be promised.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/yala-national-park-leopard-safari-large.webp",
+            "alt": "A leopard resting on a rock beside a tree",
+            "sha256": "401e029dada1cc4452d16f55230fd3c206ec9958748181a483712feafe7fcc53"
+          },
+          "destination_slug": "yala",
+          "experience_slug": "yala-leopard-safari"
+        },
+        {
+          "title": "Wetland birds and habitat variety",
+          "location": "Bundala National Park",
+          "description": "Add a wetland birding visit on the southern wildlife route when access, daylight and the group pace allow. This is a separate activity to confirm in the quote, rather than an automatic extra safari.",
+          "status": "optional",
+          "photo": null,
+          "destination_slug": "bundala-national-park",
+          "experience_slug": "wildlife-safaris"
+        },
+        {
+          "title": "A coastal pause after the safari days",
+          "location": "Tangalle / Mirissa / Galle and the south coast",
+          "description": "Finish with recovery time on the south coast. Choose a beach base around your hotel preferences and departure plans; add a walk through Galle Fort if it fits the agreed route.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/galle-lighthouse.jpg",
+            "alt": "Galle Lighthouse and palm trees beside the fort walls",
+            "sha256": "381167d03881816d9d9baecf264c5a67100d78a3a5adaae0d7ffa713684666e2"
+          },
+          "destination_slug": "galle",
+          "experience_slug": "galle-fort-southern-coast"
+        },
+        {
+          "title": "An alternative wildlife direction",
+          "location": "Wilpattu National Park",
+          "description": "Wilpattu is an alternative to discuss if your travel dates and preferred route suit a different wildlife base. It requires a revised route and is not an additional stop included in the 7- or 9-day southern plans.",
+          "status": "optional",
+          "photo": null,
+          "destination_slug": "wilpattu-national-park",
+          "experience_slug": "wildlife-safaris"
+        }
+      ],
+      "hero": null,
+      "hero_before": "assets/images/country-market/minneriya-elephant.jpg"
+    },
+    {
+      "slug": "sri-lanka-honeymoon-package",
+      "fields": {
+        "excerpt": {
+          "before": "A private Sri Lanka honeymoon route with slower stays, romantic accommodation choices, scenic hills, wildlife, beaches, and privacy planning.",
+          "after": "A private honeymoon shaped around Sigiriya, tea-country stays and a coastal finish, with optional Ella, safari and heritage experiences."
+        },
+        "intro": {
+          "before": "<p>This honeymoon package is designed around time together rather than a checklist of attractions. Choose a few memorable bases, use private transfers for practical movement, and keep enough unplanned space for the couple.</p><p>Confirm room category, privacy, meals, celebration services, vehicle standard, guides, safari arrangements, train seats, and cancellation terms before payment. Romantic extras vary by property and season.</p>",
+          "after": "<p>Choose a few memorable bases and leave room to enjoy them together. This private honeymoon tour brings the 12-day planning guide into a flexible combination of Sigiriya, tea country and a coastal or Galle finish, with optional Kandy, Ella and safari stops.</p><p>The daily flow can be shortened or extended. Private road transfers help connect your stays; accommodation, room category, meals, guides, train seats and romantic extras are selected and confirmed in the written quote.</p>"
+        },
+        "highlights": {
+          "before": "<ul><li>Two-night stays where the route and availability allow</li><li>Tea-country scenery, a scenic train option, or a private road alternative</li><li>Private safari and beach or heritage finish options</li><li>Vehicle comfort and privacy preferences discussed before quoting</li><li>Flexible 7, 10, 12, or 14-day route versions</li></ul>",
+          "after": "<ul><li>Sigiriya or Habarana as a cultural and lodge base</li><li>Tea-country scenery and time for a slower stay</li><li>Optional Kandy, Ella, scenic rail or Yala safari experiences</li><li>A beach, boutique or Galle Fort finish</li><li>A route shaped around privacy, comfort and fewer hotel changes</li></ul>"
+        },
+        "cta_title": {
+          "before": "Plan a Private Sri Lanka Honeymoon",
+          "after": "Shape Your Sri Lanka Honeymoon"
+        }
+      },
+      "coverage_before": null,
+      "coverage": [
+        {
+          "title": "A cultural base with time together",
+          "location": "Sigiriya / Habarana; Sigiriya or Pidurangala",
+          "description": "Begin with a Sigiriya or Habarana stay and choose a heritage visit or Pidurangala viewpoint walk to suit your interests and mobility. Leave space for the lodge, a slow afternoon or an optional cooking experience. The property and activities are confirmed in your quote.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/home-hero/home-5.jpg",
+            "alt": "Sigiriya rock fortress above the surrounding fields and water",
+            "sha256": "ea15ffc98ef42525feae3456364fa2e785b449c913f2e884797deb2885ea585a"
+          },
+          "destination_slug": "sigiriya",
+          "experience_slug": "sigiriya-pidurangala-sunrise"
+        },
+        {
+          "title": "A heritage stop on the way to the hills",
+          "location": "Kandy",
+          "description": "Include a Kandy stop for heritage, a walk or a gentler transition to tea country. The length of the stay depends on the number of nights available and how many hotel changes you prefer.",
+          "status": "optional",
+          "photo": {
+            "path": "assets/images/kandy-temple-lk.jpg",
+            "alt": "Temple buildings beside Kandy Lake",
+            "sha256": "773b29c8cc1d646b50e97d9660251703bf69c4c9eda9600acb756bf8478ace70"
+          },
+          "destination_slug": "kandy",
+          "experience_slug": "ancient-culture-and-temples"
+        },
+        {
+          "title": "Tea-country scenery and a slower stay",
+          "location": "Nuwara Eliya / tea country",
+          "description": "Plan time among the hills and tea landscapes. Discuss a bungalow or boutique stay, a tea visit and a quiet afternoon together. Room category, meals and any private tasting are property-specific and must be confirmed.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/country-market/nuwara-eliya-tea.jpg",
+            "alt": "Green tea fields and trees in the Sri Lankan hill country",
+            "sha256": "6476ac2b63ee3a374785f12842f7fed0c132d926a9657b2e5e5a28dda34d8b05"
+          },
+          "destination_slug": "nuwara-eliya",
+          "experience_slug": "tea-country-nuwara-eliya"
+        },
+        {
+          "title": "An Ella stop or scenic rail option",
+          "location": "Ella / Nine Arch Bridge and the hill-country rail route",
+          "description": "Add Ella and a Nine Arch Bridge visit if they suit the route. A scenic train journey is optional and depends on confirmed seats; the private road route remains an alternative. Confirm the rail segment and transfer support before booking.",
+          "status": "optional",
+          "photo": {
+            "path": "assets/images/nine-arch-bridge-lk.jpg",
+            "alt": "A blue train crossing Nine Arch Bridge among forested hills",
+            "sha256": "e21d5068f90a29fded167986e038f8c69efd5209e007c9af3c7373adcd6019bb"
+          },
+          "destination_slug": "ella",
+          "experience_slug": "kandy-to-ella-train"
+        },
+        {
+          "title": "A private wildlife experience to discuss",
+          "location": "Yala National Park / Tissamaharama",
+          "description": "Choose a safari stay if wildlife is part of your honeymoon. Confirm the jeep, park access and lodge separately, and allow recovery time after an early start. A private jeep does not guarantee sightings or exclusive access to the park.",
+          "status": "optional",
+          "photo": {
+            "path": "assets/images/yala-national-park-leopard-safari-large.webp",
+            "alt": "A leopard resting on a rock beside a tree",
+            "sha256": "401e029dada1cc4452d16f55230fd3c206ec9958748181a483712feafe7fcc53"
+          },
+          "destination_slug": "yala",
+          "experience_slug": "yala-leopard-safari"
+        },
+        {
+          "title": "A coastal and heritage finish",
+          "location": "Tangalle / Hiriketiya / Galle and the south coast",
+          "description": "End with beach or pool time and, if you wish, a Galle Fort stay or walk. Choose a few bases rather than moving every day. Private dinners, wellness treatments and celebration extras are optional requests subject to the property and written quote.",
+          "status": "proposed",
+          "photo": {
+            "path": "assets/images/mirissa-beach-lk.jpg",
+            "alt": "Two travellers carrying surfboards along a palm-lined beach",
+            "sha256": "c65e89039d849c63ccbfe1faf9519300d4d8564ae439149f0bddbb461e2642b9"
+          },
+          "destination_slug": "galle",
+          "experience_slug": "honeymoon-beach-boutique-stays"
+        }
+      ],
+      "hero": null,
+      "hero_before": "assets/images/placeholders/placeholder-tour.svg"
+    }
+  ],
+  "retire_slug": "sri-lanka-wildlife-safari-tour",
+  "retire_published_before": 1,
+  "retained_slug": "sri-lanka-wildlife-safari-package",
+  "preserve_live_fields": {
+    "sri-lanka-wildlife-safari-package": [
+      "itinerary"
+    ],
+    "sri-lanka-honeymoon-package": [
+      "itinerary",
+      "sample_itinerary",
+      "cta_text",
+      "hero_image"
+    ]
+  }
+}

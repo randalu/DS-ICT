@@ -1,0 +1,161 @@
+Options -Indexes
+ErrorDocument 404 /404.php
+
+# Increase PHP upload limits so multi-image admin saves don't silently fail
+php_value upload_max_filesize 20M
+php_value post_max_size 25M
+
+RewriteEngine On
+
+# Canonical host: redirect www -> non-www (single 301 hop)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L,NE]
+
+# Canonical scheme: force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^(?:localhost|127\.0\.0\.1)(?::[0-9]+)?$ [NC]
+RewriteCond %{HTTP_HOST} !^\[::1\](?::[0-9]+)?$ [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+# Consolidated wildlife package: retain the former Tour URL as a permanent alias.
+RewriteRule ^tours/sri-lanka-wildlife-safari-tour/?$ /tours/sri-lanka-wildlife-safari-package [R=301,L,NE]
+
+# Permanently retired duplicate Tour reference pages (before real-file/CMS fallbacks).
+RewriteRule ^(?:[0-9]+-day-itinerary/?|n_day_itinerary\.php)$ - [G,L,NC]
+
+# Block direct web access to sensitive folders
+RewriteRule (^|/)\.git(/|$) - [F,L,NC]
+RewriteRule ^(?:config|includes|database|data|output|storage|cli|tests|NEW-SITE)(?:/|$) - [F,L,NC]
+RewriteRule ^VPS-LIVE-PULL\.txt$ - [F,L,NC]
+
+# Block direct access to sensitive file types
+# Rewrite equivalents also enforce these guards on OpenLiteSpeed.
+RewriteRule \.(sql|ini|log|bak|dist|env|md)$ - [F,L,NC]
+RewriteRule (^|/)(install|hash|test|map_preview|tripadvisor_widgets_preview)\.php$ - [F,L,NC]
+RewriteRule (^|/)(map_demo|ict_mockups)\.html$ - [F,L,NC]
+<FilesMatch "\.(sql|ini|log|bak|dist|env|md)$">
+    Require all denied
+</FilesMatch>
+
+# Block setup, utility, preview, and mockup files from production access
+<FilesMatch "^(install|hash|test|map_preview|tripadvisor_widgets_preview)\.php$">
+    Require all denied
+</FilesMatch>
+<FilesMatch "^(map_demo|ict_mockups)\.html$">
+    Require all denied
+</FilesMatch>
+RewriteRule ^references/ - [F,L,NC]
+
+# Let real files and directories pass through
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Sitemaps
+RewriteRule ^sitemap\.xml$ sitemap_index.php [L,QSA,NC]
+RewriteRule ^sitemap-(core|destinations|itineraries|tours|experiences|activities|day-tours|partners|countries|blog|themes|seasonal|n-day|images)\.xml$ sitemap_partial.php?type=$1 [L,QSA,NC]
+
+# Admin
+RewriteRule ^admin/?$ admin/index.php [L,QSA,NC]
+
+# Customer account
+RewriteRule ^account/?$ account.php [L,QSA,NC]
+RewriteRule ^account/login/?$ account_login.php [L,QSA,NC]
+RewriteRule ^account/google/callback/?$ account_google_callback.php [L,QSA,NC]
+RewriteRule ^account/logout/?$ account_logout.php [L,QSA,NC]
+RewriteRule ^account/customize-itinerary/?$ account_customize_itinerary.php [L,QSA,NC]
+RewriteRule ^account/plans/([0-9]+)/?$ account_plan.php?id=$1 [L,QSA,NC]
+RewriteRule ^account/plans/([0-9]+)/policy-accept/?$ account_plan_policy_accept.php?plan_id=$1 [L,QSA,NC]
+RewriteRule ^account/plans/([0-9]+)/days/([0-9]+)/request/?$ account_plan_request_save.php?plan_id=$1&day_id=$2 [L,QSA,NC]
+RewriteRule ^account/inquiries/([0-9]+)/?$ account_inquiry.php?id=$1 [L,QSA,NC]
+RewriteRule ^account/inquiries/([0-9]+)/message/?$ account_inquiry_message_save.php?id=$1 [L,QSA,NC]
+
+# Static public pages
+RewriteRule ^(about-us|why-choose-us|reviews|faq|contact)/?$ $1.php [L,QSA,NC]
+RewriteRule ^ai-search/?$ ai_search.php [L,QSA,NC]
+
+# Listing pages
+RewriteRule ^destinations/?$ destinations.php [L,QSA,NC]
+RewriteRule ^tours/?$ tours.php [L,QSA,NC]
+RewriteRule ^experiences/?$ experiences.php [L,QSA,NC]
+RewriteRule ^activities/?$ activities.php [L,QSA,NC]
+RewriteRule ^day-tours/?$ day-tours.php [L,QSA,NC]
+RewriteRule ^business-partners/?$ business_partners.php [L,QSA,NC]
+RewriteRule ^business-partners/apply/?$ business_partner_apply.php [L,QSA,NC]
+RewriteRule ^business-partners/partner/([a-z0-9-]+)/?$ business_partner.php?slug=$1 [L,QSA,NC]
+RewriteRule ^business-partners/([a-z0-9-]+)/?$ business_partners.php?category=$1 [L,QSA,NC]
+RewriteRule ^itineraries/?$ itineraries.php [L,QSA,NC]
+RewriteRule ^from/?$ from.php [L,QSA,NC]
+RewriteRule ^seasonal/?$ seasonal.php [L,QSA,NC]
+
+# Dynamic content pages
+RewriteRule ^destinations/([a-z0-9-]+)/?$ destination.php?slug=$1 [L,QSA,NC]
+RewriteRule ^tours/([a-z0-9-]+)/?$ tour.php?slug=$1 [L,QSA,NC]
+RewriteRule ^day-tours/([a-z0-9-]+)/?$ day-tour.php?slug=$1 [L,QSA,NC]
+RewriteRule ^experiences/([a-z0-9-]+)/?$ experience.php?slug=$1 [L,QSA,NC]
+RewriteRule ^activities/([a-z0-9-]+)/?$ activity.php?slug=$1 [L,QSA,NC]
+RewriteRule ^itineraries/([a-z0-9-]+)/?$ itinerary.php?slug=$1 [L,QSA,NC]
+RewriteRule ^from/([a-z0-9-]+)/?$ country.php?slug=$1 [L,QSA,NC]
+
+# Blog
+RewriteRule ^blog/?$ blog.php [L,QSA,NC]
+RewriteRule ^blog/([a-z0-9-]+)/?$ blog_post.php?slug=$1 [L,QSA,NC]
+
+# Programmatic SEO routes
+# Duration reference pages are permanently retired above.
+RewriteRule ^(honeymoon-tours|family-tours|adventure-tours|wellness-tours|luxury-tours|wildlife-tours)/?$ theme.php?slug=$1 [L,QSA,NC]
+RewriteRule ^sri-lanka-in-(january|february|march|april|may|june|july|august|september|october|november|december)/?$ sri_lanka_in_month.php?month=$1 [L,QSA,NC]
+RewriteRule ^compare/?$ compare.php [L,QSA,NC]
+RewriteRule ^plan/?$ plan.php [L,QSA,NC]
+
+# Dynamic single-segment static pages from DB
+RewriteRule ^private-driver-sri-lanka/cost/?$ static_page.php?slug=private-driver-sri-lanka-cost [L,QSA,NC]
+RewriteRule ^([a-z0-9-]+)/?$ static_page.php?slug=$1 [L,QSA,NC]
+
+# Fallback: unmatched routes render the custom 404 page
+RewriteRule ^ 404.php [L,QSA]
+
+# Cache lifetimes for static assets (safe defaults; wrapped for shared hosting)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/json "access plus 1 day"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresDefault "access plus 1 hour"
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|jpg|jpeg|png|webp|avif|svg|woff2)$">
+        Header set Cache-Control "public, max-age=2592000, immutable"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Enforcing CSP. Allowlist matches what the app actually loads:
+    #   - cdn.jsdelivr.net  → bootstrap css/js, alpinejs
+    #   - fonts.googleapis.com / fonts.gstatic.com → webfonts
+    #   - googletagmanager.com / google-analytics.com → GTM + GA
+    #   - recaptcha → contact form
+    #   - tawk.to → chat widget
+    #   - indexnow / googleapis OAuth / weather → APIs
+    # 'unsafe-inline' is required for Alpine.js (x-* attributes and inline handlers).
+    # Nonce-based CSP would block all of our inline JSON-LD and form CSRF tokens;
+    # revisit if we migrate to a build step that hashes inline scripts.
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net cdn.gtranslate.net www.googletagmanager.com www.google-analytics.com www.google.com/recaptcha www.gstatic.com/recaptcha embed.tawk.to widget.trustpilot.com invitejs.trustpilot.com www.jscache.com www.tripadvisor.com static.tacdn.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdn.gtranslate.net fonts.googleapis.com static.tacdn.com; font-src 'self' cdn.jsdelivr.net fonts.gstatic.com static.tacdn.com data:; img-src 'self' data: blob: https:; connect-src 'self' www.google-analytics.com api.indexnow.org www.googleapis.com weather.googleapis.com; frame-src 'self' www.google.com/recaptcha/ www.youtube.com/embed/ embed.tawk.to widget.trustpilot.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; report-uri /csp-report.php; report-to csp-endpoint"
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Reporting-Endpoints "csp-endpoint=\"/csp-report.php\""
+    # The Image Manager previews pending video uploads using local object URLs.
+    # Keep this allowance scoped to the portal rather than changing public pages.
+    <Files "image_manager.php">
+        # LiteSpeed supports Header set but does not implement Header edit.
+        Header set Content-Security-Policy "default-src 'self'; media-src 'self' blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net cdn.gtranslate.net www.googletagmanager.com www.google-analytics.com www.google.com/recaptcha www.gstatic.com/recaptcha embed.tawk.to widget.trustpilot.com invitejs.trustpilot.com www.jscache.com www.tripadvisor.com static.tacdn.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net cdn.gtranslate.net fonts.googleapis.com static.tacdn.com; font-src 'self' cdn.jsdelivr.net fonts.gstatic.com static.tacdn.com data:; img-src 'self' data: blob: https:; connect-src 'self' www.google-analytics.com api.indexnow.org www.googleapis.com weather.googleapis.com; frame-src 'self' www.google.com/recaptcha/ www.youtube.com/embed/ embed.tawk.to widget.trustpilot.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests; report-uri /csp-report.php; report-to csp-endpoint"
+    </Files>
+</IfModule>

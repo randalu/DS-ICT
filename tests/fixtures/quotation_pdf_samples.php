@@ -1,0 +1,12 @@
+<?php
+declare(strict_types=1);
+if(PHP_SAPI!=='cli'||getenv('DB_NAME')!=='ict_quotation_rehearsal_20261023'){exit(2);}
+require_once __DIR__.'/../../includes/quotation_pdf.php';
+$out=dirname(__DIR__,2).'/output/quotation';if(!is_dir($out)){mkdir($out,0700,true);}
+foreach(['short'=>2,'eight-day'=>8,'long'=>18] as $label=>$count){
+    $d=quote_defaults();$d['customer']=['name'=>'Sample Traveler','phone'=>'+94 11 000 0000','email'=>'traveler@example.invalid','country'=>'Example','adults'=>2,'children'=>1,'ages'=>'4'];$d['arrival']='2027-12-01T18:00';$d['departure']='2027-12-20T10:00';$d['title']='Sri Lanka · hills, wildlife and coast';$d['cover_image']='assets/images/country-market/nine-arch-bridge.jpg';
+    $d['options']['A']['amount']='1930.00';$d['options']['B']['amount']='1210.00';$d['options']['A']['deposit']='400.00';$d['payment_notes']='Deposit due on the agreed confirmation date. Balance due at the start of the journey, as agreed with your chauffeur.';
+    $d['hotels']=[['day'=>1,'name'=>'Example Hill Hotel','alternative'=>'Example Tea Lodge','location'=>'Nuwara Eliya','nights'=>2,'star'=>'3 star','room'=>'Double room with child arrangement','occupancy'=>'Two adults sharing, one child','meals'=>'Breakfast and dinner']];
+    for($i=0;$i<$count;$i++){$d['days'][]=['start'=>$i,'end'=>$i,'title'=>$i%2?'Hill country by rail':'Explore Sri Lanka at your pace','date'=>'','plan'=>($label==='long'&&$i===2)?str_repeat("Travel through the hills with time for scenic stops and rest. The route remains flexible around local conditions and the pace of your family.\n\n",65):"Meet your chauffeur and enjoy a relaxed journey through Sri Lanka.\nTake time for the landscape, local food and the experiences listed below.\nContinue to your overnight stay.",'overnight'=>'Nuwara Eliya','travel_time'=>'Approx. 3 hours','distance'=>'Approx. 90 km','image'=>$i%2?'assets/images/country-market/nine-arch-bridge.jpg':'assets/images/country-market/nuwara-eliya-tea.jpg','image_manual'=>false,'destination_id'=>0,'activities'=>[['name'=>'Scenic rail journey','description'=>'A gentle journey through the tea country, with time to enjoy the views.','image'=>'','status'=>['A'=>'included','B'=>'optional']]]];}
+    $d=quote_document($d);$row=['document'=>$d,'reference'=>'SAMPLE-ICT-Q-'.$label,'revision'=>1,'state'=>'issued'];$pdf=quote_render_pdf($row,quote_assets($d));file_put_contents($out.'/'.$label.'.pdf',$pdf);echo $label.': '.strlen($pdf)." bytes\n";
+}
