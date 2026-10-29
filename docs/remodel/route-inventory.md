@@ -10,6 +10,11 @@ that replaces it.
 
 ## Public routes
 
+**Phase 2 is done:** `/destinations`, `/experiences`, `/tours`, `/itineraries`,
+`/day-tours` and `/activities` now render through
+`app/Pages/CollectionIndexPage.php` + `views/pages/collections/index.php`.
+Their URLs, canonical rules and listing schema are unchanged.
+
 | Route | Current | v2 target | Phase |
 |---|---|---|---|
 | `/` | `index.php` | `pages/home.php` | **1 (done)** |

@@ -19,6 +19,7 @@ $jsVersion = static function (string $file): string {
 ?>
 <script type="module" src="<?= e(base_url('assets/js/site/nav.js')) ?>?v=<?= e($jsVersion('nav.js')) ?>"></script>
 <script type="module" src="<?= e(base_url('assets/js/site/reveal.js')) ?>?v=<?= e($jsVersion('reveal.js')) ?>"></script>
+<script type="module" src="<?= e(base_url('assets/js/site/filters.js')) ?>?v=<?= e($jsVersion('filters.js')) ?>"></script>
 <script type="module" src="<?= e(base_url('assets/js/site/analytics.js')) ?>?v=<?= e($jsVersion('analytics.js')) ?>"></script>
 <?php render_google_tag_queued_events(); ?>
 </body>

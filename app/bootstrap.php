@@ -30,4 +30,13 @@ require_once APP_ROOT . '/includes/functions.php';
 require_once APP_ROOT . '/includes/schema.php';
 require_once APP_ROOT . '/includes/responsive_image.php';
 
+// includes/seo.php doubles as the <head> partial: it defines the canonical
+// helpers *and* echoes meta tags. Controllers need the helpers before any
+// output, so load it once with output captured and discarded. The layout then
+// includes it normally (require, not require_once) to emit the real tags, so
+// there is still exactly one implementation of the canonical rules.
+ob_start();
+require_once APP_ROOT . '/includes/seo.php';
+ob_end_clean();
+
 require_once __DIR__ . '/Autoload.php';
