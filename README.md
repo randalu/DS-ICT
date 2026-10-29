@@ -5,6 +5,12 @@ Custom PHP 8.3 site for Island Culture Travels, a Sri Lanka private travel and t
 ## Local Development
 
 - Run `composer install` after cloning or pulling if `vendor/` is missing.
+- Create a local `.env` (gitignored). `APP_URL` must include any subdirectory the
+  checkout is served from, because auto-detection only reads `HTTP_HOST`:
+  under Laragon at `C:\laragon\www\ict` that is
+  `APP_URL=http://localhost/ict`, otherwise every CSS/JS/image URL resolves to
+  `http://localhost/...` and the page renders unstyled. Set
+  `APP_URL=https://your-domain` in production, where the site is a vhost root.
 - `composer.lock` is tracked and should not be removed.
 - `vendor/` is ignored and should not be committed.
 - PHPUnit is Composer-managed. Use `composer test` as the standard PHPUnit command; do not re-add a tracked `phpunit.phar`.
