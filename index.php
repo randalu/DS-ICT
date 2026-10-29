@@ -2,23 +2,17 @@
 declare(strict_types=1);
 
 /**
- * Home route.
+ * Home route — Deep Coast (v3).
  *
- * Everything that used to live in this file (907 lines of queries, markup and
- * inline JavaScript) now sits behind the v2 stack:
- *
- *   app/Pages/HomePage.php      controller: builds the Page model
- *   app/Content/HomeRepository  queries: prepared statements, memoised
- *   views/pages/home.php        template: declarative markup
- *
- * URLs, SEO output and schema emission are unchanged: the layout still calls
- * includes/seo.php and schema_output().
+ * The presentation lives in views/v3 (layout + partials + pages/home.php) and
+ * the controller in app/Pages/HomePageV3.php. SEO and schema still come from
+ * includes/seo.php and schema_output(), so metadata is unchanged.
  */
 
 require __DIR__ . '/app/bootstrap.php';
 
 try {
-    (new ICT\Pages\HomePage())->run();
+    (new ICT\Pages\HomePageV3())->run();
 } catch (Throwable $e) {
     error_log('[ICT home] ' . $e->getMessage());
 

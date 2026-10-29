@@ -70,6 +70,8 @@ final class ContentNormalizer
             'meta' => $meta,
             'price' => PriceFormatter::forRow($row),
             'kicker' => 'Signature journey',
+            // Numeric length, used by the journey matcher island.
+            'days' => $days,
         ];
     }
 

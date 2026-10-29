@@ -16,7 +16,12 @@ final class Renderer
 {
     private const LAYOUT = '/views/layouts/public.php';
 
-    public static function render(Page $page): void
+    /**
+     * @param string $layout layout path relative to the project root, so a page
+     *                       family can opt into the v3 shell while the rest of
+     *                       the site still renders through the v2 one
+     */
+    public static function render(Page $page, string $layout = self::LAYOUT): void
     {
         if (!headers_sent()) {
             // Public HTML is personalised by the privacy banner and the
@@ -25,7 +30,7 @@ final class Renderer
             header('Vary: Cookie', false);
         }
 
-        $layout = APP_ROOT . self::LAYOUT;
+        $layout = APP_ROOT . '/' . ltrim($layout, '/');
 
         if (!is_file($layout)) {
             throw new RuntimeException('Public layout missing: ' . $layout);

@@ -1,0 +1,169 @@
+/* ==========================================================================
+   Daylight (v3.1) — page-level compositions
+   ========================================================================== */
+
+/* Experience list — compact rows, app-like -------------------------------- */
+
+.ix-exp-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ix-line);
+}
+
+.ix-exp-item {
+    display: grid;
+    grid-template-columns: 72px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: .7rem 0;
+    border-bottom: 1px solid var(--ix-line);
+}
+
+.ix-exp-item:hover .ix-exp-item__title {
+    color: var(--ix-teal);
+}
+
+.ix-exp-item__thumb {
+    width: 72px;
+    height: 56px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ix-surface-2);
+}
+
+.ix-exp-item__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ix-exp-item__title {
+    display: block;
+    font-size: var(--ix-small);
+    font-weight: 600;
+    color: var(--ix-ink);
+    transition: color var(--ix-fast) var(--ix-ease);
+}
+
+.ix-exp-item__meta {
+    display: block;
+    font-size: var(--ix-micro);
+    color: var(--ix-ink-3);
+    margin-top: .1rem;
+}
+
+.ix-exp-item__arrow {
+    color: var(--ix-ink-3);
+    transition: transform var(--ix-fast) var(--ix-ease);
+}
+
+.ix-exp-item:hover .ix-exp-item__arrow {
+    transform: translateX(3px);
+    color: var(--ix-ink);
+}
+
+/* Journal list — date + title only ---------------------------------------- */
+
+.ix-journal-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ix-line);
+}
+
+.ix-journal-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: .85rem 0;
+    border-bottom: 1px solid var(--ix-line);
+}
+
+.ix-journal-row time {
+    font-size: var(--ix-micro);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ix-ink-3);
+}
+
+.ix-journal-row h3 {
+    font-family: var(--ix-ui);
+    font-size: var(--ix-small);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.ix-journal-row:hover h3 {
+    color: var(--ix-teal);
+}
+
+.ix-journal-row span[aria-hidden] {
+    color: var(--ix-ink-3);
+}
+
+/* Collection index pages -------------------------------------------------- */
+
+.ix-collection-head {
+    padding-block: clamp(20px, 3vw, 32px) 0;
+}
+
+.ix-collection-head__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.ix-collection-head h1 {
+    font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+}
+
+.ix-collection-head p {
+    margin: .4rem 0 0;
+    max-width: 60ch;
+    color: var(--ix-ink-2);
+    font-size: var(--ix-small);
+}
+
+.ix-collection-body {
+    padding-block: clamp(20px, 3vw, 32px) var(--ix-section);
+}
+
+/* Breadcrumbs ------------------------------------------------------------- */
+
+.ix-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .35rem;
+    margin-bottom: .75rem;
+    font-size: var(--ix-micro);
+    color: var(--ix-ink-3);
+}
+
+.ix-crumbs a:hover {
+    color: var(--ix-teal);
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+    .ix-exp-item {
+        grid-template-columns: 56px 1fr auto;
+        gap: .75rem;
+    }
+
+    .ix-exp-item__thumb {
+        width: 56px;
+        height: 44px;
+    }
+
+    .ix-journal-row {
+        grid-template-columns: 1fr auto;
+    }
+
+    .ix-journal-row time {
+        grid-column: 1 / -1;
+    }
+}

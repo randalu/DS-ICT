@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Daylight (v3.1) — light-first tokens, app-shell density
+   Namespace --ix-*; dark is an opt-in theme, not the default.
+   ========================================================================== */
+
+:root {
+    color-scheme: light;
+
+    /* Surfaces */
+    --ix-bg: #F6F6F3;
+    --ix-surface: #FFFFFF;
+    --ix-surface-2: #EFEFEA;
+    --ix-night: #0B1512;
+    --ix-night-2: #101C18;
+
+    /* Ink */
+    --ix-ink: #0E1A17;
+    --ix-ink-2: #46524E;
+    --ix-ink-3: #6B7672;
+    --ix-on-night: #F2EFE9;
+    --ix-on-night-dim: rgba(242, 239, 233, .66);
+
+    /* Accents */
+    --ix-coral: #E8552F;
+    --ix-coral-ink: #A63A22;
+    --ix-teal: #0B5E52;
+    --ix-teal-soft: rgba(11, 94, 82, .08);
+    --ix-amber: #B7791F;
+
+    /* Lines */
+    --ix-line: rgba(14, 26, 23, .12);
+    --ix-line-2: rgba(14, 26, 23, .22);
+    --ix-line-night: rgba(242, 239, 233, .16);
+
+    /* Type */
+    --ix-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --ix-ui: 'Montserrat', Arial, Helvetica, sans-serif;
+
+    --ix-h1: clamp(2.4rem, 5vw, 4.25rem);
+    --ix-h2: clamp(1.75rem, 3vw, 2.75rem);
+    --ix-h3: clamp(1.25rem, 1.8vw, 1.6rem);
+    --ix-h4: 1.0625rem;
+    --ix-body: 1rem;
+    --ix-lead: 1.125rem;
+    --ix-small: .875rem;
+    --ix-micro: .6875rem;
+
+    /* Layout */
+    --ix-max: 1280px;
+    --ix-gutter: clamp(16px, 3.4vw, 48px);
+    --ix-section: clamp(56px, 6vw, 88px);
+    --ix-header-h: 64px;
+    --ix-utility-h: 36px;
+
+    /* Shape */
+    --ix-radius-card: 14px;
+    --ix-radius-control: 10px;
+    --ix-radius-pill: 999px;
+
+    /* Depth */
+    --ix-shadow-sm: 0 1px 2px rgba(14, 26, 23, .06);
+    --ix-shadow-md: 0 10px 30px rgba(14, 26, 23, .08);
+    --ix-shadow-lg: 0 24px 60px rgba(14, 26, 23, .12);
+
+    /* Motion */
+    --ix-ease: cubic-bezier(.16, 1, .3, 1);
+    --ix-fast: 120ms;
+    --ix-mid: 220ms;
+    --ix-slow: 420ms;
+}
+
+/* Opt-in dark theme ------------------------------------------------------- */
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --ix-bg: #0C1412;
+    --ix-surface: #121D1A;
+    --ix-surface-2: #172420;
+    --ix-ink: #F2EFE9;
+    --ix-ink-2: rgba(242, 239, 233, .72);
+    --ix-ink-3: rgba(242, 239, 233, .52);
+    --ix-line: rgba(242, 239, 233, .14);
+    --ix-line-2: rgba(242, 239, 233, .24);
+    --ix-teal: #7FD8C4;
+    --ix-teal-soft: rgba(127, 216, 196, .12);
+    --ix-coral-ink: #FF8A6B;
+    --ix-shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
+    --ix-shadow-md: 0 10px 30px rgba(0, 0, 0, .45);
+    --ix-shadow-lg: 0 24px 60px rgba(0, 0, 0, .55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --ix-fast: 1ms;
+        --ix-mid: 1ms;
+        --ix-slow: 1ms;
+    }
+}

@@ -63,6 +63,42 @@ final class HomeRepository
     }
 
     /**
+     * Published counts for the home page claims and bento stats.
+     *
+     * @return array{destinations:int,itineraries:int,tours:int,experiences:int,day_tours:int,articles:int}
+     */
+    public function counts(): array
+    {
+        $counts = [
+            'destinations' => 0,
+            'itineraries' => 0,
+            'tours' => 0,
+            'experiences' => 0,
+            'day_tours' => 0,
+            'articles' => 0,
+        ];
+
+        try {
+            $pdo = $this->db();
+            foreach ($counts as $key => $value) {
+                $table = match ($key) {
+                    'destinations' => 'destinations',
+                    'itineraries' => 'itineraries',
+                    'tours' => 'tours',
+                    'experiences' => 'experiences',
+                    'day_tours' => 'day_tours',
+                    'articles' => 'blog_posts',
+                };
+                $counts[$key] = (int) $pdo->query('SELECT COUNT(*) FROM ' . $table . ' WHERE is_published = 1')->fetchColumn();
+            }
+        } catch (Throwable $e) {
+            error_log('[ICT home] counts: ' . $e->getMessage());
+        }
+
+        return $counts;
+    }
+
+    /**
      * Featured destinations first, then the rest of the published catalogue.
      *
      * @return list<array<string,mixed>>
@@ -71,7 +107,7 @@ final class HomeRepository
     {
         $limit = max(1, min(24, $limit));
 
-        $rows = $this->rows('destinations', sprintf(
+        $rows = $this->rows('destinations:' . $limit, sprintf(
             'SELECT id, name, slug, excerpt, best_known_for, region_label, province,
                     stay_duration, destination_type, hero_image, cover_image, og_image,
                     hero_alt, cover_alt, og_alt
@@ -92,7 +128,7 @@ final class HomeRepository
     {
         $limit = max(1, min(24, $limit));
 
-        $rows = $this->rows('journeys', sprintf(
+        $rows = $this->rows('journeys:' . $limit, sprintf(
             'SELECT id, name, slug, excerpt, days, traveller_types,
                     price_from, price_currency, price_unit,
                     hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
@@ -113,7 +149,7 @@ final class HomeRepository
     {
         $limit = max(1, min(24, $limit));
 
-        $rows = $this->rows('experiences', sprintf(
+        $rows = $this->rows('experiences:' . $limit, sprintf(
             'SELECT id, title, slug, excerpt, best_time,
                     hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
              FROM experiences
@@ -133,7 +169,7 @@ final class HomeRepository
     {
         $limit = max(1, min(24, $limit));
 
-        $rows = $this->rows('day_tours', sprintf(
+        $rows = $this->rows('day_tours:' . $limit, sprintf(
             'SELECT id, name, slug, excerpt, duration_hours, max_group_size,
                     price_from, price_currency,
                     hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
@@ -154,7 +190,7 @@ final class HomeRepository
     {
         $limit = max(1, min(24, $limit));
 
-        $rows = $this->rows('articles', sprintf(
+        $rows = $this->rows('articles:' . $limit, sprintf(
             'SELECT id, title, slug, excerpt, published_at, created_at,
                     hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
              FROM blog_posts
@@ -177,7 +213,7 @@ final class HomeRepository
     {
         $limit = max(1, min(12, $limit));
 
-        $rows = $this->rows('reviews', sprintf(
+        $rows = $this->rows('reviews:' . $limit, sprintf(
             "SELECT id, customer_name, country, rating, review_title, review_text,
                     trip_type, tour_done_date, tour_done_month, review_source, review_source_url
              FROM reviews

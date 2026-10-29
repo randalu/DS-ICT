@@ -1,0 +1,492 @@
+/* ==========================================================================
+   Daylight (v3.1) — components: cards, grids, rows, CTA, filters, pagination
+   ========================================================================== */
+
+/* Grids ------------------------------------------------------------------- */
+
+.ix-grid {
+    display: grid;
+    gap: clamp(12px, 1.6vw, 20px);
+}
+
+.ix-grid--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ix-grid--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Card -------------------------------------------------------------------- */
+
+.ix-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--ix-surface);
+    border: 1px solid var(--ix-line);
+    border-radius: var(--ix-radius-card);
+    overflow: hidden;
+    transition: transform var(--ix-fast) var(--ix-ease),
+                box-shadow var(--ix-fast) var(--ix-ease),
+                border-color var(--ix-fast) var(--ix-ease);
+}
+
+.ix-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ix-shadow-md);
+    border-color: var(--ix-line-2);
+}
+
+.ix-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ix-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--ix-surface-2);
+}
+
+.ix-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--ix-slow) var(--ix-ease);
+}
+
+.ix-card:hover .ix-card__media img {
+    transform: scale(1.03);
+}
+
+.ix-card__badge {
+    position: absolute;
+    left: .7rem;
+    top: .7rem;
+    padding: .22rem .5rem;
+    border-radius: var(--ix-radius-pill);
+    background: rgba(255, 255, 255, .94);
+    color: var(--ix-ink);
+    font-size: var(--ix-micro);
+    font-weight: 600;
+    letter-spacing: .04em;
+}
+
+.ix-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    padding: .9rem 1rem 1rem;
+}
+
+.ix-card__title {
+    font-family: var(--ix-ui);
+    font-size: var(--ix-small);
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--ix-ink);
+}
+
+.ix-card__excerpt {
+    font-size: var(--ix-small);
+    line-height: 1.5;
+    color: var(--ix-ink-3);
+}
+
+.ix-card__facts {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .3rem;
+}
+
+.ix-card__price {
+    margin-left: auto;
+    font-size: var(--ix-small);
+    font-weight: 600;
+    color: var(--ix-ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Destination strip ------------------------------------------------------- */
+
+.ix-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(10px, 1.2vw, 16px);
+}
+
+.ix-strip__item {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--ix-radius-card);
+    overflow: hidden;
+    background: var(--ix-surface-2);
+}
+
+.ix-strip__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--ix-slow) var(--ix-ease);
+}
+
+.ix-strip__item:hover img {
+    transform: scale(1.04);
+}
+
+.ix-strip__item span {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 2rem .9rem .85rem;
+    background: linear-gradient(transparent, rgba(11, 21, 18, .82));
+    color: #fff;
+    font-size: var(--ix-small);
+    font-weight: 600;
+}
+
+/* List rows (steps) ------------------------------------------------------- */
+
+.ix-rows {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--ix-line);
+}
+
+.ix-row {
+    display: grid;
+    grid-template-columns: 56px 1fr auto;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--ix-line);
+}
+
+.ix-row__num {
+    font-family: var(--ix-display);
+    font-size: 1.5rem;
+    color: var(--ix-ink-3);
+    font-variant-numeric: tabular-nums;
+}
+
+.ix-row h3 {
+    font-family: var(--ix-ui);
+    font-size: var(--ix-h4);
+    font-weight: 600;
+}
+
+.ix-row p {
+    margin: .15rem 0 0;
+    font-size: var(--ix-small);
+    color: var(--ix-ink-3);
+}
+
+/* CTA band ---------------------------------------------------------------- */
+
+.ix-cta {
+    background: var(--ix-night);
+    color: var(--ix-on-night);
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ix-cta__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.ix-cta h2 {
+    color: var(--ix-on-night);
+    max-width: 26ch;
+}
+
+.ix-cta p {
+    margin-top: .5rem;
+    color: var(--ix-on-night-dim);
+    font-size: var(--ix-small);
+}
+
+.ix-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+}
+
+/* Journey matcher --------------------------------------------------------- */
+
+.ix-matcher__controls {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.ix-matcher__count {
+    margin-left: auto;
+    font-size: var(--ix-small);
+    color: var(--ix-ink-3);
+    font-variant-numeric: tabular-nums;
+}
+
+.ix-matcher__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(10px, 1.2vw, 16px);
+}
+
+.ix-matcher__empty {
+    padding: 2.5rem 1rem;
+    text-align: center;
+    color: var(--ix-ink-3);
+    border: 1px dashed var(--ix-line-2);
+    border-radius: var(--ix-radius-card);
+}
+
+/* Transition group -------------------------------------------------------- */
+
+.ix-fade-move,
+.ix-fade-enter-active,
+.ix-fade-leave-active {
+    transition: opacity var(--ix-mid) var(--ix-ease),
+                transform var(--ix-mid) var(--ix-ease);
+}
+
+.ix-fade-enter-from,
+.ix-fade-leave-to {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.ix-fade-leave-active {
+    position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ix-fade-move,
+    .ix-fade-enter-active,
+    .ix-fade-leave-active {
+        transition: none;
+    }
+}
+
+/* Filter bar -------------------------------------------------------------- */
+
+.ix-filterbar {
+    display: flex;
+    align-items: flex-end;
+    gap: .6rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.ix-filterbar .ix-field {
+    min-width: 150px;
+    flex: 1 1 150px;
+}
+
+.ix-filterbar__count {
+    margin-left: auto;
+    padding-bottom: .55rem;
+    font-size: var(--ix-small);
+    color: var(--ix-ink-3);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.ix-filterbar__clear {
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 .5rem;
+    font-size: var(--ix-small);
+    color: var(--ix-teal);
+}
+
+/* Pagination -------------------------------------------------------------- */
+
+.ix-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.ix-pagination__step,
+.ix-pagination__page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    padding: 0 .7rem;
+    border: 1px solid var(--ix-line-2);
+    border-radius: var(--ix-radius-control);
+    background: var(--ix-surface);
+    font-size: var(--ix-small);
+    font-weight: 500;
+    color: var(--ix-ink-2);
+}
+
+.ix-pagination__step:hover,
+.ix-pagination__page:hover {
+    border-color: var(--ix-ink);
+    color: var(--ix-ink);
+}
+
+.ix-pagination__page.is-current {
+    background: var(--ix-ink);
+    border-color: var(--ix-ink);
+    color: #fff;
+}
+
+.ix-pagination__step.is-disabled {
+    opacity: .4;
+}
+
+.ix-pagination__gap {
+    color: var(--ix-ink-3);
+    padding: 0 .2rem;
+}
+
+/* Empty state ------------------------------------------------------------- */
+
+.ix-empty {
+    padding: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    border: 1px dashed var(--ix-line-2);
+    border-radius: var(--ix-radius-card);
+    background: var(--ix-surface);
+}
+
+.ix-empty p {
+    color: var(--ix-ink-3);
+    max-width: 44ch;
+    margin-inline: auto;
+}
+
+/* Newsletter -------------------------------------------------------------- */
+
+.ix-news {
+    max-width: 320px;
+    margin-top: 1.25rem;
+}
+
+.ix-news__label {
+    display: block;
+    margin-bottom: .4rem;
+    font-size: var(--ix-micro);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(242, 239, 233, .5);
+}
+
+.ix-news__row {
+    display: flex;
+    gap: .4rem;
+}
+
+.ix-news__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 38px;
+    padding: 0 .7rem;
+    border: 1px solid var(--ix-line-night);
+    border-radius: var(--ix-radius-control);
+    background: rgba(242, 239, 233, .06);
+    color: var(--ix-on-night);
+    font-family: var(--ix-ui);
+    font-size: var(--ix-small);
+}
+
+.ix-news__input::placeholder {
+    color: rgba(242, 239, 233, .4);
+}
+
+/* WhatsApp ---------------------------------------------------------------- */
+
+.ix-wa {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 90;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--ix-radius-pill);
+    background: var(--ix-night);
+    color: var(--ix-on-night);
+    box-shadow: var(--ix-shadow-lg);
+}
+
+.ix-wa:hover {
+    transform: translateY(-2px);
+}
+
+/* Notices ----------------------------------------------------------------- */
+
+.ix-notice-construction {
+    background: #FFF6E8;
+    border-bottom: 1px solid var(--ix-line);
+    font-size: var(--ix-small);
+    color: var(--ix-ink-2);
+}
+
+.ix-notice-construction .ix-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem .8rem;
+    padding-block: .5rem;
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+    .ix-matcher__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .ix-grid--3,
+    .ix-grid--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ix-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ix-row {
+        grid-template-columns: 40px 1fr;
+    }
+
+    .ix-row > :last-child {
+        grid-column: 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .ix-grid--3,
+    .ix-grid--4,
+    .ix-matcher__grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ix-filterbar__count {
+        margin-left: 0;
+        width: 100%;
+    }
+}

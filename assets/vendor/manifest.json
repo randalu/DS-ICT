@@ -308,6 +308,24 @@
       "package": "chart.js",
       "version": "4.4.4",
       "package_integrity": "sha512-emICKGBABnxhMjUjlYRR12PmOXhJ2eJjEHL2/dZlWjxRAZT1D8xplLFq5M0tMQK8ja+wBS/tuVEJB5C6r7VxJA=="
+    },
+    {
+      "path": "lib/vue-3.5.44/dist/vue.global.prod.js",
+      "source": "https://registry.npmjs.org/vue/-/vue-3.5.44.tgz#package/dist/vue.global.prod.js",
+      "sha256": "e0a2a0866a8de8887542e24f3c218aad3d907b88f30966068792ba992296dc9f",
+      "bytes": 170605,
+      "package": "vue",
+      "version": "3.5.44",
+      "package_integrity": "sha512-dvvmaOCG7lAMkJTPqPwWeGMsPS6DIsFsfZDUgBp9V6mHf9b3+/wyVwYR4Es+WV6uJC0FKRxp81Obcq0ZwUcGFQ==",
+      "note": "Global production build (runtime + template compiler). Served from lib/ rather than assets/vendor/ because the workspace sandbox only allows new dependency files under lib/. Same pinning rule applies."
+    },
+    {
+      "path": "lib/vue-3.5.44/LICENSE",
+      "source": "https://registry.npmjs.org/vue/-/vue-3.5.44.tgz#package/LICENSE",
+      "sha256": "1bb85cc9b13b81ef41c81c51866172fc345e0503c86726a6755b796590b70175",
+      "bytes": 1091,
+      "package": "vue",
+      "version": "3.5.44"
     }
   ]
 }

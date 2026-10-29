@@ -136,7 +136,7 @@ final class CollectionIndexPage
             return;
         }
 
-        Renderer::render($this->page());
+        Renderer::render($this->page(), 'views/v3/layout.php');
     }
 
     /**
@@ -252,7 +252,7 @@ final class CollectionIndexPage
         }
 
         return new Page(
-            template: 'pages/collections/index',
+            template: 'v3/pages/collections/index',
             meta: [
                 'title' => $title,
                 'description' => $description,
