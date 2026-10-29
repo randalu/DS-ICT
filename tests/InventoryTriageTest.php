@@ -49,14 +49,20 @@ final class InventoryTriageTest extends TestCase
 
     public function testExperienceTemplateEmitsItsExistingSchemaGraph(): void
     {
-        $source = file_get_contents(__DIR__ . '/../experience.php');
-        $this->assertIsString($source);
-        $schemaPosition = strrpos($source, 'schema_output($schemaGraph);');
-        $footerPosition = strrpos($source, "require __DIR__ . '/includes/footer.php';");
+        // The experience page moved to the v3 stack: the template renders through
+        // views/v3/layout.php, which must still emit the schema graph before the
+        // closing footer require.
+        $layout = file_get_contents(__DIR__ . '/../views/v3/layout.php');
+        $this->assertIsString($layout);
+        $schemaPosition = strrpos($layout, 'schema_output($page->schema);');
+        $footerPosition = strrpos($layout, "views/v3/partials/footer.php");
 
-        $this->assertNotFalse($schemaPosition);
-        $this->assertNotFalse($footerPosition);
+        $this->assertNotFalse($schemaPosition, 'The v3 layout must emit the schema graph.');
+        $this->assertNotFalse($footerPosition, 'The v3 layout must render the footer partial.');
         $this->assertLessThan($footerPosition, $schemaPosition);
+
+        $this->assertFileExists(__DIR__ . '/../views/v3/pages/experiences/show.php');
+        $this->assertFileExists(__DIR__ . '/../app/Pages/ExperiencePageV3.php');
     }
 
     public function testActualCategoryQueryRendersCanonicalThemeCardsEvenWithoutItineraries(): void
