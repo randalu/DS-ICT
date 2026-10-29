@@ -68,14 +68,14 @@ final class Renderer
         }
 
         self::render(new Page(
-            template: 'errors/404',
+            template: 'v3/pages/errors/404',
             meta: [
                 'title' => 'Page not found',
                 'description' => 'The page you were looking for is not available.',
                 'robots' => 'noindex,follow',
             ],
             data: ['message' => $message],
-            bodyClass: 'ic-v2 ic-page-404',
-        ));
+            bodyClass: 'ix-page-404',
+        ), 'views/v3/layout.php');
     }
 }
