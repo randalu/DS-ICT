@@ -39,7 +39,12 @@ final class HomePage
             (string) ($hero['file_path'] ?? 'assets/images/galle-lighthouse.jpg')
         );
 
-        $heroIsVideo = strtolower((string) ($hero['media_type'] ?? 'image')) === 'video';
+        // Only emit a <video> when the resolved asset is really a playable
+        // video. A missing upload falls back to the bundled photograph above,
+        // and a <source type="video/mp4"> pointing at a JPEG is worse than an
+        // <img>: nothing plays and the markup is invalid.
+        $heroIsVideo = strtolower((string) ($hero['media_type'] ?? 'image')) === 'video'
+            && MediaResolver::isVideo($heroImage);
         $posterPath = (string) ($hero['poster_path'] ?? '');
         $poster = $posterPath !== ''
             ? $this->resolveMediaPath($posterPath)
@@ -143,10 +148,41 @@ final class HomePage
         );
     }
 
-    /** Accept assets/ paths, upload paths and absolute URLs alike. */
+    /**
+     * Accept assets/ paths, upload paths and absolute URLs alike.
+     *
+     * When the resolved URL points inside this installation but the file is
+     * not on disk (the usual case locally, where assets/uploads is empty), fall
+     * back to the bundled lighthouse photograph so the hero never renders an
+     * empty frame. Production keeps its uploaded media because the file exists
+     * there.
+     */
     private function resolveMediaPath(string $path): string
     {
-        return MediaResolver::url($path);
+        $url = MediaResolver::url($path);
+
+        return $this->isMissingLocalFile($url)
+            ? base_url('assets/images/galle-lighthouse.jpg')
+            : $url;
+    }
+
+    /** True when a same-origin URL maps to a file this installation lacks. */
+    private function isMissingLocalFile(string $url): bool
+    {
+        $base = rtrim(base_url(), '/');
+
+        if (!str_starts_with($url, $base . '/')) {
+            return false;
+        }
+
+        $relative = ltrim(substr($url, strlen($base)), '/');
+        $relative = strtok($relative, '?') ?: $relative;
+
+        if ($relative === '' || str_contains($relative, '..')) {
+            return false;
+        }
+
+        return !is_file(APP_ROOT . '/' . $relative);
     }
 
     /** Turn a stored CTA target ("contact", "/contact", full URL) into a URL. */
