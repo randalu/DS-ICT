@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Island Coast design tokens
+   Namespaced so the v2 public pages can coexist with the legacy sheets.
+   Loaded only by views/partials/head.php.
+   ========================================================================== */
+
+:root {
+    /* Palette */
+    --ic-ink: #12231D;
+    --ic-lagoon: #123F49;
+    --ic-palm: #2C6B57;
+    --ic-sun: #E6B45A;
+    --ic-clay: #A9604A;
+    --ic-sand: #F4ECDD;
+    --ic-ivory: #FBFAF5;
+    --ic-mist: #E6EFEA;
+    --ic-line: rgba(18, 35, 29, .12);
+    --ic-muted: #5C6B64;
+    --ic-white: #ffffff;
+
+    /* Type */
+    --ic-font-display: 'Destination Fraunces', Georgia, 'Times New Roman', serif;
+    --ic-font-sans: 'Destination Manrope', Arial, Helvetica, sans-serif;
+
+    --ic-text-xs: .75rem;
+    --ic-text-sm: .875rem;
+    --ic-text-base: 1rem;
+    --ic-text-lead: 1.25rem;
+    --ic-text-h3: clamp(1.25rem, 2vw, 1.75rem);
+    --ic-text-h2: clamp(2rem, 4vw, 3.5rem);
+    --ic-text-h1: clamp(2.5rem, 6vw, 5.25rem);
+
+    /* Layout */
+    --ic-max: 1280px;
+    --ic-gutter: clamp(20px, 4.5vw, 72px);
+    --ic-section: clamp(64px, 8vw, 112px);
+    --ic-section-lg: clamp(80px, 10vw, 144px);
+
+    /* Radii */
+    --ic-radius-sm: 2px;
+    --ic-radius-md: 6px;
+    --ic-radius-pill: 999px;
+
+    /* Depth */
+    --ic-shadow-sm: 0 2px 8px rgba(18, 35, 29, .06);
+    --ic-shadow-md: 0 16px 40px rgba(18, 35, 29, .10);
+
+    /* Motion */
+    --ic-ease: cubic-bezier(.2, .6, .2, 1);
+    --ic-t-fast: 160ms;
+    --ic-t-base: 240ms;
+    --ic-t-slow: 400ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --ic-t-fast: 1ms;
+        --ic-t-base: 1ms;
+        --ic-t-slow: 1ms;
+    }
+}

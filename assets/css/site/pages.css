@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Page-level refinements. Kept small on purpose: anything reused by a second
+   template belongs in components.css instead.
+   ========================================================================== */
+
+/* Home -------------------------------------------------------------------- */
+
+body.ic-page-home .ic-hero {
+    min-height: clamp(600px, 92vh, 900px);
+}
+
+body.ic-page-home .ic-hero__inner {
+    width: 100%;
+}
+
+/* The destination grid leads with one wide card, then a compact block, which
+   keeps the section from reading like a uniform catalogue. */
+body.ic-page-home .ic-grid--destinations {
+    grid-auto-flow: dense;
+}
+
+body.ic-page-home .ic-card--wide .ic-card__body {
+    padding: 1.6rem 1.75rem 1.75rem;
+}
+
+@media (max-width: 1100px) {
+    body.ic-page-home .ic-grid--destinations {
+        grid-auto-flow: row;
+    }
+}

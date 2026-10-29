@@ -25,7 +25,7 @@ RewriteRule ^(?:[0-9]+-day-itinerary/?|n_day_itinerary\.php)$ - [G,L,NC]
 
 # Block direct web access to sensitive folders
 RewriteRule (^|/)\.git(/|$) - [F,L,NC]
-RewriteRule ^(?:config|includes|database|data|output|storage|cli|tests|NEW-SITE)(?:/|$) - [F,L,NC]
+RewriteRule ^(?:config|includes|database|data|output|storage|cli|tests|NEW-SITE|app|views|build)(?:/|$) - [F,L,NC]
 RewriteRule ^VPS-LIVE-PULL\.txt$ - [F,L,NC]
 
 # Block direct access to sensitive file types

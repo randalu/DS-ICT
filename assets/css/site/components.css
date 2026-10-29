@@ -1,0 +1,419 @@
+/* ==========================================================================
+   Components: cards, rails, finder, steps, quotes, newsletter, sticky WhatsApp
+   ========================================================================== */
+
+/* Card -------------------------------------------------------------------- */
+
+.ic-card {
+    height: 100%;
+}
+
+.ic-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--ic-white);
+    border: 1px solid var(--ic-line);
+    border-radius: var(--ic-radius-md);
+    overflow: hidden;
+    color: var(--ic-ink);
+    transition: transform var(--ic-t-base) var(--ic-ease),
+                box-shadow var(--ic-t-base) var(--ic-ease),
+                border-color var(--ic-t-base) var(--ic-ease);
+}
+
+.ic-card__link:hover,
+.ic-card__link:focus-visible {
+    color: var(--ic-ink);
+    transform: translateY(-3px);
+    box-shadow: var(--ic-shadow-md);
+    border-color: rgba(18, 35, 29, .18);
+}
+
+.ic-card__media {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--ic-sand);
+}
+
+.ic-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--ic-t-slow) var(--ic-ease);
+}
+
+.ic-card__link:hover .ic-card__media img {
+    transform: scale(1.04);
+}
+
+.ic-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1.25rem 1.35rem 1.4rem;
+}
+
+.ic-card__body .ic-eyebrow {
+    margin: 0;
+}
+
+.ic-card__title {
+    font-family: var(--ic-font-display);
+    font-size: var(--ic-text-h3);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+}
+
+.ic-card__excerpt {
+    font-size: var(--ic-text-sm);
+    line-height: 1.6;
+    color: var(--ic-muted);
+}
+
+.ic-card__facts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .4rem;
+    margin-top: .35rem;
+}
+
+.ic-card__price {
+    margin-left: auto;
+    font-size: var(--ic-text-sm);
+    font-weight: 700;
+    color: var(--ic-ink);
+    white-space: nowrap;
+}
+
+.ic-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-top: .5rem;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ic-palm);
+}
+
+.ic-card__arrow {
+    transition: transform var(--ic-t-fast) var(--ic-ease);
+}
+
+.ic-card__link:hover .ic-card__arrow {
+    transform: translateX(4px);
+}
+
+/* Wide destination card --------------------------------------------------- */
+
+.ic-card--wide {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.ic-card--wide .ic-card__media {
+    aspect-ratio: 16 / 10;
+}
+
+.ic-card--wide .ic-card__title {
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+}
+
+/* Experiences rail -------------------------------------------------------- */
+
+.ic-rail {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    padding-bottom: .5rem;
+}
+
+.ic-rail:focus-visible {
+    outline-offset: -3px;
+}
+
+.ic-rail__track {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    padding-inline: max(var(--ic-gutter), calc((100vw - var(--ic-max)) / 2 + var(--ic-gutter)));
+    padding-block: .25rem;
+}
+
+.ic-rail__item {
+    flex: 0 0 clamp(250px, 30vw, 330px);
+    scroll-snap-align: start;
+}
+
+/* Route finder ------------------------------------------------------------ */
+
+.ic-finder {
+    position: relative;
+    z-index: 5;
+    margin-top: -56px;
+}
+
+.ic-finder__form {
+    background: var(--ic-white);
+    border: 1px solid var(--ic-line);
+    border-radius: var(--ic-radius-md);
+    box-shadow: var(--ic-shadow-md);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.ic-finder__title {
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+    margin-bottom: 1.25rem;
+}
+
+.ic-finder__fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.ic-field {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    min-width: 0;
+}
+
+.ic-field__label {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ic-muted);
+}
+
+.ic-field__control {
+    width: 100%;
+    min-height: 44px;
+    padding: .55rem .75rem;
+    border: 1px solid var(--ic-line);
+    border-radius: var(--ic-radius-sm);
+    background: var(--ic-ivory);
+    color: var(--ic-ink);
+    font-family: inherit;
+    font-size: var(--ic-text-sm);
+}
+
+.ic-field__control:focus-visible {
+    outline: 3px solid var(--ic-sun);
+    outline-offset: 2px;
+}
+
+/* Steps ------------------------------------------------------------------- */
+
+.ic-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    counter-reset: none;
+}
+
+.ic-steps__item {
+    padding-top: 1.25rem;
+    border-top: 2px solid var(--ic-ink);
+}
+
+.ic-steps__number {
+    display: block;
+    margin-bottom: .75rem;
+    font-family: var(--ic-font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--ic-clay);
+}
+
+.ic-steps__item p {
+    margin-top: .5rem;
+    color: var(--ic-muted);
+    font-size: var(--ic-text-sm);
+}
+
+/* Quotes ------------------------------------------------------------------ */
+
+.ic-quotes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.ic-quote {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1.5rem;
+    background: var(--ic-white);
+    border: 1px solid var(--ic-line);
+    border-radius: var(--ic-radius-md);
+}
+
+.ic-quote__rating {
+    margin: 0;
+    color: var(--ic-sun);
+    letter-spacing: .1em;
+}
+
+.ic-quote__muted {
+    color: var(--ic-line);
+}
+
+.ic-quote blockquote {
+    margin: 0;
+    font-size: var(--ic-text-sm);
+    line-height: 1.65;
+    color: var(--ic-ink);
+}
+
+.ic-quote__meta {
+    margin: auto 0 0;
+    font-size: var(--ic-text-xs);
+    color: var(--ic-muted);
+}
+
+/* Newsletter -------------------------------------------------------------- */
+
+.ic-news {
+    max-width: 340px;
+}
+
+.ic-news__label {
+    display: block;
+    margin-bottom: .5rem;
+    font-size: var(--ic-text-xs);
+    letter-spacing: .04em;
+    color: rgba(255, 255, 255, .62);
+}
+
+.ic-news__row {
+    display: flex;
+    gap: .5rem;
+}
+
+.ic-news__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 44px;
+    padding: .55rem .8rem;
+    border: 1px solid rgba(255, 255, 255, .28);
+    border-radius: var(--ic-radius-sm);
+    background: rgba(255, 255, 255, .08);
+    color: var(--ic-white);
+    font-family: inherit;
+    font-size: var(--ic-text-sm);
+}
+
+.ic-news__input::placeholder {
+    color: rgba(255, 255, 255, .5);
+}
+
+/* Sticky WhatsApp --------------------------------------------------------- */
+
+.ic-wa {
+    position: fixed;
+    right: clamp(1rem, 2vw, 1.75rem);
+    bottom: clamp(1rem, 2vw, 1.75rem);
+    z-index: 80;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #07331a;
+    box-shadow: var(--ic-shadow-md);
+    transition: transform var(--ic-t-fast) var(--ic-ease);
+}
+
+.ic-wa:hover {
+    transform: translateY(-2px);
+    color: #07331a;
+}
+
+/* Intro ------------------------------------------------------------------- */
+
+.ic-intro {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+}
+
+.ic-intro__body {
+    font-size: var(--ic-text-lead);
+    line-height: 1.65;
+    color: var(--ic-muted);
+    padding-top: .5rem;
+}
+
+.ic-intro__body p {
+    color: var(--ic-ink);
+}
+
+/* Reveal (progressive enhancement) ---------------------------------------- */
+
+.ic-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity var(--ic-t-slow) var(--ic-ease),
+                transform var(--ic-t-slow) var(--ic-ease);
+}
+
+.ic-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ic-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* Responsive -------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+    .ic-finder__fields {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .ic-finder__fields .ic-btn {
+        grid-column: 1 / -1;
+    }
+
+    .ic-steps,
+    .ic-quotes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ic-intro {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ic-card--wide {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .ic-finder {
+        margin-top: -32px;
+    }
+
+    .ic-finder__fields {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
