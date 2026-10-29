@@ -36,6 +36,47 @@ final class ArticleRepository
         }
     }
 
+    /**
+     * One page of published articles, newest first.
+     *
+     * @return array{items:list<array<string,mixed>>,total:int}
+     */
+    public function paginate(int $page, int $perPage = 9): array
+    {
+        $perPage = max(1, min(24, $perPage));
+        $page = max(1, $page);
+        $offset = ($page - 1) * $perPage;
+
+        try {
+            $total = (int) $this->db()->query('SELECT COUNT(*) FROM blog_posts WHERE is_published = 1')->fetchColumn();
+
+            $sql = sprintf(
+                'SELECT id, title, slug, excerpt, published_at, created_at,
+                        hero_image, cover_image, og_image, hero_alt, cover_alt, og_alt
+                 FROM blog_posts
+                 WHERE is_published = 1
+                 ORDER BY COALESCE(published_at, created_at) DESC
+                 LIMIT %d OFFSET %d',
+                $perPage,
+                $offset
+            );
+            $stmt = $this->db()->prepare($sql);
+            $stmt->execute();
+
+            /** @var list<array<string,mixed>> $rows */
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+
+            return [
+                'items' => array_map(static fn(array $row): array => ContentNormalizer::article($row), $rows),
+                'total' => $total,
+            ];
+        } catch (Throwable $e) {
+            error_log('[ICT article] paginate: ' . $e->getMessage());
+
+            return ['items' => [], 'total' => 0];
+        }
+    }
+
     /** @return list<array<string,mixed>> */
     public function related(int $excludeId, int $limit = 3): array
     {
