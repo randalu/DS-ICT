@@ -52,3 +52,8 @@ desktop.ini
 /.hermes/
 /.Jules/
 /.opencode/
+
+# CI workflow is kept locally but not pushed by an OAuth token without the
+# `workflow` scope. After `gh auth refresh -h github.com -s workflow`, run:
+#   git add -f .github/workflows/ci.yml && git commit -m "Add CI workflow" && git push
+/.github/workflows/ci.yml
